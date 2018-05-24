@@ -22,11 +22,11 @@ a grayscale image of class cimg
 Correct inhomogeneous background of image by solving Screened Poisson Equation
 }
 \examples{
-dev.new()
-par(mfcol = c(1,2))
-boats_g <- grayscale(boats)
-plot(boats_g, main = "Original")
-SPE(boats_g, 0.1) \%>\% plot(main = "Screened Poisson Equation")
+#dev.new()
+#par(mfcol = c(1,2))
+#boats_g <- grayscale(boats)
+#plot(boats_g, main = "Original")
+#SPE(boats_g, 0.1) \%>\% plot(main = "Screened Poisson Equation")
 }
 \references{
 Jean-Michel Morel, Ana-Belen Petro, and Catalina Sbert, Screened Poisson Equation for Image Contrast Enhancement, Image Processing On Line, 4 (2014), pp. 16-29. \url{https://doi.org/10.5201/ipol.2014.84}
