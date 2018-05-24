@@ -1,11 +1,11 @@
 Package: imagerExtra
 Type: Package
-Title: Extra Image Processing Library Based on 'Imager'
+Title: Extra Image Processing Library Based on Imager
 Version: 1.0
 Date: 2018-05-24
 Author: Shota Ochi
 Maintainer: Shota Ochi <shotaochi1990@gmail.com>
-Description: Providing several advanced functions for image processing based on imager.
+Description: Providing several advanced functions for image processing based on the package imager.
 License: GPL (>= 3)
 Depends: imager (>= 0.40.2)
 Imports: Rcpp (>= 0.12.14),
