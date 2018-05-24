@@ -43,7 +43,6 @@ That's why PAE has two parameters in practice.
 We don't have a priori choice for **N**. You will tune *N* mainly.
 PAE acts as Histogram Equalization if **N** is large.
 ```{r, fig.width=4, fig.height=6, fig.show='hold', dev='jpeg'}
-dev.new()
 par(mfcol=c(2,2))
 plot(g, main = "Original")
 plot(EqualizePiecewise(g, 2), main = "N = 2")
@@ -72,7 +71,6 @@ SCB applies affine transformation after saturating pixels.
 *range* defines the output range.
 Default of **range** is [0,255]. You may prefer [0,1].
 ```{r, fig.width=4, fig.height=6, fig.show='hold', dev='jpeg'}
-dev.new()
 par(mfcol=c(1,2))
 plot(g, main = "Original")
 plot(BalanceSimplest(g, 1, 1), main = "sleft = 1, sright = 1")
@@ -93,7 +91,6 @@ SPE corrects inhomogeneous background strongly if *lamda* is large.
 SPE uses Simplest Color Balance. *s* and *range* are the parameters for Simplest Color Balance.
 *s* is used as both *sleft* and *sright*.
 ```{r, fig.width=4, fig.height=6, fig.show='hold', dev='jpeg'}
-dev.new()
 par(mfcol=c(1,2))
 plot(g, main = "Original")
 plot(SPE(g, 1), main = "lamda = 1")
@@ -113,7 +110,6 @@ Larger window size does not bring significant improvement when noise level is lo
 Larger window size outperforms significantly smaller window size when noise level is low.
 ```{r, fig.width=4, fig.height=6, fig.show='hold', dev='jpeg'}
 noisy <- g + imnoise(dim = dim(g), sd = 0.1)
-dev.new()
 par(mfcol=c(2,2))
 plot(g, main = "Original")
 plot(noisy, main = "Noisy Boats")
