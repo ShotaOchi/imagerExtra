@@ -1,0 +1,52 @@
+library(imagerExtra)
+
+test_that("utils", 
+{
+    expect_warning(ConvertPercentile(1))
+	expect_equal(ConvertPercentile(1), NULL)
+	expect_warning(ConvertPercentile(NULL))
+    expect_equal(ConvertPercentile("1%"), 1)
+    expect_equal(ConvertPercentile("50%"), 50)
+	expect_equal(ConvertPercentile("A%"), NULL)
+	expect_warning(ConvertPercentile("A%"))
+	expect_equal(ConvertPercentile("%"), NULL)
+	expect_warning(ConvertPercentile("%"))
+	
+	notim <- 1
+    im <- boats
+	gim <- grayscale(im)
+	gim2 <- imrep(gim, 2) %>% imappend(., "z")
+    N <- 3
+	im_NA <- as.cimg(matrix(NA, 100, 100))
+	im_char <- as.cimg(matrix("A", 100, 100))
+	
+    expect_equal(CheckSanityim(notim), FALSE)
+	expect_warning(CheckSanityim(notim))
+	expect_equal(CheckSanityim(gim2), FALSE)
+	expect_warning(CheckSanityim(gim2))
+    expect_equal(CheckSanityim(im), FALSE)
+	expect_warning(CheckSanityim(im))
+	expect_equal(CheckSanityim(im_NA), FALSE)
+	expect_warning(CheckSanityim(im_NA))
+	expect_equal(CheckSanityim(im_char), FALSE)
+	expect_warning(CheckSanityim(im_char))
+	expect_equal(CheckSanityim(gim), TRUE)
+	
+	range_bad1 <- c(1,1,1)
+	range_bad2 <- c(-1,1)
+	range_bad3 <- c(0, NA)
+	range_bad4 <- c("A", 255)
+	range_badorder <- c(255, 0)
+	range_good <- c(0, 255)
+    expect_equal(CheckSanityrange(range_bad1), FALSE)
+	expect_warning(CheckSanityrange(range_bad1))
+	expect_equal(CheckSanityrange(range_bad2), FALSE)
+	expect_warning(CheckSanityrange(range_bad2))
+	expect_equal(CheckSanityrange(range_bad3), FALSE)
+	expect_warning(CheckSanityrange(range_bad3))
+	expect_equal(CheckSanityrange(range_bad4), FALSE)
+	expect_warning(CheckSanityrange(range_bad4))
+	expect_equal(CheckSanityrange(range_badorder), TRUE)
+    expect_warning(CheckSanityrange(range_badorder))
+	expect_equal(CheckSanityrange(range_good), TRUE)
+})
