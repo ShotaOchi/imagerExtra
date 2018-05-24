@@ -9,11 +9,11 @@
 #' @author Shota Ochi
 #' @export
 #' @examples
-#' dev.new()
-#' par(mfcol = c(1,2))
-#' boats_g <- grayscale(boats)
-#' plot(boats_g, main = "Original")
-#' SPE(boats_g, 0.1) %>% plot(main = "Screened Poisson Equation")
+#' #dev.new()
+#' #par(mfcol = c(1,2))
+#' #boats_g <- grayscale(boats)
+#' #plot(boats_g, main = "Original")
+#' #SPE(boats_g, 0.1) %>% plot(main = "Screened Poisson Equation")
 SPE <- function(im, lamda, s = 0.1, range = c(0, 255))
 {
     res_sanitycheck_im <- CheckSanityim(im)
