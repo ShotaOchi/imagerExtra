@@ -11,7 +11,7 @@ BalanceSimplest(im, sleft, sright, range = c(0, 255))
 
 \item{sleft}{left saturation percentage. sleft can be specified by numeric or string, e.g. 1 and "1\%". note that sleft is a percentile.}
 
-\item{sright}{right saturation percentage. sright can be specified by numeric or string. note that sleft is a percentile.}
+\item{sright}{right saturation percentage. sright can be specified by numeric or string. note that sright is a percentile.}
 
 \item{range}{this function assumes that the range of pixel values of of input image is [0,255] by default. you may prefer [0,1].}
 }
