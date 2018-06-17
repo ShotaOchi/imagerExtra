@@ -17,7 +17,10 @@
 DenoiseDCT <- function(im, sdn, flag_dct16x16 = FALSE)
 {
     res_sanitycheck_im <- CheckSanityim(im)
-    if (!all(c(res_sanitycheck_im))) return(NULL)
+    if (!all(c(res_sanitycheck_im))) 
+	{
+	    return(NULL)
+	}
     if(any(class(sdn) != "numeric"))
 	{
 	    warning("sdn must be numeric.", call. = FALSE)

@@ -58,6 +58,36 @@ CheckSanityim <- function(im)
 	return(TRUE)
 }
 
+CheckSanityimcol <- function(imcol)
+{
+    if (!any(class(imcol) == "cimg")) 
+	{
+	    warning("imcol must be a image of class cimg.", call. = FALSE)
+		return(FALSE)
+	}
+	if (depth(imcol) != 1) 
+	{
+	    warning("the depth of imcol must be 1.", call. = FALSE)
+		return(FALSE)
+	}
+	if (imager::spectrum(imcol) != 3) 
+	{
+	    warning("imcol must be a color image.", call. = FALSE)
+		return(FALSE)
+	}
+	if (any(is.na(imcol))) 
+	{
+	    warning("imcol has NA. NA is unacceptable.", call. = FALSE)
+		return(FALSE)
+	}
+	if (!is.numeric(imcol))
+	{
+	    warning("imcol must be numeric.", call. = FALSE)
+	    return(FALSE)
+	}
+	return(TRUE)
+}
+
 CheckSanityrange <- function(range)
 {
 	if (length(range) != 2)

@@ -7,12 +7,22 @@
 NULL
 
 #' @useDynLib imagerExtra, .registration=TRUE
-#' @importFrom imager as.cimg
-#' @importFrom imager depth
-#' @importFrom imager spectrum
-#' @importFrom Rcpp sourceCpp
-#' @importFrom magrittr %>%
 #' @importFrom dtt mvdct
+#' @importFrom imager add.color
+#' @importFrom imager as.cimg
+#' @importFrom imager at<-
+#' @importFrom imager B
+#' @importFrom imager B<-
+#' @importFrom imager depth
+#' @importFrom imager G
+#' @importFrom imager G<-
+#' @importFrom imager imfill
+#' @importFrom imager R
+#' @importFrom imager R<-
+#' @importFrom imager spectrum
+#' @importFrom imager where
+#' @importFrom magrittr %>%
+#' @importFrom Rcpp sourceCpp
 NULL
 
 

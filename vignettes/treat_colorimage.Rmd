@@ -1,0 +1,101 @@
+---
+title: "Treating Color Image with imagerExtra"
+author: "Shota Ochi"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Treating Color Image with imagerExtra}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=FALSE, 
+               comment=NA, verbose=TRUE, fig.width=5, fig.height=5, dev='jpeg',dev.args=list(quality=50))	
+library(imager)
+res <- vector("list",3)
+a <- imfill(300, 300, 3, c(1,0,0)) %>% grayscale()
+res[[1]] <- unique(a)
+a <- imfill(300, 300, 3, c(0,1,0)) %>% grayscale()
+res[[2]] <- unique(a)
+a <- imfill(300, 300, 3, c(0,0,1)) %>% grayscale()
+res[[3]] <- unique(a)			   
+```
+
+We have two options when treating color image with imagerExtra.
+
+
+* process the channels independently
+
+
+* preserve the hue of image, process the intensity component and then compute RGB values from the new intensity component
+
+
+The former is straightforward.
+
+One example is shown below.
+
+
+```{r, message = FALSE}
+library(imagerExtra)
+x <- boats
+s <- 0.1
+R(x) <- BalanceSimplest(R(x), s, s, range=c(0,1))
+G(x) <- BalanceSimplest(G(x), s, s, range=c(0,1))
+B(x) <- BalanceSimplest(B(x), s, s, range=c(0,1))
+layout(matrix(1:2, 1, 2))
+plot(boats, main = "Original")
+plot(x, main = "Independently Processed")
+```
+  
+
+The latter needs three functions: Grayscale, GetHue, RestoreHue.
+
+
+Grayscale computes average of RGB channel.
+
+
+GetHue stores hue of image.
+
+
+RestoreHue restores hue of image.
+
+
+Note that grayscale of **imager** computes as below by default.
+
+
+```{r , echo = FALSE, size = "huge"}
+text1 <- sprintf("Y = %fR + %fG + %fB", res[[1]], res[[2]], res[[3]])
+cat(text1)
+```
+
+
+This equation reflects the way of human visual perception.
+
+
+This grayscale conversion makes it difficult to restore hue of image.
+
+
+That's why we need Grayscale, which just compute average of RGB channels.
+
+
+How to use these functions is shown below.
+
+
+```{r}
+g <- Grayscale(boats)
+hueim <- GetHue(boats)
+g <- BalanceSimplest(g, s, s, range=c(0,1))
+y <- RestoreHue(g, hueim)
+layout(matrix(1:2, 1, 2))
+plot(boats, main = "Original")
+plot(y, main = "Processed While Preserving Hue")
+```
+
+Which way is better?
+
+
+It's up to you.
+
+
+You should consider which way is better when treating color image.

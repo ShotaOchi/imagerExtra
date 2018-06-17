@@ -32,6 +32,18 @@ test_that("utils",
 	expect_warning(CheckSanityim(im_char))
 	expect_equal(CheckSanityim(gim), TRUE)
 	
+	expect_equal(CheckSanityimcol(notim), FALSE)
+	expect_warning(CheckSanityimcol(notim))
+	expect_equal(CheckSanityimcol(gim2), FALSE)
+	expect_warning(CheckSanityimcol(gim2))
+    expect_equal(CheckSanityimcol(gim), FALSE)
+	expect_warning(CheckSanityimcol(gim))
+	expect_equal(CheckSanityimcol(im_NA), FALSE)
+	expect_warning(CheckSanityimcol(im_NA))
+	expect_equal(CheckSanityimcol(im_char), FALSE)
+	expect_warning(CheckSanityimcol(im_char))
+	expect_equal(CheckSanityimcol(im), TRUE)
+	
 	range_bad1 <- c(1,1,1)
 	range_bad2 <- c(-1,1)
 	range_bad3 <- c(0, NA)
