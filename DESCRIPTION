@@ -12,7 +12,9 @@ Authors@R: c(
 Maintainer: Shota Ochi <shotaochi1990@gmail.com>
 Description: Providing several advanced functions for image processing based on the package 'imager'.
 License: GPL (>= 3)
-Depends: imager (>= 0.40.2)
+Depends: 
+    R (>= 2.10.0),
+    imager (>= 0.40.2)
 Imports: Rcpp (>= 0.12.14),
     dtt,
     magrittr
