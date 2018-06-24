@@ -1,0 +1,5 @@
+* fix the bug of BalanceSimplest()
+ - boats_g <- grayscale(boats)
+ - BalanceSimplest(boats_g, 0, 1)
+   
+* add fuzzy thresholding 
