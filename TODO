@@ -1,4 +1,4 @@
-* fix the bug of BalanceSimplest()
+-done- * fix the bug of BalanceSimplest()
  - boats_g <- grayscale(boats)
  - BalanceSimplest(boats_g, 0, 1)
  
@@ -8,3 +8,5 @@
 * add fuzzy thresholding 
 
 * add iterative triclass thresholding
+
+-done- *add functions to treat color image

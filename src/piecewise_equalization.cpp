@@ -36,7 +36,7 @@ double inverse_cumulative_function(double Fu, Rcpp::NumericVector F)
 	/* sanity check*/
     if (Fu < 0) 
 	{
-        Rcpp::Rcout << "Error: Fu is lower than 0" << std::endl;
+        Rcpp::Rcout << "Error: Fu is lower than 0 (Fu: " << Fu << ")" << std::endl;
         return 0;
     }
 	

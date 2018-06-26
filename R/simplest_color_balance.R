@@ -36,7 +36,7 @@ BalanceSimplest <- function(im, sleft, sright, range = c(0,255))
 	im <- as.vector(im)
 	im_ordered <- im[order(im)]
 	size_im <- length(im)
-	end_left <- as.integer(sleft / 100 * size_im)
+	end_left <- as.integer(sleft / 100 * size_im + 1) 
 	end_right <- as.integer((100 - sright) / 100 * size_im)
 	min_im <- im_ordered[end_left]
 	max_im <- im_ordered[end_right]
