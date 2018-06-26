@@ -6,3 +6,5 @@
  - EqualizePiecewise(boats_g, 100000)
    
 * add fuzzy thresholding 
+
+* add iterative triclass thresholding
