@@ -127,7 +127,7 @@ Rcpp::NumericVector piecewise_transformation(Rcpp::NumericVector data, Rcpp::Num
 
     for (k = 1; k <= N; k++) 
 	{
-        Fu = (double) (k * n) / (double) (N + 1);
+        Fu = (double) k * n / (double) (N + 1);
         y1 = (max_range * (double) k) / (double) (N + 1);
         x1 = inverse_cumulative_function(Fu, F);
         if (x1 > x0) 

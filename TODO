@@ -2,7 +2,7 @@
  - boats_g <- grayscale(boats)
  - BalanceSimplest(boats_g, 0, 1)
  
-* fix the bug of EqualizePiecewise()
+-done- * fix the bug of EqualizePiecewise()
  - EqualizePiecewise(boats_g, 100000)
    
 * add fuzzy thresholding 
