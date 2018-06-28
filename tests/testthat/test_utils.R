@@ -61,4 +61,34 @@ test_that("utils",
 	expect_equal(CheckSanityrange(range_badorder), TRUE)
     expect_warning(CheckSanityrange(range_badorder))
 	expect_equal(CheckSanityrange(range_good), TRUE)
+	
+	numeric_bad1 <- c(1,2)
+	numeric_bad2 <- NA
+	numeric_bad3 <- NaN
+	numeric_bad4 <- "A"
+	numeric_bad5 <- -1
+	numeric_good <- 1
+	expect_equal(CheckSanitypositivenumeric(numeric_bad1), FALSE)
+	expect_warning(CheckSanityrpositivenumeric(numeric_bad1))
+	expect_equal(CheckSanitypositivenumeric(numeric_bad2), FALSE)
+	expect_warning(CheckSanityrpositivenumeric(numeric_bad2))	
+	expect_equal(CheckSanitypositivenumeric(numeric_bad3), FALSE)
+	expect_warning(CheckSanityrpositivenumeric(numeric_bad3))
+	expect_equal(CheckSanitypositivenumeric(numeric_bad4), FALSE)
+	expect_warning(CheckSanityrpositivenumeric(numeric_bad4))
+	expect_equal(CheckSanitypositivenumeric(numeric_bad5), FALSE)
+	expect_warning(CheckSanityrpositivenumeric(numeric_bad5))
+	expect_equal(CheckSanitypositivenumeric(numeric_good), TRUE)		
+	
+	logical_bad1 <- c(TRUE, FALSE)
+	logical_bad2 <- NA
+	logical_bad3 <- 1
+	logical_good <- TRUE
+	expect_equal(CheckSanitylogical(logical_bad1), FALSE)
+	expect_warning(CheckSanityrlogical(logical_bad1))
+	expect_equal(CheckSanitylogical(logical_bad2), FALSE)
+	expect_warning(CheckSanityrlogical(logical_bad2))
+	expect_equal(CheckSanitylogical(logical_bad3), FALSE)
+	expect_warning(CheckSanityrlogical(logical_bad3))
+	expect_equal(CheckSanitylogical(logical_good), TRUE)
 })
