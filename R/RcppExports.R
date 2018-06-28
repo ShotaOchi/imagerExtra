@@ -5,6 +5,14 @@ DCTdenoising <- function(ipixelsR, width, height, sigma, flag_dct16x16) {
     .Call(`_imagerExtra_DCTdenoising`, ipixelsR, width, height, sigma, flag_dct16x16)
 }
 
+make_prob_otsu <- function(ordered, bins, intervalnumber, width, height) {
+    .Call(`_imagerExtra_make_prob_otsu`, ordered, bins, intervalnumber, width, height)
+}
+
+get_th_otsu <- function(prob_otsu, bins) {
+    .Call(`_imagerExtra_get_th_otsu`, prob_otsu, bins)
+}
+
 piecewise_transformation <- function(data, F, N, smax, smin, max, min, max_range, min_range) {
     .Call(`_imagerExtra_piecewise_transformation`, data, F, N, smax, smin, max, min, max_range, min_range)
 }

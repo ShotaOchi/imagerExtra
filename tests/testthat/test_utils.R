@@ -69,15 +69,15 @@ test_that("utils",
 	numeric_bad5 <- -1
 	numeric_good <- 1
 	expect_equal(CheckSanitypositivenumeric(numeric_bad1), FALSE)
-	expect_warning(CheckSanityrpositivenumeric(numeric_bad1))
+	expect_warning(CheckSanitypositivenumeric(numeric_bad1))
 	expect_equal(CheckSanitypositivenumeric(numeric_bad2), FALSE)
-	expect_warning(CheckSanityrpositivenumeric(numeric_bad2))	
+	expect_warning(CheckSanitypositivenumeric(numeric_bad2))	
 	expect_equal(CheckSanitypositivenumeric(numeric_bad3), FALSE)
-	expect_warning(CheckSanityrpositivenumeric(numeric_bad3))
+	expect_warning(CheckSanitypositivenumeric(numeric_bad3))
 	expect_equal(CheckSanitypositivenumeric(numeric_bad4), FALSE)
-	expect_warning(CheckSanityrpositivenumeric(numeric_bad4))
+	expect_warning(CheckSanitypositivenumeric(numeric_bad4))
 	expect_equal(CheckSanitypositivenumeric(numeric_bad5), FALSE)
-	expect_warning(CheckSanityrpositivenumeric(numeric_bad5))
+	expect_warning(CheckSanitypositivenumeric(numeric_bad5))
 	expect_equal(CheckSanitypositivenumeric(numeric_good), TRUE)		
 	
 	logical_bad1 <- c(TRUE, FALSE)
@@ -85,10 +85,10 @@ test_that("utils",
 	logical_bad3 <- 1
 	logical_good <- TRUE
 	expect_equal(CheckSanitylogical(logical_bad1), FALSE)
-	expect_warning(CheckSanityrlogical(logical_bad1))
+	expect_warning(CheckSanitylogical(logical_bad1))
 	expect_equal(CheckSanitylogical(logical_bad2), FALSE)
-	expect_warning(CheckSanityrlogical(logical_bad2))
+	expect_warning(CheckSanitylogical(logical_bad2))
 	expect_equal(CheckSanitylogical(logical_bad3), FALSE)
-	expect_warning(CheckSanityrlogical(logical_bad3))
+	expect_warning(CheckSanitylogical(logical_bad3))
 	expect_equal(CheckSanitylogical(logical_good), TRUE)
 })

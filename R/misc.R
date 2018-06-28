@@ -17,9 +17,11 @@ NULL
 #' @importFrom imager G
 #' @importFrom imager G<-
 #' @importFrom imager imfill
+#' @importFrom imager is.cimg
 #' @importFrom imager R
 #' @importFrom imager R<-
 #' @importFrom imager spectrum
+#' @importFrom imager threshold
 #' @importFrom imager where
 #' @importFrom magrittr %>%
 #' @importFrom Rcpp sourceCpp

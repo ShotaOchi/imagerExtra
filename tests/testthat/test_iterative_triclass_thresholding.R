@@ -39,4 +39,4 @@ test_that("Iterative Triclass Thresholding",
   expect_warning(ThresholdTriclass(gim, returnvalue = bad2))
   expect_equal(ThresholdTriclass(gim, returnvalue = bad3), NULL)
   expect_warning(ThresholdTriclass(gim, returnvalue = bad3))
-}
+})

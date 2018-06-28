@@ -20,6 +20,33 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// make_prob_otsu
+Rcpp::NumericVector make_prob_otsu(Rcpp::NumericVector ordered, Rcpp::NumericVector bins, int intervalnumber, int width, int height);
+RcppExport SEXP _imagerExtra_make_prob_otsu(SEXP orderedSEXP, SEXP binsSEXP, SEXP intervalnumberSEXP, SEXP widthSEXP, SEXP heightSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type ordered(orderedSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type bins(binsSEXP);
+    Rcpp::traits::input_parameter< int >::type intervalnumber(intervalnumberSEXP);
+    Rcpp::traits::input_parameter< int >::type width(widthSEXP);
+    Rcpp::traits::input_parameter< int >::type height(heightSEXP);
+    rcpp_result_gen = Rcpp::wrap(make_prob_otsu(ordered, bins, intervalnumber, width, height));
+    return rcpp_result_gen;
+END_RCPP
+}
+// get_th_otsu
+double get_th_otsu(Rcpp::NumericVector prob_otsu, Rcpp::NumericVector bins);
+RcppExport SEXP _imagerExtra_get_th_otsu(SEXP prob_otsuSEXP, SEXP binsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type prob_otsu(prob_otsuSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type bins(binsSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_th_otsu(prob_otsu, bins));
+    return rcpp_result_gen;
+END_RCPP
+}
 // piecewise_transformation
 Rcpp::NumericVector piecewise_transformation(Rcpp::NumericVector data, Rcpp::NumericVector F, int N, double smax, double smin, double max, double min, double max_range, double min_range);
 RcppExport SEXP _imagerExtra_piecewise_transformation(SEXP dataSEXP, SEXP FSEXP, SEXP NSEXP, SEXP smaxSEXP, SEXP sminSEXP, SEXP maxSEXP, SEXP minSEXP, SEXP max_rangeSEXP, SEXP min_rangeSEXP) {
@@ -69,6 +96,8 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_imagerExtra_DCTdenoising", (DL_FUNC) &_imagerExtra_DCTdenoising, 5},
+    {"_imagerExtra_make_prob_otsu", (DL_FUNC) &_imagerExtra_make_prob_otsu, 5},
+    {"_imagerExtra_get_th_otsu", (DL_FUNC) &_imagerExtra_get_th_otsu, 2},
     {"_imagerExtra_piecewise_transformation", (DL_FUNC) &_imagerExtra_piecewise_transformation, 9},
     {"_imagerExtra_screened_poisson_dct", (DL_FUNC) &_imagerExtra_screened_poisson_dct, 2},
     {"_imagerExtra_saturateim", (DL_FUNC) &_imagerExtra_saturateim, 5},
