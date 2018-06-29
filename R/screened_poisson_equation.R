@@ -20,27 +20,8 @@ SPE <- function(im, lamda, s = 0.1, range = c(0, 255))
 {
     res_sanitycheck_im <- CheckSanityim(im)
 	res_sanitycheck_range <- CheckSanityrange(range)
-    if(!all(c(res_sanitycheck_im, res_sanitycheck_range))) return(NULL)
-	if(any(class(lamda) != "numeric"))
-	{
-	    warning("lamda must be numeric.", call. = FALSE)
-		return(NULL)
-	}
-	if(length(lamda) != 1)
-	{
-	    warning("length of lamda must be 1.", call. = FALSE)
-		return(NULL)
-	}
-	if(is.na(lamda))
-	{
-	    warning("lamda is NA. NA is unacceptable.", call. = FALSE)
-		return(NULL)
-	}
-	if(lamda <= 0)
-	{
-	    warning("lamda must be positive.", call. = FALSE)
-		return(NULL)
-	}
+    res_sanitycheck_lamda <- CheckSanitypositivenumeric(lamda)
+    if(!all(c(res_sanitycheck_im, res_sanitycheck_range, res_sanitycheck_lamda))) return(NULL)
 	im <- BalanceSimplest(im, s, s, range)
 	im_dct <- mvdct(as.matrix(im))
 	im_dct_spe <- screened_poisson_dct(im_dct, lamda)

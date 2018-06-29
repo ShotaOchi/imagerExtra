@@ -17,39 +17,11 @@
 DenoiseDCT <- function(im, sdn, flag_dct16x16 = FALSE)
 {
     res_sanitycheck_im <- CheckSanityim(im)
-    if (!all(c(res_sanitycheck_im))) 
+    res_sanitycheck_sdn <- CheckSanitypositivenumeric(sdn)
+    res_sanitycheck_flag <- CheckSanitylogical(flag_dct16x16)
+    if (!all(c(res_sanitycheck_im, res_sanitycheck_sdn, res_sanitycheck_flag))) 
 	{
 	    return(NULL)
-	}
-    if(any(class(sdn) != "numeric"))
-	{
-	    warning("sdn must be numeric.", call. = FALSE)
-		return(NULL)
-	}
-	if(length(sdn) != 1)
-	{
-	    warning("length of sdn must be 1.", call. = FALSE)
-		return(NULL)
-	}
-	if(is.na(sdn))
-	{
-	    warning("sdn is NA. NA is unacceptable.", call. = FALSE)
-		return(NULL)
-	}
-	if(sdn <= 0)
-	{
-	    warning("sdn must be positive.", call. = FALSE)
-		return(NULL)
-	}
-	if(!is.logical(flag_dct16x16))
-	{
-	    warning("flag_dct16x16 must be logical.", .call = FALSE)
-		return(NULL)
-	}
-	if(is.na(flag_dct16x16))
-	{
-	    warning("flag_dct16x16 is NA. NA is unacceptable.", .call = FALSE)
-		return(NULL)
 	}
 	dim_im <- dim(im)
 	res <- DCTdenoising(as.matrix(im), dim_im[2], dim_im[1], sdn, as.integer(!flag_dct16x16)) %>% as.cimg()
