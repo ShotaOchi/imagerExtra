@@ -64,7 +64,8 @@ ThresholdTriclass <- function(im, intervalnumber = 1000, stopval = 0.1, repeatnu
     minim <- ordered[1]
     maxim <- ordered[length(ordered)]
     bins <- seq(minim, maxim, length.out = intervalnumber + 1)
-    prob_otsu <- make_prob_otsu(ordered, bins, as.integer(intervalnumber), dimim[1], dimim[2])
+    prob_otsu <- make_prob_otsu(ordered, bins[2:length(bins)], as.integer(intervalnumber), dimim[1], dimim[2])
+    bins <- (bins[2:length(bins)] + bins[1:(length(bins)-1)]) / 2
     thresval <- get_th_otsu(prob_otsu, bins)
     thresval_pre <- thresval + 2 * stopval
     while (TRUE)
@@ -79,7 +80,7 @@ ThresholdTriclass <- function(im, intervalnumber = 1000, stopval = 0.1, repeatnu
 	  }
       indexTBD <- bins > myu0 & bins < myu1
 	  bins <- bins[indexTBD]
-	  prob_otsu <- prob_otsu[indexTBD]
+	  prob_otsu <- prob_otsu[indexTBD]     
 	  thresval <- get_th_otsu(prob_otsu, bins)
 	  if (abs(thresval - thresval_pre) < stopval) 
 	  {
@@ -101,7 +102,8 @@ ThresholdTriclass <- function(im, intervalnumber = 1000, stopval = 0.1, repeatnu
     minim <- ordered[1]
     maxim <- ordered[length(ordered)]
     bins <- seq(minim, maxim, length.out = intervalnumber + 1)
-    prob_otsu <- make_prob_otsu(ordered, bins, intervalnumber, dimim[1], dimim[2])
+    prob_otsu <- make_prob_otsu(ordered, bins[2:length(bins)], intervalnumber, dimim[1], dimim[2])
+    bins <- (bins[2:length(bins)] + bins[1:(length(bins)-1)]) / 2
     thresval <- get_th_otsu(prob_otsu, bins)
 	for (i in seq_len(as.integer(repeatnum) - 1))
 	{
@@ -111,7 +113,7 @@ ThresholdTriclass <- function(im, intervalnumber = 1000, stopval = 0.1, repeatnu
 	  myu0 <- mean(bins[indexb])
 	  if (is.nan(myu0) || is.nan(myu1)) 
 	  {
-        message("Iteration was stopped in the middle because further iteration didn't bring anything.")          
+        message("Iteration was stopped in the middle.")          
 	    break
 	  }
       indexTBD <- bins > myu0 & bins < myu1

@@ -5,18 +5,26 @@ Rcpp::NumericVector make_prob_otsu(Rcpp::NumericVector ordered, Rcpp::NumericVec
 {
   Rcpp::NumericVector out(intervalnumber);
   int n = ordered.size();
-  int count = 1;
+  int m = bins.size();
+  int count = 0;
   for (int i = 0; i < n; ++i)
   {
     if (ordered[i] <= bins[count])
     {
       out[count] += 1;
     } else {
-	++count;
+    while (ordered[i] > bins[count])
+    {
+      ++count;    
+    }
+    if (count >= intervalnumber || count >= m) 
+    {
+      break;
+    }
 	out[count] += 1;
     }
   }
-  double size = (double)(width * height);
+  double size = (double)width * height;
   for (int i = 0; i < intervalnumber; ++i) 
   {
     out[i] /= size;
@@ -42,18 +50,18 @@ double get_th_otsu(Rcpp::NumericVector prob_otsu, Rcpp::NumericVector bins)
   double myut = 0.0;
   for (int i = 0; i < n; ++i) 
   {
-    myut += prob_otsu[i] * (bins[i] + bins[i+1]) / 2;
+    myut += prob_otsu[i] * bins[i];
   }
 
   double omegak = prob_otsu[0];
-  double myuk = prob_otsu[0] * (bins[0] + bins[1]) / 2;
+  double myuk = prob_otsu[0] * bins[0];
   double ICV = calc_ICV_ostu(omegak, myuk, myut);
   double maxICV = ICV;
   double threshold = bins[0];
   for(int i = 1; i < n; ++i)
   {
     omegak += prob_otsu[i];
-    myuk += prob_otsu[i] * (bins[i] + bins[i+1]) / 2;
+    myuk += prob_otsu[i] * bins[i];
     ICV = calc_ICV_ostu(omegak, myuk, myut);
     if (ICV > maxICV) 
     {
