@@ -78,7 +78,7 @@ ThresholdTriclass <- function(im, intervalnumber = 1000, stopval = 0.1, repeatnu
 	  {
 	    break
 	  }
-      indexTBD <- bins > myu0 & bins < myu1
+      indexTBD <- bins >= myu0 & bins <= myu1
 	  bins <- bins[indexTBD]
 	  prob_otsu <- prob_otsu[indexTBD]     
 	  thresval <- get_th_otsu(prob_otsu, bins)
@@ -116,7 +116,7 @@ ThresholdTriclass <- function(im, intervalnumber = 1000, stopval = 0.1, repeatnu
         message("Iteration was stopped in the middle.")          
 	    break
 	  }
-      indexTBD <- bins > myu0 & bins < myu1
+      indexTBD <- bins >= myu0 & bins <= myu1
 	  bins <- bins[indexTBD]
 	  prob_otsu <- prob_otsu[indexTBD]
 	  thresval <- get_th_otsu(prob_otsu, bins)
