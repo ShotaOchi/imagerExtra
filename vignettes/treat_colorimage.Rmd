@@ -11,7 +11,7 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=FALSE, 
-               comment=NA, verbose=TRUE, fig.width=5, fig.height=5, dev='jpeg',dev.args=list(quality=50))	
+               comment=NA, verbose=TRUE, fig.width=7.5, fig.height=5, dev='jpeg',dev.args=list(quality=50))	
 library(imager)
 res <- vector("list",3)
 a <- imfill(300, 300, 3, c(1,0,0)) %>% grayscale()
