@@ -66,7 +66,7 @@ double get_th_otsu(Rcpp::NumericVector prob_otsu, Rcpp::NumericVector bins)
     if (ICV > maxICV) 
     {
 	maxICV = ICV;
-	threshold = (bins[i] + bins[i+1]) / 2;
+	threshold = bins[i];
     }
   }
   return threshold;
