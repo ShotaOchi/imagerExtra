@@ -129,8 +129,8 @@ DenoiseDCT(noisy, 0.1, flag_dct16x16 = TRUE) %>% plot(., main = "Denoised (16x16
 Iterative triclass thresholding is an iterative thresholding technique.
 We need to set a rule to stop iteration.
 We have two options.
-* set preset threshold (stopval)
-* set repeat number (repeatnum)
+* set preset threshold (*stopval*)
+* set repeat number (*repeatnum*)
 See [the intoroduction]https://shotaochi.github.io/2018/06/30/Iterative-Triclass-Thresholding.html) if you want to know about iterative triclass thresholding.
 
 ## the parameter *stopval* and *repeatnum*
