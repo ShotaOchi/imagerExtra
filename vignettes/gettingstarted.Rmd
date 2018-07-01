@@ -20,7 +20,8 @@ I will introduce the functions briefly.
 See the vignettes of **imager** if you aren't familiar with **imager**.
 
 # Preparation
-The functions of **imagerExtra** are for grayscale image.
+Most of the functions of **imagerExtra** are for grayscale image.
+See the vignette **Treating Color Image with imagerExtra** if you want to treat color image with imagerExtra
 Let's prepare a grayscale image.
 If you want to treat color image, see the vignette "treating color image with imagerExtra".
 
@@ -100,6 +101,7 @@ plot(SPE(g, 1), main = "lamda = 1")
 ```
 
 
+
 # DCT denoising
 DCT denoising is a simple and effective denoising algorithm using local DCT thresholding.
 See [Guoshen Yu, and Guillermo Sapiro, IPOL, 1 (2011), pp. 292-296.](https://doi.org/10.5201/ipol.2011.ys-dct) for detail.
@@ -119,4 +121,26 @@ plot(g, main = "Original")
 plot(noisy, main = "Noisy Boats")
 DenoiseDCT(noisy, 0.1) %>% plot(., main = "Denoised (8x8 window)")
 DenoiseDCT(noisy, 0.1, flag_dct16x16 = TRUE) %>% plot(., main = "Denoised (16x16 window)")
+```
+
+
+
+# Iterative Triclass Thresholding
+Iterative triclass thresholding is an iterative thresholding technique.
+We need to set a rule to stop iteration.
+We have two options.
+* set preset threshold (stopval)
+* set repeat number (repeatnum)
+See [the intoroduction]https://shotaochi.github.io/2018/06/30/Iterative-Triclass-Thresholding.html) if you want to know about iterative triclass thresholding.
+
+## the parameter *stopval* and *repeatnum*
+*stopval* determines a preset threshold to stop iteration.
+*repeatnum* determines how many times we repeat.
+```{r, fig.width=7, fig.height=7}
+g <- grayscale(dogs)
+layout(matrix(1:4, 2, 2, byrow = TRUE))
+plot(g, main = "Original", axes=F)
+ThresholdTriclass(g, stopval = 0.01) %>% plot(main = "stopval = 0.01", axes=F)
+ThresholdTriclass(g, repeatnum = 1) %>% plot(main = "repeatnum = 1", axes=F)
+ThresholdTriclass(g, repeatnum = 3) %>% plot(main = "repeatnum = 3", axes=F)
 ```

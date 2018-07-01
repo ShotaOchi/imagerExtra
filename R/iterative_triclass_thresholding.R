@@ -23,11 +23,11 @@ return(thresval)
 #'
 #' compute threshold value by Iterative Triclass Threshold Technique
 #' @param im a grayscale image of class cimg
-#' @param intervalnumber interval number  of histogram
 #' @param stopval value to determine whether stop iteration of triclass thresholding or not. Note that if repeat is set, stop is ignored.
-#' @param repeatnum number of repetition of triclass thresholding 
-#' @param returnvalue if returnvalue is TRUE, ThresholdTriclass returns threshold value. if FALSE, ThresholdTriclass returns binary image.
-#' @return a grayscale image of class cimg or threshold value
+#' @param repeatnum number of repetition of triclass thresholding
+#' @param intervalnumber interval number  of histogram 
+#' @param returnvalue if returnvalue is TRUE, ThresholdTriclass returns threshold value. if FALSE, ThresholdTriclass returns pixset.
+#' @return pixset or threshold value
 #' @references Cai HM, Yang Z, Cao XH, Xia WM, Xu XY (2014). A New Iterative Triclass Thresholding Technique in Image Segmentation. IEEE TRANSACTIONS ON IMAGE PROCESSING.
 #' @author Shota Ochi
 #' @export 
@@ -38,7 +38,7 @@ return(thresval)
 #' plot(g, main = "Grayscale")
 #' threshold(g) %>% plot(main = "Otsu")
 #' ThresholdTriclass(g) %>% plot(main = "Triclass")
-ThresholdTriclass <- function(im, intervalnumber = 1000, stopval = 0.1, repeatnum, returnvalue = FALSE)
+ThresholdTriclass <- function(im, stopval = 0.1, repeatnum, intervalnumber = 1000, returnvalue = FALSE)
 {
   #sanity check of im ,intervalnumber, and returnvalue
   res_sanitycheck_im <- CheckSanityim(im)

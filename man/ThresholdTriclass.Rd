@@ -4,22 +4,22 @@
 \alias{ThresholdTriclass}
 \title{Iterative Triclass Thresholding}
 \usage{
-ThresholdTriclass(im, intervalnumber = 1000, stopval = 0.1, repeatnum,
+ThresholdTriclass(im, stopval = 0.1, repeatnum, intervalnumber = 1000,
   returnvalue = FALSE)
 }
 \arguments{
 \item{im}{a grayscale image of class cimg}
 
-\item{intervalnumber}{interval number  of histogram}
-
 \item{stopval}{value to determine whether stop iteration of triclass thresholding or not. Note that if repeat is set, stop is ignored.}
 
 \item{repeatnum}{number of repetition of triclass thresholding}
 
-\item{returnvalue}{if returnvalue is TRUE, ThresholdTriclass returns threshold value. if FALSE, ThresholdTriclass returns binary image.}
+\item{intervalnumber}{interval number  of histogram}
+
+\item{returnvalue}{if returnvalue is TRUE, ThresholdTriclass returns threshold value. if FALSE, ThresholdTriclass returns pixset.}
 }
 \value{
-a grayscale image of class cimg or threshold value
+pixset or threshold value
 }
 \description{
 compute threshold value by Iterative Triclass Threshold Technique
