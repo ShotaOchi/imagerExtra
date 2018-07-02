@@ -47,6 +47,11 @@ double get_th_otsu(Rcpp::NumericVector prob_otsu, Rcpp::NumericVector bins)
 {
   int n = prob_otsu.size();
   int m = bins.size();
+  if (n < 2)
+  {
+    Rcpp::Rcout << "lengths of prob_otsu must be greater than 1." << std::endl;
+    return 0;
+  }
   if (n != m)
   {
     Rcpp::Rcout << "lengths of prob_otsu and bins are not same." << std::endl;
