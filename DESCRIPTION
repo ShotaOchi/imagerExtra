@@ -21,8 +21,8 @@ Imports: Rcpp (>= 0.12.14),
 Suggests: testthat (>= 2.0.0),
     knitr,
     rmarkdown
-SystemRequirements: cairo (>= 1.2 http://www.cairographics.org/), fftw3,libtiff,C++11
-URL: https://github.com/ShotaOchi/imagerExtra
+SystemRequirements: cairo-dev (>= 1.2 http://www.cairographics.org/), fftw3, libtiff, C++11
+URL: https://github.com/ShotaOchi/imagerExtra, https://shotaochi.github.io/
 BugReports:	https://github.com/ShotaOchi/imagerExtra/issues
 LinkingTo: Rcpp
 LazyData: true
