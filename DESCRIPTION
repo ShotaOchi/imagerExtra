@@ -23,11 +23,6 @@ Suggests:
     testthat (>= 2.0.0),
     knitr,
     rmarkdown
-SystemRequirements: 
-    cairo (>= 1.2 http://www.cairographics.org/), libcairo2-dev (deb)
-    fftw3,
-    libtiff,
-    C++11
 URL: https://github.com/ShotaOchi/imagerExtra, https://shotaochi.github.io/
 BugReports:	https://github.com/ShotaOchi/imagerExtra/issues
 LinkingTo: Rcpp
