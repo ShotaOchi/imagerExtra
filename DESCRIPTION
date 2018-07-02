@@ -18,14 +18,13 @@ Depends:
 Imports: 
     Rcpp (>= 0.12.14),
     dtt,
-    magrittr,
-    Cairo
+    magrittr
 Suggests: 
     testthat (>= 2.0.0),
     knitr,
     rmarkdown
 SystemRequirements: 
-    cairo (>= 1.2 http://www.cairographics.org/),
+    cairo (>= 1.2 http://www.cairographics.org/), libcairo2-dev (deb)
     fftw3,
     libtiff,
     C++11
