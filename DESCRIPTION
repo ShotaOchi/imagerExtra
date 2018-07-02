@@ -15,13 +15,20 @@ License: GPL (>= 3)
 Depends: 
     R (>= 2.10.0),
     imager (>= 0.40.2)
-Imports: Rcpp (>= 0.12.14),
+Imports: 
+    Rcpp (>= 0.12.14),
     dtt,
-    magrittr
-Suggests: testthat (>= 2.0.0),
+    magrittr,
+    Cairo
+Suggests: 
+    testthat (>= 2.0.0),
     knitr,
     rmarkdown
-SystemRequirements: cairo-dev (>= 1.2 http://www.cairographics.org/), fftw3, libtiff, C++11
+SystemRequirements: 
+    cairo (>= 1.2 http://www.cairographics.org/),
+    fftw3,
+    libtiff,
+    C++11
 URL: https://github.com/ShotaOchi/imagerExtra, https://shotaochi.github.io/
 BugReports:	https://github.com/ShotaOchi/imagerExtra/issues
 LinkingTo: Rcpp
