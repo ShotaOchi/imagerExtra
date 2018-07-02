@@ -46,6 +46,12 @@ double calc_ICV_ostu(double omegak, double myuk, double myut)
 double get_th_otsu(Rcpp::NumericVector prob_otsu, Rcpp::NumericVector bins)
 {
   int n = prob_otsu.size();
+  int m = bins.size();
+  if (n != m)
+  {
+    Rcpp::Rcout << "lengths of prob_otsu and bins are not same." << std::endl;
+    return 0;
+  }
     
   double myut = 0.0;
   for (int i = 0; i < n; ++i) 
