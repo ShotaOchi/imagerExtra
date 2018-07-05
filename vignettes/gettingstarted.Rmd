@@ -22,14 +22,14 @@ I will introduce the functions briefly.
 
 See the vignettes of **imager** if you aren't familiar with **imager**.
 
+<br />
+
 # Preparation
 Most of the functions of **imagerExtra** are for grayscale image.
 
-See the vignette **Treating Color Image with imagerExtra** if you want to treat color image with imagerExtra
+See the vignette **Treating Color Image with imagerExtra** if you want to treat color image with imagerExtra.
 
 Let's prepare a grayscale image.
-
-If you want to treat color image, see the vignette "treating color image with imagerExtra".
 
 ```{r, fig.width=4, fig.height=4, message=FALSE, dev='jpeg'}
 library(imagerExtra)
@@ -37,7 +37,7 @@ g <- grayscale(boats)
 plot(g)
 ```
 
-
+<br />
 
 # Piecewise Affine Histogram Equalization
 
@@ -69,7 +69,7 @@ plot(EqualizePiecewise(g, 1000), main = "N = 1000")
 
 If you want to prevent excessive enhancement of contrast, you should make *smax* low.
 
-
+<br />
 
 # Simplest Color Balance
 
@@ -99,7 +99,7 @@ plot(g, main = "Original")
 plot(BalanceSimplest(g, 1, 1), main = "sleft = 1, sright = 1")
 ```
 
-
+<br />
 
 # Screened Poisson Equation
 
@@ -129,7 +129,7 @@ plot(g, main = "Original")
 plot(SPE(g, 1), main = "lamda = 1")
 ```
 
-
+<br />
 
 # DCT denoising
 
@@ -160,7 +160,7 @@ DenoiseDCT(noisy, 0.1) %>% plot(., main = "Denoised (8x8 window)")
 DenoiseDCT(noisy, 0.1, flag_dct16x16 = TRUE) %>% plot(., main = "Denoised (16x16 window)")
 ```
 
-
+<br />
 
 # Iterative Triclass Thresholding
 
