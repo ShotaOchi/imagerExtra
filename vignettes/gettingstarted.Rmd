@@ -172,7 +172,7 @@ We have two options.
 * set preset threshold (*stopval*)
 * set repeat number (*repeatnum*)
 
-See [the intoroduction]https://shotaochi.github.io/2018/06/30/Iterative-Triclass-Thresholding.html) if you want to know about iterative triclass thresholding.
+See [the intoroduction](https://shotaochi.github.io/2018/06/30/Iterative-Triclass-Thresholding.html) if you want to know about iterative triclass thresholding.
 
 ## the parameter *stopval* and *repeatnum*
 
@@ -184,7 +184,7 @@ See [the intoroduction]https://shotaochi.github.io/2018/06/30/Iterative-Triclass
 g <- grayscale(dogs)
 layout(matrix(1:4, 2, 2, byrow = TRUE))
 plot(g, main = "Original", axes=F)
-ThresholdTriclass(g, stopval = 0.01) %>% plot(main = "stopval = 0.01", axes=F)
+ThresholdTriclass(g, stopval = 0.001) %>% plot(main = "stopval = 0.001", axes=F)
 ThresholdTriclass(g, repeatnum = 1) %>% plot(main = "repeatnum = 1", axes=F)
 ThresholdTriclass(g, repeatnum = 3) %>% plot(main = "repeatnum = 3", axes=F)
 ```
