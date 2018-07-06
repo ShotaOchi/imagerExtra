@@ -70,17 +70,23 @@ ThresholdTriclass <- function(im, stopval = 0.1, repeatnum, intervalnumber = 100
     thresval_pre <- thresval + 2 * stopval
     while (TRUE)
     {
-	  indexf <- bins > thresval
+	  indexf <- ordered > thresval
 	  indexb <- !indexf
-      myu1 <- mean(bins[indexf])
-	  myu0 <- mean(bins[indexb])
+      myu1 <- mean(ordered[indexf])
+	  myu0 <- mean(ordered[indexb])
+	  ordered <- ordered[ordered >= myu0 & ordered <= myu1]
 	  if (is.nan(myu0) || is.nan(myu1)) 
 	  {
 	    break
 	  }
       indexTBD <- bins >= myu0 & bins <= myu1
 	  bins <- bins[indexTBD]
-	  prob_otsu <- prob_otsu[indexTBD]     
+	  prob_otsu <- prob_otsu[indexTBD]
+      if (sum(prob_otsu) == 0)
+	  {
+	    break
+	  }
+      prob_otsu <- prob_otsu / sum(prob_otsu)	  
 	  thresval <- get_th_otsu(prob_otsu, bins)
 	  if (abs(thresval - thresval_pre) < stopval) 
 	  {
@@ -107,10 +113,11 @@ ThresholdTriclass <- function(im, stopval = 0.1, repeatnum, intervalnumber = 100
     thresval <- get_th_otsu(prob_otsu, bins)
 	for (i in seq_len(as.integer(repeatnum) - 1))
 	{
-	  indexf <- bins > thresval
+	  indexf <- ordered > thresval
 	  indexb <- !indexf
-      myu1 <- mean(bins[indexf])
-	  myu0 <- mean(bins[indexb])
+      myu1 <- mean(ordered[indexf])
+	  myu0 <- mean(ordered[indexb])
+	  ordered <- ordered[ordered >= myu0 & ordered <= myu1]
 	  if (is.nan(myu0) || is.nan(myu1)) 
 	  {
         message("Iteration was stopped in the middle.")          
@@ -119,10 +126,15 @@ ThresholdTriclass <- function(im, stopval = 0.1, repeatnum, intervalnumber = 100
       indexTBD <- bins >= myu0 & bins <= myu1
 	  bins <- bins[indexTBD]
 	  prob_otsu <- prob_otsu[indexTBD]
+	  if (sum(prob_otsu) == 0)
+	  {
+	    break
+	  }
+      prob_otsu <- prob_otsu / sum(prob_otsu)
 	  thresval <- get_th_otsu(prob_otsu, bins)
 	} 
   }
-  if(returnvalue) 
+  if (returnvalue) 
   {  
     return(thresval)
   }
