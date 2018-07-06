@@ -82,7 +82,7 @@ ThresholdTriclass <- function(im, stopval = 0.1, repeatnum, intervalnumber = 100
       indexTBD <- bins >= myu0 & bins <= myu1
 	  bins <- bins[indexTBD]
 	  prob_otsu <- prob_otsu[indexTBD]
-      if (sum(prob_otsu) == 0)
+      if (sum(prob_otsu) == 0 || length(prob_otsu) < 2)
 	  {
 	    break
 	  }
@@ -126,8 +126,9 @@ ThresholdTriclass <- function(im, stopval = 0.1, repeatnum, intervalnumber = 100
       indexTBD <- bins >= myu0 & bins <= myu1
 	  bins <- bins[indexTBD]
 	  prob_otsu <- prob_otsu[indexTBD]
-	  if (sum(prob_otsu) == 0)
+	  if (sum(prob_otsu) == 0  || length(prob_otsu) < 2)
 	  {
+	    message("Iteration was stopped in the middle.")  
 	    break
 	  }
       prob_otsu <- prob_otsu / sum(prob_otsu)
