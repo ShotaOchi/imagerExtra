@@ -172,8 +172,6 @@ We have two options.
 * set preset threshold (*stopval*)
 * set repeat number (*repeatnum*)
 
-See [the intoroduction](https://shotaochi.github.io/2018/06/30/Iterative-Triclass-Thresholding.html) if you want to know about iterative triclass thresholding.
-
 ## the parameter *stopval* and *repeatnum*
 
 *stopval* determines a preset threshold to stop iteration.
