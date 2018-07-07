@@ -1,8 +1,7 @@
 Package: imagerExtra
 Type: Package
 Title: Extra Image Processing Library Based on 'imager'
-Version: 1.1.1
-Date: 2018-07-02
+Version: 1.2.0
 Authors@R: c(
     person("Shota", "Ochi", email = "shotaochi1990@gmail.com", role = c("aut", "cre")),
 	person("Guoshen", "Yu", email = "yu@cmap.polytechnique.fr", role = c("ctb", "cph")),
