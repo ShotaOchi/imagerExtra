@@ -36,7 +36,7 @@
 #' layout(matrix(1:4, 2, 2))
 #' plot(boats, main = "Original")
 #' plot(g, main = "Grayscale")
-#' threshold(g) %>% plot(main = "Otsu")
+#' threshold(g) %>% plot(main = "A Variant of Otsu")
 #' ThresholdTriclass(g) %>% plot(main = "Triclass")
 ThresholdTriclass <- function(im, stopval = 0.1, repeatnum, intervalnumber = 1000, returnvalue = FALSE)
 {
