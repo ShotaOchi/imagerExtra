@@ -602,6 +602,7 @@ void DCT2D16x16(std::vector< std::vector< double > >& patch1, int flag)
 
 // Define a 3x3 1D DCT basis (each ROW is a vector of the forward
 // transform basis).
+/*
 const double DCTbasis3x3[3][3] = {
     {   0.5773502588272094726562500000000000000000,
         0.5773502588272094726562500000000000000000,
@@ -616,6 +617,7 @@ const double DCTbasis3x3[3][3] = {
         -0.8164966106414794921875000000000000000000,
         0.4082483053207397460937500000000000000000      }
 };
+*/
 
 void Image2Patches(std::vector<double>&, 
      std::vector< std::vector< std::vector< std::vector< double > > > >&, int, int, int, int, int);
