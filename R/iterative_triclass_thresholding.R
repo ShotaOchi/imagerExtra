@@ -6,18 +6,18 @@
 #$' @return double
 #$' @references Nobuyuki Otsu (1979) A threshold selection method from gray-level histograms. IEEE. 
 #$' @author Shota Ochi
-threshold_otsu <- function(im, intervalnumber = 1000)
-{
-dimim <- dim(im)
-ordered <- as.vector(im)
-ordered <- ordered[order(ordered)]
-minim <- ordered[1]
-maxim <- ordered[length(ordered)]
-bins <- seq(minim, maxim, length.out = intervalnumber + 1)
-prob_otsu <- make_prob_otsu(ordered, bins, intervalnumber, dimim[1], dimim[2])
-thresval <- get_th_otsu(prob_otsu, bins)
-return(thresval)
-}
+#threshold_otsu <- function(im, intervalnumber = 1000)
+#{
+#dimim <- dim(im)
+#ordered <- as.vector(im)
+#ordered <- ordered[order(ordered)]
+#minim <- ordered[1]
+#maxim <- ordered[length(ordered)]
+#bins <- seq(minim, maxim, length.out = intervalnumber + 1)
+#prob_otsu <- make_prob_otsu(ordered, bins, intervalnumber, dimim[1], dimim[2])
+#thresval <- get_th_otsu(prob_otsu, bins)
+#return(thresval)
+#}
 
 #' Iterative Triclass Thresholding
 #'
