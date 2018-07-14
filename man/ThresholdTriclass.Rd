@@ -4,7 +4,7 @@
 \alias{ThresholdTriclass}
 \title{Iterative Triclass Thresholding}
 \usage{
-ThresholdTriclass(im, stopval = 0.1, repeatnum, intervalnumber = 1000,
+ThresholdTriclass(im, stopval = 0.01, repeatnum, intervalnumber = 1000,
   returnvalue = FALSE)
 }
 \arguments{
@@ -29,7 +29,7 @@ g <- grayscale(boats)
 layout(matrix(1:4, 2, 2))
 plot(boats, main = "Original")
 plot(g, main = "Grayscale")
-threshold(g) \%>\% plot(main = "Otsu")
+threshold(g) \%>\% plot(main = "A Variant of Otsu")
 ThresholdTriclass(g) \%>\% plot(main = "Triclass")
 }
 \references{

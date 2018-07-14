@@ -38,25 +38,17 @@
 #' plot(g, main = "Grayscale")
 #' threshold(g) %>% plot(main = "A Variant of Otsu")
 #' ThresholdTriclass(g) %>% plot(main = "Triclass")
-ThresholdTriclass <- function(im, stopval = 0.1, repeatnum, intervalnumber = 1000, returnvalue = FALSE)
+ThresholdTriclass <- function(im, stopval = 0.01, repeatnum, intervalnumber = 1000, returnvalue = FALSE)
 {
   #sanity check of im ,intervalnumber, and returnvalue
-  res_sanitycheck_im <- CheckSanityim(im)
-  res_sanitycheck_intervalnumber <- CheckSanitypositivenumeric(intervalnumber, "intervalnumber")
-  res_sanitycheck_returnvalue <- CheckSanitylogical(returnvalue, "returnvalue")
-  if (!all(c(res_sanitycheck_im, res_sanitycheck_intervalnumber, res_sanitycheck_returnvalue))) 
-  {
-    return(NULL)
-  }
+  CheckSanityim(im)
+  CheckSanitypositivenumeric(intervalnumber, "intervalnumber")
+  CheckSanitylogical(returnvalue, "returnvalue")
   
   if (missing(repeatnum))
   { 
     #sanity check of stopval
-	res_sanitycheck_stopval <- CheckSanitypositivenumeric(stopval, "stopval")
-	if(!res_sanitycheck_stopval)
-	{
-	  return(NULL)
-	}
+	CheckSanitypositivenumeric(stopval, "stopval")
 	
     dimim <- dim(im)
     ordered <- as.vector(im)
@@ -96,11 +88,7 @@ ThresholdTriclass <- function(im, stopval = 0.1, repeatnum, intervalnumber = 100
     }
   } else {
     #sanity check of repeatnum (repeatnum >= 1)
-	res_sanitycheck_repeatnum <- CheckSanitypositivenumeric(repeatnum, "repeatnum")
-	if(!res_sanitycheck_repeatnum)
-	{
-	  return(NULL)
-	}
+	CheckSanitypositivenumeric(repeatnum, "repeatnum")
 	
     dimim <- dim(im)
     ordered <- as.vector(im)

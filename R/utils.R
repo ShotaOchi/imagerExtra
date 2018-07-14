@@ -2,28 +2,24 @@
 #$'
 #$' @param stringInput string that means a percentile
 #$' @return numeric that means a percentile
-#$' @author Shota Ochi
 #$' @examples
 #$' ConvertPercentile("1%") # return 1
 ConvertPercentile <- function(stringInput)
 {
-    if (any(class(stringInput) != "character"))
+    if (!is.character(stringInput))
 	{
-	    warning("stringInput must be a character.", call. = FALSE)
-		return(NULL)
+	    stop("saturation percentage parameter (s, sleft, or sright) must be character or numeric.", call. = FALSE)
 	}
     splitted <- strsplit(stringInput , "%")
 	candidate <- splitted[[1]][1]
 	if (length(candidate) == 0) 
 	{
-	    warning("saturation percentage parameters (s, sleft, or sright) are not appropriate.", call. = FALSE)
-		return(NULL)
+	    stop("saturation percentage parameter (s, sleft, or sright) is not appropriate.", call. = FALSE)
 	}
 	candidate <- suppressWarnings(as.numeric(candidate))
 	if (is.na(candidate)) 
 	{
-		warning("saturation percentage parameters (s, sleft, or sright) are not appropriate.", call. = FALSE)
-		return(NULL)
+		stop("saturation percentage parameter (s, sleft, or sright) are not appropriate.", call. = FALSE)
 	}
     return(candidate)
 }
@@ -32,83 +28,69 @@ CheckSanityim <- function(im)
 {
     if (!is.cimg(im)) 
 	{
-	    warning("im must be a image of class cimg.", call. = FALSE)
-		return(FALSE)
+	    stop("im must be a image of class cimg.", call. = FALSE)
 	}
 	if (depth(im) != 1) 
 	{
-	    warning("the depth of im must be 1.", call. = FALSE)
-		return(FALSE)
+	    stop("the depth of im must be 1.", call. = FALSE)
 	}
 	if (imager::spectrum(im) != 1) 
 	{
-	    warning("im must be a grayscale image.", call. = FALSE)
-		return(FALSE)
+	    stop("im must be a grayscale image.", call. = FALSE)
 	}
 	if (any(is.na(im))) 
 	{
-	    warning("im has NA. NA is unacceptable.", call. = FALSE)
-		return(FALSE)
+	    stop("im has NA. NA is unacceptable.", call. = FALSE)
 	}
 	if (!is.numeric(im))
 	{
-	    warning("im must be numeric.", call. = FALSE)
-	    return(FALSE)
+	    stop("im must be numeric.", call. = FALSE)
 	}
-	return(TRUE)
+	return(invisible(TRUE))
 }
 
 CheckSanityimcol <- function(imcol)
 {
-    if (!any(class(imcol) == "cimg")) 
+    if (!is.cimg(imcol)) 
 	{
-	    warning("imcol must be a image of class cimg.", call. = FALSE)
-		return(FALSE)
+	    stop("imcol must be a image of class cimg.", call. = FALSE)
 	}
 	if (depth(imcol) != 1) 
 	{
-	    warning("the depth of imcol must be 1.", call. = FALSE)
-		return(FALSE)
+	    stop("the depth of imcol must be 1.", call. = FALSE)
 	}
 	if (imager::spectrum(imcol) != 3) 
 	{
-	    warning("imcol must be a color image.", call. = FALSE)
-		return(FALSE)
+	    stop("imcol must be a color image.", call. = FALSE)
 	}
 	if (any(is.na(imcol))) 
 	{
-	    warning("imcol has NA. NA is unacceptable.", call. = FALSE)
-		return(FALSE)
+	    stop("imcol has NA. NA is unacceptable.", call. = FALSE)
 	}
 	if (!is.numeric(imcol))
 	{
-	    warning("imcol must be numeric.", call. = FALSE)
-	    return(FALSE)
+	    stop("imcol must be numeric.", call. = FALSE)
 	}
-	return(TRUE)
+	return(invisible(TRUE))
 }
 
 CheckSanityrange <- function(range)
 {
 	if (length(range) != 2)
 	{
-	    warning("the length of range must be 2.", call. = FALSE)
-		return(FALSE)
+	    stop("the length of range must be 2.", call. = FALSE)
 	}
 	if (any(is.na(range)))
 	{
-	    warning("range has NA. NA is unacceptable.", call. = FALSE)
-		return(FALSE)
+	    stop("range has NA. NA is unacceptable.", call. = FALSE)
 	}
 	if (!is.numeric(range))
 	{
-	    warning("range must be a vector of numeric.", call. = FALSE)
-		return(FALSE)
+	    stop("range must be a vector of numeric.", call. = FALSE)
 	}
 	if (any(range < 0))
 	{
-	    warning("elements of range must be greater than or equal to 0.", call. = FALSE)
-		return(FALSE)
+	    stop("elements of range must be greater than or equal to 0.", call. = FALSE)
 	}
 	if (range[1] > range[2])
 	{
@@ -116,50 +98,70 @@ CheckSanityrange <- function(range)
 		range_ordered <- range[order(range)]
 		assign("range", range_ordered, pos = parent.frame())
 	}
-	return(TRUE)
+	return(invisible(TRUE))
 }
 
 CheckSanitypositivenumeric <- function(mynumeric, varname = "numericvar")
 {
 	if (length(mynumeric) != 1)
 	{
-	    warning(sprintf("The length of %s must be 1.", varname), call. = FALSE)
-		return(FALSE)
+	    stop(sprintf("The length of %s must be 1.", varname), call. = FALSE)
 	}
 	if (is.na(mynumeric))
 	{
-	    warning(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
-		return(FALSE)
+	    stop(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
 	}
 	if (!is.numeric(mynumeric))
 	{
-	    warning(sprintf("%s must be numeric.", varname), call. = FALSE)
-		return(FALSE)
+	    stop(sprintf("%s must be numeric.", varname), call. = FALSE)
 	}
 	if (mynumeric <= 0)
 	{
-	    warning(sprintf("%s must be greater than 0.", varname), call. = FALSE)
-		return(FALSE)
+	    stop(sprintf("%s must be greater than 0.", varname), call. = FALSE)
 	}
-	return(TRUE)  
+	return(invisible(TRUE))  
+}
+
+CheckSanitypositive0numeric <- function(mynumeric, varname = "numericvar")
+{
+	if (length(mynumeric) != 1)
+	{
+	    stop(sprintf("The length of %s must be 1.", varname), call. = FALSE)
+	}
+	if (is.na(mynumeric))
+	{
+	    stop(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
+	}
+	if (!is.numeric(mynumeric))
+	{
+	    stop(sprintf("%s must be numeric.", varname), call. = FALSE)
+	}
+	if (mynumeric < 0)
+	{
+	    stop(sprintf("%s must be greater than or equal to 0.", varname), call. = FALSE)
+	}
+	return(invisible(TRUE))  
 }
 
 CheckSanitylogical <- function(mylogical, varname = "logicalcvar")
 {
 	if (length(mylogical) != 1)
 	{
-	    warning(sprintf("The length of %s must be 1.", varname), call. = FALSE)
-		return(FALSE)
+	    stop(sprintf("The length of %s must be 1.", varname), call. = FALSE)
 	}
 	if (is.na(mylogical))
 	{
-	    warning(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
-		return(FALSE)
+	    stop(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
 	}
 	if (!is.logical(mylogical))
 	{
-	    warning(sprintf("%s must be logical.", varname), call. = FALSE)
-		return(FALSE)
+	    stop(sprintf("%s must be logical.", varname), call. = FALSE)
 	}
-	return(TRUE)  
+	return(invisible(TRUE))  
 }
+
+#CheckSanityimmat <- function(immat, varname = "matrix")
+#{
+
+
+#}

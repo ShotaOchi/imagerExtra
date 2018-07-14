@@ -8,11 +8,7 @@
 #' Grayscale(boats) %>% plot
 Grayscale <- function(imcol) 
 {
-    res_sanitycheck_imcol <- CheckSanityimcol(imcol)
-    if (!all(c(res_sanitycheck_imcol))) 
-	{
-	    return(NULL)
-    }
+    CheckSanityimcol(imcol)
     (R(imcol) + G(imcol) + B(imcol)) / 3
 }
 
@@ -26,11 +22,7 @@ Grayscale <- function(imcol)
 #' GetHue(boats)
 GetHue <- function(imcol) 
 {
-    res_sanitycheck_imcol <- CheckSanityimcol(imcol)
-    if (!all(c(res_sanitycheck_imcol))) 
-	{
-	    return(NULL)
-    }
+    CheckSanityimcol(imcol)
     res <- imfill(dim=dim(imcol)) %>% add.color
     sumRGB <- Grayscale(imcol)
     pixels0 <- where(sumRGB == 0)
@@ -56,12 +48,8 @@ GetHue <- function(imcol)
 #' RestoreHue(g, hue) %>% plot(main="Resotred")
 RestoreHue <- function(im, hueim) 
 {
-    res_sanitycheck_im <- CheckSanityim(im)
-    res_sanitycheck_imcol <- CheckSanityimcol(hueim)
-    if (!all(c(res_sanitycheck_im, res_sanitycheck_imcol))) 
-	{
-	    return(NULL)
-    }
+    CheckSanityim(im)
+    CheckSanityimcol(hueim)
     res <- imfill(dim=dim(im)) %>% add.color
     R(res) <- im * R(hueim)
     G(res) <- im * G(hueim)

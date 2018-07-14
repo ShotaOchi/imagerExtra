@@ -19,9 +19,8 @@
 #' EqualizePiecewise(boats_g, 10) %>% plot(., main = "Piecewise Affine Equalization")
 EqualizePiecewise <- function(im, N, smax = 255, smin = 0, range = c(0, 255))
 {
-    res_sanitycheck_im <- CheckSanityim(im)
-	res_sanitycheck_range <- CheckSanityrange(range)
-    if(!all(c(res_sanitycheck_im, res_sanitycheck_range))) return(NULL)
+    CheckSanityim(im)
+	CheckSanityrange(range)
 	dim_im <- dim(im)
 	im <- as.vector(im)
 	im_sorted <- im[order(im)]
