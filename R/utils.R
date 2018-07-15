@@ -160,8 +160,41 @@ CheckSanitylogical <- function(mylogical, varname = "logicalcvar")
 	return(invisible(TRUE))  
 }
 
-#CheckSanityimmat <- function(immat, varname = "matrix")
-#{
-
-
-#}
+CheckSanityimormat <- function(imormat, varname = "matrix")
+{
+    if (!is.cimg(imormat)) 
+	{
+	    if (!is.matrix(imormat))
+        {
+            stop("imormat must be a image of class cimg or a numeric matrix.", call. = FALSE)
+        }
+        if (any(is.na(imormat)))
+	    {
+	        stop("imormat has NA. NA is unacceptable.", call. = FALSE)
+	    }
+        if (!is.numeric(imormat))
+        {
+            stop("imormat must be numeric", call.=FALSE)
+        }
+	}
+	else {
+        if (depth(imormat) != 1) 
+	    {
+	        stop("the depth of im must be 1.", call. = FALSE)
+	    }
+	    if (imager::spectrum(imormat) != 1) 
+	    {
+	        stop("im must be a grayscale image.", call. = FALSE)
+	    }
+	    if (any(is.na(imormat))) 
+	    {
+	        stop("im has NA. NA is unacceptable.", call. = FALSE)
+	    }
+	    if (!is.numeric(imormat))
+	    {
+	        stop("im must be numeric.", call. = FALSE)
+	    }
+    }
+	return(invisible(TRUE))    
+    
+}

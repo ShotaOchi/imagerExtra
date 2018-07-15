@@ -77,4 +77,21 @@ test_that("utils",
 	expect_error(CheckSanitylogical(logical_bad2))
 	expect_error(CheckSanitylogical(logical_bad3))
 	expect_equal(CheckSanitylogical(logical_good), TRUE)
+    
+    mat_bad1 <- 1
+    mat_bad2 <- NULL
+    mat_bad3 <- matrix(NA,100,100)
+    mat_bad4 <- matrix("A", 200,300)
+    mat_c <- matrix(1, 100, 100)
+	expect_error(CheckSanityimormat(notim))
+	expect_error(CheckSanityimormat(gim2))
+	expect_error(CheckSanityimormat(im))
+	expect_error(CheckSanityimormat(im_NA))
+	expect_error(CheckSanityimormat(im_char))
+	expect_equal(CheckSanityimormat(gim), TRUE)
+    expect_error(CheckSanityimormat(mat_bad1))
+    expect_error(CheckSanityimormat(mat_bad2))
+    expect_error(CheckSanityimormat(mat_bad3))
+    expect_error(CheckSanityimormat(mat_bad4))
+    expect_equal(CheckSanityimormat(mat_c), TRUE)    
 })
