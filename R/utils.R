@@ -196,5 +196,4 @@ CheckSanityimormat <- function(imormat, varname = "matrix")
 	    }
     }
 	return(invisible(TRUE))    
-    
 }
