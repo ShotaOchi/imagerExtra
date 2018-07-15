@@ -9,9 +9,7 @@
 #' @export
 #' @examples 
 #' g <- grayscale(boats)
-#' layout(matrix(1:2, 1, 2))
-#' plot(g, main = "Original")
-#' DCT2D(g) %>% plot(main = "Transformed")
+#' DCT2D(g)
 DCT2D <- function(imormat, returnmat = FALSE) {
   CheckSanityimormat(imormat)
   CheckSanitylogical(returnmat, "returnmat")
@@ -38,11 +36,10 @@ DCT2D <- function(imormat, returnmat = FALSE) {
 #' @export
 #' @examples 
 #' g <- grayscale(boats)
-#' layout(matrix(1:4, 2, 2))
-#' plot(boats, main = "Original")
-#' plot(boats, main = "Monochrome")
-#' gg <- DCT2D(g) %>% plot(main = "Transformed")
-#' IDCT2D(gg) %>% plot(main = "Retransformed")
+#' layout(matrix(1:2, 1, 2))
+#' plot(g, main = "Original")
+#' gg <- DCT2D(g) %>% IDCT2D() %>% plot(main = "Transformed")
+#' mean((g - gg)^2)
 IDCT2D <- function(imormat, returnmat = FALSE) {
   CheckSanityimormat(imormat)
   CheckSanitylogical(returnmat, "returnmat")

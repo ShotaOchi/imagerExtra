@@ -19,11 +19,10 @@ compute two dimensional inverse discrete cosine transformation
 }
 \examples{
 g <- grayscale(boats)
-layout(matrix(1:4, 2, 2))
-plot(boats, main = "Original")
-plot(boats, main = "Monochrome")
-gg <- DCT2D(g) \%>\% plot(main = "Transformed")
-IDCT2D(gg) \%>\% plot(main = "Retransformed")
+layout(matrix(1:2, 1, 2))
+plot(g, main = "Original")
+gg <- DCT2D(g) \%>\% IDCT2D() \%>\% plot(main = "Transformed")
+mean((g - gg)^2)
 }
 \references{
 Makhoul, J. (1980). A fast cosine transform in one and two dimensions. IEEE Transactions on Acoustics, Speech, and Signal Processing. 28 (1): 27-34.
