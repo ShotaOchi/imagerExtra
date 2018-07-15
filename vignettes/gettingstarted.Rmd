@@ -109,8 +109,6 @@ The distinction of SPE is that SPE corrects the inhomogeneous background of imag
 
 See [Jean-Michel Morel, et al., IPOL, 4 (2014), pp. 16-29.](https://doi.org/10.5201/ipol.2014.84) for detail.
 
-Note that the performance of this function is bad because the implementation of 2D DCT is not efficient.
-
 ## the parameter *lamda*
 
 *lamda* controls how strong corrects inhomogeneous background of image.
