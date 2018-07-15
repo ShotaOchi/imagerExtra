@@ -20,6 +20,50 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// DCT2D_reorder
+Rcpp::NumericMatrix DCT2D_reorder(Rcpp::NumericMatrix mat);
+RcppExport SEXP _imagerExtra_DCT2D_reorder(SEXP matSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type mat(matSEXP);
+    rcpp_result_gen = Rcpp::wrap(DCT2D_reorder(mat));
+    return rcpp_result_gen;
+END_RCPP
+}
+// DCT2D_fromDFT
+Rcpp::NumericMatrix DCT2D_fromDFT(Rcpp::ComplexMatrix mat);
+RcppExport SEXP _imagerExtra_DCT2D_fromDFT(SEXP matSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::ComplexMatrix >::type mat(matSEXP);
+    rcpp_result_gen = Rcpp::wrap(DCT2D_fromDFT(mat));
+    return rcpp_result_gen;
+END_RCPP
+}
+// IDCT2D_toDFT
+Rcpp::ComplexMatrix IDCT2D_toDFT(Rcpp::NumericMatrix mat);
+RcppExport SEXP _imagerExtra_IDCT2D_toDFT(SEXP matSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type mat(matSEXP);
+    rcpp_result_gen = Rcpp::wrap(IDCT2D_toDFT(mat));
+    return rcpp_result_gen;
+END_RCPP
+}
+// IDCT2D_retrievex
+Rcpp::NumericMatrix IDCT2D_retrievex(Rcpp::NumericMatrix mat);
+RcppExport SEXP _imagerExtra_IDCT2D_retrievex(SEXP matSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type mat(matSEXP);
+    rcpp_result_gen = Rcpp::wrap(IDCT2D_retrievex(mat));
+    return rcpp_result_gen;
+END_RCPP
+}
 // make_prob_otsu
 Rcpp::NumericVector make_prob_otsu(Rcpp::NumericVector ordered, Rcpp::NumericVector bins, int intervalnumber, int width, int height);
 RcppExport SEXP _imagerExtra_make_prob_otsu(SEXP orderedSEXP, SEXP binsSEXP, SEXP intervalnumberSEXP, SEXP widthSEXP, SEXP heightSEXP) {
@@ -96,6 +140,10 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_imagerExtra_DCTdenoising", (DL_FUNC) &_imagerExtra_DCTdenoising, 5},
+    {"_imagerExtra_DCT2D_reorder", (DL_FUNC) &_imagerExtra_DCT2D_reorder, 1},
+    {"_imagerExtra_DCT2D_fromDFT", (DL_FUNC) &_imagerExtra_DCT2D_fromDFT, 1},
+    {"_imagerExtra_IDCT2D_toDFT", (DL_FUNC) &_imagerExtra_IDCT2D_toDFT, 1},
+    {"_imagerExtra_IDCT2D_retrievex", (DL_FUNC) &_imagerExtra_IDCT2D_retrievex, 1},
     {"_imagerExtra_make_prob_otsu", (DL_FUNC) &_imagerExtra_make_prob_otsu, 5},
     {"_imagerExtra_get_th_otsu", (DL_FUNC) &_imagerExtra_get_th_otsu, 2},
     {"_imagerExtra_piecewise_transformation", (DL_FUNC) &_imagerExtra_piecewise_transformation, 9},

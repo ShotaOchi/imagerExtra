@@ -17,7 +17,8 @@ Depends:
 Imports: 
     Rcpp (>= 0.12.14),
     dtt,
-    magrittr
+    magrittr,
+    fftwtools
 Suggests: 
     testthat (>= 2.0.0),
     knitr,
