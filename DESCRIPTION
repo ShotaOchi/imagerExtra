@@ -16,7 +16,6 @@ Depends:
     imager (>= 0.40.2)
 Imports: 
     Rcpp (>= 0.12.14),
-    dtt,
     magrittr,
     fftwtools
 Suggests: 

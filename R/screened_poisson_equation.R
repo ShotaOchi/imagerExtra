@@ -9,21 +9,19 @@
 #' @author Shota Ochi
 #' @export
 #' @examples
-#' \donttest{
 #' dev.new()
 #' par(mfcol = c(1,2))
 #' boats_g <- grayscale(boats)
 #' plot(boats_g, main = "Original")
 #' SPE(boats_g, 0.1) %>% plot(main = "Screened Poisson Equation")
-#' }
 SPE <- function(im, lamda, s = 0.1, range = c(0, 255))
 {
     CheckSanityim(im)
 	CheckSanityrange(range)
     CheckSanitypositivenumeric(lamda)
 	im <- BalanceSimplest(im, s, s, range)
-	im_dct <- mvdct(as.matrix(im))
+	im_dct <- DCT2D(as.matrix(im), returnmat = TRUE)
 	im_dct_spe <- screened_poisson_dct(im_dct, lamda)
-	im_corrected <- mvdct(im_dct_spe, inverted = TRUE) %>% as.cimg() %>% BalanceSimplest(s, s, range)
+	im_corrected <- IDCT2D(im_dct_spe) %>% BalanceSimplest(s, s, range)
 	return(im_corrected)
 }

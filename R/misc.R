@@ -7,7 +7,6 @@
 NULL
 
 #' @useDynLib imagerExtra, .registration=TRUE
-#' @importFrom dtt mvdct
 #' @importFrom fftwtools fftw2d
 #' @importFrom imager add.color
 #' @importFrom imager as.cimg
