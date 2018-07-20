@@ -16,8 +16,8 @@
 #' mean((g - gg)^2)
 NULL
 
-##' @rdname DCT
-##' @export 
+#' @rdname DCT
+#' @export 
 DCT2D <- function(imormat, returnmat = FALSE) {
   CheckSanityimormat(imormat)
   CheckSanitylogical(returnmat, "returnmat")
@@ -33,8 +33,8 @@ DCT2D <- function(imormat, returnmat = FALSE) {
   return(as.cimg(res))
 }
 
-##' @rdname DCT
-##' @export 
+#' @rdname DCT
+#' @export 
 IDCT2D <- function(imormat, returnmat = FALSE) {
   CheckSanityimormat(imormat)
   CheckSanitylogical(returnmat, "returnmat")
