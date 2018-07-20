@@ -93,5 +93,20 @@ test_that("utils",
     expect_error(CheckSanityimormat(mat_bad2))
     expect_error(CheckSanityimormat(mat_bad3))
     expect_error(CheckSanityimormat(mat_bad4))
-    expect_equal(CheckSanityimormat(mat_c), TRUE)    
+    expect_equal(CheckSanityimormat(mat_c), TRUE)   
+
+    impix <- boats %>% as.pixset
+	gimpix <- gim %>% as.pixset
+	gim2pix <- gim2 %>% as.pixset
+	impix_NA <- im_NA %>% as.pixset   
+	expect_error(CheckSanityimorpix(notim))
+	expect_error(CheckSanityimorpix(gim2))
+	expect_error(CheckSanityimorpix(im))
+	expect_error(CheckSanityimorpix(im_NA))
+	expect_error(CheckSanityimorpix(im_char))
+	expect_equal(CheckSanityimorpix(gim), TRUE)
+	expect_error(CheckSanityimorpix(gim2pix))
+	expect_error(CheckSanityimorpix(impix))
+	expect_error(CheckSanityimorpix(impix_NA))
+	expect_equal(CheckSanityimorpix(gimpix), TRUE)      
 })

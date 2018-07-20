@@ -160,7 +160,7 @@ CheckSanitylogical <- function(mylogical, varname = "logicalcvar")
 	return(invisible(TRUE))  
 }
 
-CheckSanityimormat <- function(imormat, varname = "matrix")
+CheckSanityimormat <- function(imormat)
 {
     if (!is.cimg(imormat)) 
 	{
@@ -180,20 +180,62 @@ CheckSanityimormat <- function(imormat, varname = "matrix")
 	else {
         if (depth(imormat) != 1) 
 	    {
-	        stop("the depth of im must be 1.", call. = FALSE)
+	        stop("the depth of imormat must be 1.", call. = FALSE)
 	    }
-	    if (imager::spectrum(imormat) != 1) 
+	    if (spectrum(imormat) != 1) 
 	    {
-	        stop("im must be a grayscale image.", call. = FALSE)
+	        stop("imormat must not be a color image.", call. = FALSE)
 	    }
 	    if (any(is.na(imormat))) 
 	    {
-	        stop("im has NA. NA is unacceptable.", call. = FALSE)
+	        stop("imormat has NA. NA is unacceptable.", call. = FALSE)
 	    }
 	    if (!is.numeric(imormat))
 	    {
-	        stop("im must be numeric.", call. = FALSE)
+	        stop("imormat must be numeric.", call. = FALSE)
 	    }
     }
+	return(invisible(TRUE))    
+}
+
+CheckSanityimorpix <- function(imorpix)
+{
+    if (is.cimg(imorpix)) 
+	{
+        if (depth(imorpix) != 1) 
+	    {
+	        stop("the depth of imorpix must be 1.", call. = FALSE)
+	    }
+	    if (spectrum(imorpix) != 1) 
+	    {
+	        stop("imorpix must be a grayscale image.", call. = FALSE)
+	    }
+	    if (any(is.na(imorpix))) 
+	    {
+	        stop("imorpix has NA. NA is unacceptable.", call. = FALSE)
+	    }
+	    if (!is.numeric(imorpix))
+	    {
+	        stop("imorpix has invalid values.", call. = FALSE)
+	    }
+    } else 
+    {
+	    if (!is.pixset(imorpix))
+        {
+            stop("imorpix must be a image of class cimg or a pixel set.", call. = FALSE)
+        }
+        if (depth(imorpix) != 1) 
+	    {
+	        stop("the depth of imorpix must be 1.", call. = FALSE)
+	    }
+	    if (spectrum(imorpix) != 1) 
+	    {
+	        stop("imorpix must be a grayscale image.", call. = FALSE)
+	    }
+        if (any(is.na(imorpix)))
+	    {
+	        stop("imorpix has NA. NA is unacceptable.", call. = FALSE)
+	    }
+	}
 	return(invisible(TRUE))    
 }

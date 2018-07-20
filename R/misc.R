@@ -20,14 +20,19 @@ NULL
 #' @importFrom imager height
 #' @importFrom imager imfill
 #' @importFrom imager is.cimg
+#' @importFrom imager is.pixset
 #' @importFrom imager R
 #' @importFrom imager R<-
+#' @importFrom imager save.image
 #' @importFrom imager spectrum
 #' @importFrom imager threshold
 #' @importFrom imager where
 #' @importFrom imager width
 #' @importFrom magrittr %>%
 #' @importFrom Rcpp sourceCpp
+#' @importFrom tesseract ocr
+#' @importFrom tesseract ocr_data
+#' @importFrom tesseract tesseract
 NULL
 
 #' Photograph of a dog from GAHAG
