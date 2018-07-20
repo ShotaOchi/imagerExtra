@@ -10,12 +10,14 @@ NULL
 #' @importFrom fftwtools fftw2d
 #' @importFrom imager add.color
 #' @importFrom imager as.cimg
+#' @importFrom imager as.pixset
 #' @importFrom imager at<-
 #' @importFrom imager B
 #' @importFrom imager B<-
 #' @importFrom imager depth
 #' @importFrom imager G
 #' @importFrom imager G<-
+#' @importFrom imager height
 #' @importFrom imager imfill
 #' @importFrom imager is.cimg
 #' @importFrom imager R
@@ -23,6 +25,7 @@ NULL
 #' @importFrom imager spectrum
 #' @importFrom imager threshold
 #' @importFrom imager where
+#' @importFrom imager width
 #' @importFrom magrittr %>%
 #' @importFrom Rcpp sourceCpp
 NULL

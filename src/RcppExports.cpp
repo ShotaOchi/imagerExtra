@@ -91,6 +91,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// threshold_adaptive
+Rcpp::NumericMatrix threshold_adaptive(Rcpp::NumericMatrix mat, double k, int windowsize, double maxsd);
+RcppExport SEXP _imagerExtra_threshold_adaptive(SEXP matSEXP, SEXP kSEXP, SEXP windowsizeSEXP, SEXP maxsdSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type mat(matSEXP);
+    Rcpp::traits::input_parameter< double >::type k(kSEXP);
+    Rcpp::traits::input_parameter< int >::type windowsize(windowsizeSEXP);
+    Rcpp::traits::input_parameter< double >::type maxsd(maxsdSEXP);
+    rcpp_result_gen = Rcpp::wrap(threshold_adaptive(mat, k, windowsize, maxsd));
+    return rcpp_result_gen;
+END_RCPP
+}
 // piecewise_transformation
 Rcpp::NumericVector piecewise_transformation(Rcpp::NumericVector data, Rcpp::NumericVector F, int N, double smax, double smin, double max, double min, double max_range, double min_range);
 RcppExport SEXP _imagerExtra_piecewise_transformation(SEXP dataSEXP, SEXP FSEXP, SEXP NSEXP, SEXP smaxSEXP, SEXP sminSEXP, SEXP maxSEXP, SEXP minSEXP, SEXP max_rangeSEXP, SEXP min_rangeSEXP) {
@@ -146,6 +160,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_imagerExtra_IDCT2D_retrievex", (DL_FUNC) &_imagerExtra_IDCT2D_retrievex, 1},
     {"_imagerExtra_make_prob_otsu", (DL_FUNC) &_imagerExtra_make_prob_otsu, 5},
     {"_imagerExtra_get_th_otsu", (DL_FUNC) &_imagerExtra_get_th_otsu, 2},
+    {"_imagerExtra_threshold_adaptive", (DL_FUNC) &_imagerExtra_threshold_adaptive, 4},
     {"_imagerExtra_piecewise_transformation", (DL_FUNC) &_imagerExtra_piecewise_transformation, 9},
     {"_imagerExtra_screened_poisson_dct", (DL_FUNC) &_imagerExtra_screened_poisson_dct, 2},
     {"_imagerExtra_saturateim", (DL_FUNC) &_imagerExtra_saturateim, 5},
