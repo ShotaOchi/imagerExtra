@@ -35,4 +35,8 @@ NULL
 #' @source \url{http://gahag.net/img/201603/03s/gahag-0062116383-1.jpg}
 "dogs"
 
-
+#' Photograph of a paper
+#' 
+#' This photograph was filmed by Shota Ochi.
+#' @format an image of class cimg
+"papers"
