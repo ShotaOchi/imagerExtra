@@ -1,15 +1,23 @@
-#' Two Dimensional Discrete Cosine Transformation
+#' Two Dimensional Discrete Cosine Transformation and Inverse Cosine Transformation
 #'
-#' compute two dimensional discrete cosine transformation
+#' DCT2D computes two dimensional discrete cosine transformation.
+#' IDCT2D computes two dimensional inverse discrete cosine transformation.
+#' @name DCT
 #' @param imormat a grayscale image of class cimg or a numeric matrix
-#' @param returnmat if returnmat is TRUE, DCT2D returns numeric matrix. if FALSE, DCT2D returns a grayscale image of class cimg.
+#' @param returnmat if returnmat is TRUE, returns numeric matrix. if FALSE, returns a grayscale image of class cimg.
 #' @return a grayscale image of class cimg or a numeric matrix
 #' @references Makhoul, J. (1980). A fast cosine transform in one and two dimensions. IEEE Transactions on Acoustics, Speech, and Signal Processing. 28 (1): 27-34.
 #' @author Shota Ochi
-#' @export
 #' @examples 
 #' g <- grayscale(boats)
-#' DCT2D(g)
+#' layout(matrix(1:2, 1, 2))
+#' plot(g, main = "Original")
+#' gg <- DCT2D(g) %>% IDCT2D() %>% plot(main = "Transformed")
+#' mean((g - gg)^2)
+NULL
+
+##' @rdname DCT
+##' @export 
 DCT2D <- function(imormat, returnmat = FALSE) {
   CheckSanityimormat(imormat)
   CheckSanitylogical(returnmat, "returnmat")
@@ -25,21 +33,8 @@ DCT2D <- function(imormat, returnmat = FALSE) {
   return(as.cimg(res))
 }
 
-#' Two Dimensional Inverse Discrete Cosine Transformation
-#'
-#' compute two dimensional inverse discrete cosine transformation
-#' @param imormat a grayscale image of class cimg or a numeric matrix
-#' @param returnmat if returnmat is TRUE, IDCT2D returns numeric matrix. if FALSE, IDCT2D returns a grayscale image of class cimg.
-#' @return a grayscale image of class cimg or a numeric matrix
-#' @references Makhoul, J. (1980). A fast cosine transform in one and two dimensions. IEEE Transactions on Acoustics, Speech, and Signal Processing. 28 (1): 27-34.
-#' @author Shota Ochi
-#' @export
-#' @examples 
-#' g <- grayscale(boats)
-#' layout(matrix(1:2, 1, 2))
-#' plot(g, main = "Original")
-#' gg <- DCT2D(g) %>% IDCT2D() %>% plot(main = "Transformed")
-#' mean((g - gg)^2)
+##' @rdname DCT
+##' @export 
 IDCT2D <- function(imormat, returnmat = FALSE) {
   CheckSanityimormat(imormat)
   CheckSanitylogical(returnmat, "returnmat")
