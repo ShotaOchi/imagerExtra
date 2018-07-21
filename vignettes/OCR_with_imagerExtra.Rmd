@@ -1,0 +1,68 @@
+---
+title: "Optical Character Recognition with imagerExtara"
+author: "Shota Ochi"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Optical Character Recognition with imagerExtara}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+code.r{
+  font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=FALSE, 
+               comment=NA, verbose=TRUE, fig.width=5, fig.height=5, dev='jpeg',dev.args=list(quality=50))			   
+```
+
+We can do optical character recgnition by using the R package **tesseract**.
+
+ocr function of tesseract works best for images with high contrast, little noise and horizontal text.
+
+ocr function doesn't show a good performance for degraded images as shown below.  
+
+```{r, fig.height=3}
+library(imagerExtra)
+plot(papers, main = "Original")
+OCR(papers) %>% cat
+OCR_data(papers)
+```
+
+OCR function and OCR_data function are shortcuts to ocr function and ocr_data function of **tesseract**.
+
+We can see OCR function and OCR_data function failed to extract the text "Hello".
+
+We need to clean the image before using OCR function.
+
+Local Adaptive Thresholding shows a good performance.
+
+```{r, fig.height=3}
+binarized <- ThresholdAdaptive(papers, 0, range = c(0,1))
+plot(binarized, main = "Local Adaptive threshold")
+OCR(binarized) %>% cat
+```
+
+We can see OCR function failed again because of the small blobs.
+
+A straightforward way is to label the blobs and count the size of the blobs and then remove the small blobs.
+
+However, denoising before binarization is enough in this case.
+
+```{r, fig.height=3}
+hello <- DenoiseDCT(papers, 0.01) %>% ThresholdAdaptive(., 0.1, range = c(0,1))
+plot(hello, main = "Hello")
+OCR(hello) %>% cat
+OCR_data(hello)
+```

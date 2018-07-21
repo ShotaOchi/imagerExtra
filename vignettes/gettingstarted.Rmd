@@ -9,6 +9,19 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+code.r{
+  font-size: 15px;
+}
+pre {
+  font-size: 15px
+}
+</style>
+
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=FALSE, 
                comment=NA, verbose=TRUE, fig.width=5, fig.height=5, dev='jpeg',dev.args=list(quality=50))			   
@@ -18,11 +31,12 @@ imagerExtra provides several advanced functions for image processing based on **
 
 See the vignettes of **imager** if you aren't familiar with **imager**.
 
-The functions in imagerExtra are classified into 3 groups by their function.
+The functions in imagerExtra are classified into 4 groups by their function.
 
 * Contrast Enhancement
 * Image Segmentation
 * Image Denoising
+* Others
 
 See below to know what functions are implemented.
 
@@ -32,11 +46,11 @@ See below to know what functions are implemented.
 
 Most of the functions in imagerExtra are for grayscale image.
 
-See the vignette **Treating Color Image with imagerExtra** if you want to treat color image with imagerExtra.
+See the vignette "Treating Color Image with imagerExtra" if you want to treat color image with imagerExtra.
 
 Let's prepare a grayscale image.
 
-```{r, fig.width=4, fig.height=4, message=FALSE, dev='jpeg'}
+```{r, fig.width=3, fig.height=3, message=FALSE, dev='jpeg'}
 library(imagerExtra)
 g <- grayscale(boats)
 plot(g)
@@ -121,9 +135,9 @@ DCT denoising is a simple and effective denoising algorithm using local DCT thre
 
 See [Guoshen Yu, and Guillermo Sapiro, IPOL, 1 (2011), pp. 292-296.](https://doi.org/10.5201/ipol.2011.ys-dct) for detail.
 
-The parameter *sdn* is a standrd deviation of noise of image.
+The parameter *sdn* determines how strong denoise a image.
 
-The noise is strongly denoised if *sdn* is large.
+Noise is strongly denoised if *sdn* is large.
 
 The parameter *flag_dct16x16* determiens window size of local patches. 
 
@@ -146,9 +160,10 @@ DenoiseDCT(noisy, 0.1, flag_dct16x16 = TRUE) %>% plot(., main = "Denoised (16x16
 
 ## Image Segmentation
 
-The function for image segmentation is
+The functions for image segmentation are
 
 * ThresholdTriclass
+* ThresholdAdaptive
 
 ### ThresholdTriclass (Iterative Triclass Thresholding)
 
@@ -165,7 +180,46 @@ We have two options.
 gdogs <- grayscale(dogs)
 layout(matrix(1:4, 2, 2, byrow = TRUE))
 plot(gdogs, main = "Original", axes=F)
-ThresholdTriclass(gdogs, stopval = 0.001) %>% plot(main = "stopval = 0.001", axes=F)
-ThresholdTriclass(gdogs, repeatnum = 1) %>% plot(main = "repeatnum = 1", axes=F)
-ThresholdTriclass(gdogs, repeatnum = 3) %>% plot(main = "repeatnum = 3", axes=F)
+ThresholdTriclass(gdogs, stopval = 0.001) %>% plot(main = "stopval = 0.001")
+ThresholdTriclass(gdogs, repeatnum = 1) %>% plot(main = "repeatnum = 1")
+ThresholdTriclass(gdogs, repeatnum = 3) %>% plot(main = "repeatnum = 3")
 ```
+
+### ThresholdAdaptive (Local Adaptive Thresholding)
+
+Local adaptive thresholding can extract objects from inhomogeneous background.
+
+You will tune the two paramters k and windowsize.
+
+Note that the parameter *range* determines max standard deviation.
+
+you should set *range* as [0,1] if you treat a image whose pixel values are in [0,1]. 
+
+```{r, fig.height=3}
+layout(matrix(1:2,1,2))
+plot(papers, main = "Original")
+hello <- ThresholdAdaptive(papers, 0.1, windowsize = 17, range = c(0,1))
+plot(hello, main = "Binarizesd")
+```
+
+## Others
+
+The functions classified as others are
+
+* Grayscale
+* GetHue
+* RestoreHue
+* OCR
+* OCR_data
+
+### Grayscale, GetHue, and RestoreHue
+
+These functions are for treating color image with imagerExtra.
+
+See the vignette "Treating Color Image with imagerExtra" for detail.
+
+### OCR and OCR_data
+
+These functions are shortcuts to the ocr function and ocr_data function of the R package **tesseract**.
+
+See the vignette "Optical Character Recognition with imagerExtra" for detail.
