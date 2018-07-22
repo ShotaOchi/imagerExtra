@@ -29,7 +29,7 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=FALSE,
 
 We can do optical character recgnition by using the R package **tesseract**.
 
-ocr function of tesseract works best for images with high contrast, little noise and horizontal text.
+ocr function of **tesseract** works best for images with high contrast, little noise and horizontal text.
 
 ocr function doesn't show a good performance for degraded images as shown below.  
 
