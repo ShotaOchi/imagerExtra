@@ -56,6 +56,8 @@ OCR(binarized) %>% cat
 
 We can see OCR function failed again because of the small blobs.
 
+We need to clean the image.
+
 A straightforward way is to label the blobs and count the size of the blobs and then remove the small blobs.
 
 However, denoising before binarization is enough in this case.
