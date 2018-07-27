@@ -7,7 +7,7 @@
 #' @param HOCR if TRUE return results as HOCR xml instead of plain text
 #' @author Shota Ochi
 #' @examples
-#' hello <- DenoiseDCT(papers, 0.01) %>% ThresholdAdaptive(., 0)
+#' hello <- DenoiseDCT(papers, 0.01) %>% ThresholdAdaptive(., 0.1, range=c(0,1))
 #' OCR(hello) %>% cat
 #' OCR_data(hello)
 NULL
