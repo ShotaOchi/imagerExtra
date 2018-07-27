@@ -21,13 +21,15 @@ ThresholdAdaptive <- function(im, k, windowsize = 17, range = c(0,255))
     CheckSanitypositive0numeric(k, "k")
     CheckSanitypositivenumeric(windowsize, "windowsize")
 	CheckSanityrange(range)
-  if (windowsize <= 1) {
-    stop("windowsize must be greater than 1", call.=FALSE)  
+  windowsize <- as.integer(windowsize)  
+  if (windowsize <= 2) 
+  {
+    stop("windowsize must be greater than or equal to 3", call.=FALSE)  
   } 
   if (windowsize %% 2 == 0) 
   {
     warning(sprintf("windowsize is even (%d). windowsize will be treated as %d", windowsize, windowsize+1))
-    windowsize <- windowsize + 1
+    windowsize <- as.integer(windowsize + 1)
   }
   if (windowsize >= width(im) || windowsize >= height(im)) 
   {
@@ -44,6 +46,6 @@ ThresholdAdaptive <- function(im, k, windowsize = 17, range = c(0,255))
     stop("range[1] must not be same as range[2].", call.=FALSE)
   }
   
-  res <- threshold_adaptive(as.matrix(im), k, as.integer(windowsize), maxsd)
+  res <- threshold_adaptive(as.matrix(im), k, windowsize, maxsd)
   return(as.pixset(as.cimg(res)))
 }
