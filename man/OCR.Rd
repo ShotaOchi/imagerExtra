@@ -21,7 +21,7 @@ OCR_data(imorpix, engine = tesseract("eng"))
 OCR and OCR_data are shortcuts to ocr and ocr_data of tesseract
 }
 \examples{
-hello <- DenoiseDCT(papers, 0.01) \%>\% ThresholdAdaptive(., 0)
+hello <- DenoiseDCT(papers, 0.01) \%>\% ThresholdAdaptive(., 0.1, range = c(0,1))
 OCR(hello) \%>\% cat
 OCR_data(hello)
 }

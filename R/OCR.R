@@ -7,14 +7,15 @@
 #' @param HOCR if TRUE return results as HOCR xml instead of plain text
 #' @author Shota Ochi
 #' @examples
-#' hello <- DenoiseDCT(papers, 0.01) %>% ThresholdAdaptive(., 0.1, range=c(0,1))
+#' hello <- DenoiseDCT(papers, 0.01) %>% ThresholdAdaptive(., 0.1, range = c(0,1))
 #' OCR(hello) %>% cat
 #' OCR_data(hello)
 NULL
 
 #' @rdname OCR
 #' @export
-OCR <- function(imorpix, engine = tesseract("eng"), HOCR=FALSE) {
+OCR <- function(imorpix, engine = tesseract("eng"), HOCR=FALSE) 
+{
   CheckSanityimorpix(imorpix)
   if (is.pixset(imorpix)) 
   {
@@ -28,7 +29,8 @@ OCR <- function(imorpix, engine = tesseract("eng"), HOCR=FALSE) {
 
 #' @rdname OCR
 #' @export
-OCR_data <- function(imorpix, engine = tesseract("eng")) {
+OCR_data <- function(imorpix, engine = tesseract("eng")) 
+{
   CheckSanityimorpix(imorpix)
   if (is.pixset(imorpix)) 
   {
