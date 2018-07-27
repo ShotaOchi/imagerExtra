@@ -24,6 +24,7 @@ ThresholdAdaptive <- function(im, k, windowsize = 17, range = c(0,255))
   if (windowsize %% 2 == 0) 
   {
     warning(sprintf("windowsize is even (%d). windowsize will be treated as %d", windowsize, windowsize+1))
+    windowsize <- windowsize + 1
   }
   if (windowsize >= width(im) || windowsize >= height(im)) 
   {
