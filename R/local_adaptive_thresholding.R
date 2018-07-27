@@ -21,6 +21,9 @@ ThresholdAdaptive <- function(im, k, windowsize = 17, range = c(0,255))
     CheckSanitypositive0numeric(k, "k")
     CheckSanitypositivenumeric(windowsize, "windowsize")
 	CheckSanityrange(range)
+  if (windowsize <= 1) {
+    stop("windowsize must be greater than 1", call.=FALSE)  
+  } 
   if (windowsize %% 2 == 0) 
   {
     warning(sprintf("windowsize is even (%d). windowsize will be treated as %d", windowsize, windowsize+1))
