@@ -198,43 +198,43 @@ CheckSanityimormat <- function(imormat)
 	return(invisible(TRUE))    
 }
 
-CheckSanityimorpix <- function(imorpix)
+CheckSanityimorpx <- function(imorpx)
 {
-    if (is.cimg(imorpix)) 
+    if (is.cimg(imorpx)) 
 	{
-        if (depth(imorpix) != 1) 
+        if (depth(imorpx) != 1) 
 	    {
-	        stop("the depth of imorpix must be 1.", call. = FALSE)
+	        stop("the depth of imorpx must be 1.", call. = FALSE)
 	    }
-	    if (spectrum(imorpix) != 1) 
+	    if (spectrum(imorpx) != 1) 
 	    {
-	        stop("imorpix must be a grayscale image.", call. = FALSE)
+	        stop("imorpx must be a grayscale image.", call. = FALSE)
 	    }
-	    if (any(is.na(imorpix))) 
+	    if (any(is.na(imorpx))) 
 	    {
-	        stop("imorpix has NA. NA is unacceptable.", call. = FALSE)
+	        stop("imorpx has NA. NA is unacceptable.", call. = FALSE)
 	    }
-	    if (!is.numeric(imorpix))
+	    if (!is.numeric(imorpx))
 	    {
-	        stop("imorpix has invalid values.", call. = FALSE)
+	        stop("imorpx has invalid values.", call. = FALSE)
 	    }
     } else 
     {
-	    if (!is.pixset(imorpix))
+	    if (!is.pixset(imorpx))
         {
-            stop("imorpix must be a image of class cimg or a pixel set.", call. = FALSE)
+            stop("imorpx must be a image of class cimg or a pixel set.", call. = FALSE)
         }
-        if (depth(imorpix) != 1) 
+        if (depth(imorpx) != 1) 
 	    {
-	        stop("the depth of imorpix must be 1.", call. = FALSE)
+	        stop("the depth of imorpx must be 1.", call. = FALSE)
 	    }
-	    if (spectrum(imorpix) != 1) 
+	    if (spectrum(imorpx) != 1) 
 	    {
-	        stop("imorpix must be a grayscale image.", call. = FALSE)
+	        stop("imorpx must be a grayscale image.", call. = FALSE)
 	    }
-        if (any(is.na(imorpix)))
+        if (any(is.na(imorpx)))
 	    {
-	        stop("imorpix has NA. NA is unacceptable.", call. = FALSE)
+	        stop("imorpx has NA. NA is unacceptable.", call. = FALSE)
 	    }
 	}
 	return(invisible(TRUE))    

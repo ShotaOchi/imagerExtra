@@ -6,12 +6,12 @@
 \alias{OCR_data}
 \title{Optical Character Recognition with tesseract}
 \usage{
-OCR(imorpix, engine = tesseract("eng"), HOCR = FALSE)
+OCR(imorpx, engine = tesseract("eng"), HOCR = FALSE)
 
-OCR_data(imorpix, engine = tesseract("eng"))
+OCR_data(imorpx, engine = tesseract("eng"))
 }
 \arguments{
-\item{imorpix}{a grayscale image of class cimg or a pixel set}
+\item{imorpx}{a grayscale image of class cimg or a pixel set}
 
 \item{engine}{a tesseract engine. See the reference manual of tesseract for detail.}
 

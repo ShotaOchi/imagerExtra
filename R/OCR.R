@@ -2,7 +2,7 @@
 #'
 #' OCR and OCR_data are shortcuts to ocr and ocr_data of tesseract
 #' @name OCR
-#' @param imorpix a grayscale image of class cimg or a pixel set
+#' @param imorpx a grayscale image of class cimg or a pixel set
 #' @param engine a tesseract engine. See the reference manual of tesseract for detail.
 #' @param HOCR if TRUE return results as HOCR xml instead of plain text
 #' @author Shota Ochi
@@ -14,30 +14,30 @@ NULL
 
 #' @rdname OCR
 #' @export
-OCR <- function(imorpix, engine = tesseract("eng"), HOCR=FALSE) 
+OCR <- function(imorpx, engine = tesseract("eng"), HOCR=FALSE) 
 {
-  CheckSanityimorpix(imorpix)
-  if (is.pixset(imorpix)) 
+  CheckSanityimorpx(imorpx)
+  if (is.pixset(imorpx)) 
   {
-    imorpix <- as.cimg(imorpix)
+    imorpx <- as.cimg(imorpx)
   }
   tmp <- tempfile(fileext = ".png")
   on.exit(unlink(tmp))
-  imager::save.image(imorpix, tmp)
+  imager::save.image(imorpx, tmp)
   ocr(tmp, engine = engine, HOCR = HOCR)
 }
 
 #' @rdname OCR
 #' @export
-OCR_data <- function(imorpix, engine = tesseract("eng")) 
+OCR_data <- function(imorpx, engine = tesseract("eng")) 
 {
-  CheckSanityimorpix(imorpix)
-  if (is.pixset(imorpix)) 
+  CheckSanityimorpx(imorpx)
+  if (is.pixset(imorpx)) 
   {
-    imorpix <- as.cimg(imorpix)
+    imorpx <- as.cimg(imorpx)
   }
   tmp <- tempfile(fileext = ".png")
   on.exit(unlink(tmp))
-  imager::save.image(imorpix, tmp)
+  imager::save.image(imorpx, tmp)
   ocr_data(tmp, engine = engine)
 }
