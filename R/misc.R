@@ -30,6 +30,7 @@ NULL
 #' @importFrom imager width
 #' @importFrom magrittr %>%
 #' @importFrom Rcpp sourceCpp
+#' @importFrom stats runif
 #' @importFrom tesseract ocr
 #' @importFrom tesseract ocr_data
 #' @importFrom tesseract tesseract
