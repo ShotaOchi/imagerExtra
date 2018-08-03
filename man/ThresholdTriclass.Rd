@@ -19,7 +19,7 @@ ThresholdTriclass(im, stopval = 0.01, repeatnum, intervalnumber = 1000,
 \item{returnvalue}{if returnvalue is TRUE, ThresholdTriclass returns threshold value. if FALSE, ThresholdTriclass returns pixset.}
 }
 \value{
-pixset or threshold value
+a pixel set or a numeric
 }
 \description{
 compute threshold value by Iterative Triclass Threshold Technique

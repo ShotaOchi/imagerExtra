@@ -27,7 +27,7 @@
 #' @param repeatnum number of repetition of triclass thresholding
 #' @param intervalnumber interval number  of histogram 
 #' @param returnvalue if returnvalue is TRUE, ThresholdTriclass returns threshold value. if FALSE, ThresholdTriclass returns pixset.
-#' @return pixset or threshold value
+#' @return a pixel set or a numeric
 #' @references Cai HM, Yang Z, Cao XH, Xia WM, Xu XY (2014). A New Iterative Triclass Thresholding Technique in Image Segmentation. IEEE TRANSACTIONS ON IMAGE PROCESSING.
 #' @author Shota Ochi
 #' @export 
