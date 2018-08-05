@@ -27,9 +27,9 @@ ThresholdFuzzy(im, n = 100, maxiter = 100, omegamax = 0.9,
 
 \item{vmaxcoef}{coefficient of maximum velocity}
 
-\item{intervalnumber}{intervalnumber of histogram}
+\item{intervalnumber}{interval number of histogram}
 
-\item{returnvalue}{if returnvalue is TRUE, returns threshold value. if FALSE, returns pixset.}
+\item{returnvalue}{if returnvalue is TRUE, returns a threshold value. if FALSE, returns a pixel set.}
 }
 \value{
 a pixsel set or a numeric

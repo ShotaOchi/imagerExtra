@@ -10,8 +10,8 @@
 #' @param c2 acceleration coefficient
 #' @param mutrate rate of gaussian mutation
 #' @param vmaxcoef coefficient of maximum velocity
-#' @param intervalnumber intervalnumber of histogram
-#' @param returnvalue if returnvalue is TRUE, returns threshold value. if FALSE, returns pixset.
+#' @param intervalnumber interval number of histogram
+#' @param returnvalue if returnvalue is TRUE, returns a threshold value. if FALSE, returns a pixel set.
 #' @return a pixsel set or a numeric
 #' @references Linyi Li, Deren Li (2008). Fuzzy entropy image segmentation based on particle swarm optimization. Progress in Natural Science.
 #' @author Shota Ochi
