@@ -6,6 +6,7 @@ test_that("Iterative Triclass Thresholding",
   im <- boats
   gim <- grayscale(im)
   gim2 <- imrep(gim, 2) %>% imappend(., "z")
+  im_uniform <- as.cimg(matrix(1,100,100))
   bad1 <- "A"
   bad2 <- -1
   bad3 <- c(1,1,1)
@@ -14,6 +15,7 @@ test_that("Iterative Triclass Thresholding",
   expect_error(ThresholdTriclass(notim))
   expect_error(ThresholdTriclass(im))
   expect_error(ThresholdTriclass(gim2))
+  expect_error(ThresholdTriclass(im_uniform))
   expect_error(ThresholdTriclass(gim, stopval = bad1))
   expect_error(ThresholdTriclass(gim, stopval = bad2))
   expect_error(ThresholdTriclass(gim, stopval = bad3))

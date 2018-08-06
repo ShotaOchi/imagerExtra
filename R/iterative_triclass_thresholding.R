@@ -44,6 +44,12 @@ ThresholdTriclass <- function(im, stopval = 0.01, repeatnum, intervalnumber = 10
   CheckSanityim(im)
   CheckSanitypositivenumeric(intervalnumber, "intervalnumber")
   CheckSanitylogical(returnvalue, "returnvalue")
+  minim <- min(im)
+  maxim <- max(im)
+  if (minim == maxim) 
+  {
+    stop("im has only one unique value. ThresholdTriclass can't be applied for such a image.", call. = FALSE)
+  }
   
   if (missing(repeatnum))
   { 
@@ -53,8 +59,6 @@ ThresholdTriclass <- function(im, stopval = 0.01, repeatnum, intervalnumber = 10
     dimim <- dim(im)
     ordered <- as.vector(im)
     ordered <- ordered[order(ordered)]
-    minim <- ordered[1]
-    maxim <- ordered[length(ordered)]
     bins <- seq(minim, maxim, length.out = intervalnumber + 1)
     prob_otsu <- make_prob_otsu(ordered, bins[2:length(bins)], as.integer(intervalnumber), dimim[1], dimim[2])
     bins <- (bins[2:length(bins)] + bins[1:(length(bins)-1)]) / 2
@@ -93,8 +97,6 @@ ThresholdTriclass <- function(im, stopval = 0.01, repeatnum, intervalnumber = 10
     dimim <- dim(im)
     ordered <- as.vector(im)
     ordered <- ordered[order(ordered)]
-    minim <- ordered[1]
-    maxim <- ordered[length(ordered)]
     bins <- seq(minim, maxim, length.out = intervalnumber + 1)
     prob_otsu <- make_prob_otsu(ordered, bins[2:length(bins)], intervalnumber, dimim[1], dimim[2])
     bins <- (bins[2:length(bins)] + bins[1:(length(bins)-1)]) / 2

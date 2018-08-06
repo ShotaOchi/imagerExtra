@@ -62,7 +62,7 @@ ThresholdFuzzy <- function(im, n = 100, maxiter = 100, omegamax = 0.9, omegamin 
   }
   if (minval == maxval) 
   {
-    stop("im has only one unique value. We can't apply ThresholdFuzzy for such a image.", call. = FALSE)
+    stop("im has only one unique value. ThresholdFuzzy can't be applied for such a image.", call. = FALSE)
   }
 
   interval <- seq(minval, maxval, length.out = intervalnumber + 1)
