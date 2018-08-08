@@ -13,26 +13,26 @@
 // [[Rcpp::export]]
 Rcpp::NumericVector saturateim(Rcpp::NumericVector data, double max_im, double min_im, double max_range, double min_range)
 {
-	int n = data.size();
-	Rcpp::NumericVector data_out(n);
-	data_out.fill(0.0);
-	double* ptr_data_out = data_out.begin();
-	double slope = (max_range - min_range) / (max_im - min_im);
-	
-	for (int i = 0; i < n; ++i) 
-	{
-		if (data[i] > max_im)
-		{
-			ptr_data_out[i] = max_range;
-			continue;
-		}
-		if (data[i] < min_im)
-		{
-			ptr_data_out[i] = min_range;
-			continue;
-		}
-		ptr_data_out[i] = slope * (data[i] - min_im) + min_range;
-	}
-	return data_out;
+    int n = data.size();
+    Rcpp::NumericVector data_out(n);
+    data_out.fill(0.0);
+    double* ptr_data_out = data_out.begin();
+    double slope = (max_range - min_range) / (max_im - min_im);
+
+    for (int i = 0; i < n; ++i) 
+    {
+        if (data[i] > max_im)
+        {
+            ptr_data_out[i] = max_range;
+            continue;
+        }
+        if (data[i] < min_im)
+        {
+            ptr_data_out[i] = min_range;
+            continue;
+        }
+        ptr_data_out[i] = slope * (data[i] - min_im) + min_range;
+    }
+    return data_out;
 }
 

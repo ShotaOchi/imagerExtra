@@ -4,14 +4,14 @@ test_that("OCR",
 {
     notim <- 1
     im <- boats
-	gim <- grayscale(im)
-	gim2 <- imrep(gim, 2) %>% imappend(., "z")
+    gim <- grayscale(im)
+    gim2 <- imrep(gim, 2) %>% imappend(., "z")
     im_NA <- as.cimg(matrix(NA, 100, 100))
     im_char <- as.cimg(matrix("A", 100, 100))
     impix <- boats %>% as.pixset
-	gimpix <- gim %>% as.pixset
-	gim2pix <- gim2 %>% as.pixset
-	impix_NA <- im_NA%>% as.pixset   
+    gimpix <- gim %>% as.pixset
+    gim2pix <- gim2 %>% as.pixset
+    impix_NA <- im_NA%>% as.pixset   
 
     expect_error(OCR(notim))
     expect_error(OCR(im))
@@ -30,11 +30,4 @@ test_that("OCR",
     expect_error(OCR_data(impix))
     expect_error(OCR_data(gim2pix))
     expect_error(OCR_data(impix_NA))
-
-
-
-
-
-
-
 })

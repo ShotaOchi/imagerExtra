@@ -4,15 +4,15 @@ test_that("fast discrete cosine transformation",
 {
     notim <- 1
     im <- boats
-	gim <- grayscale(im)
+    gim <- grayscale(im)
     mat_gim <- as.matrix(gim)
-	gim2 <- imrep(gim, 2) %>% imappend(., "z")
+    gim2 <- imrep(gim, 2) %>% imappend(., "z")
     im_NA <- as.cimg(matrix(NA, 100, 100))
     mat_bad1 <- 1
     mat_bad2 <- NULL
     mat_bad3 <- matrix(NA,100,100)
     mat_bad4 <- matrix("A", 200,300)
-	bad1 <- "A"
+    bad1 <- "A"
     bad2 <- -1
     bad3 <- c(1,1,1)
     bad4 <- NA

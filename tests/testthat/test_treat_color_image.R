@@ -4,8 +4,8 @@ test_that("treat color image",
 {
     notim <- 1
     im <- boats
-	gim <- grayscale(im)
-	gim2 <- imrep(gim, 2) %>% imappend(., "z")
+    gim <- grayscale(im)
+    gim2 <- imrep(gim, 2) %>% imappend(., "z")
     im2 <- imrep(im, 2) %>% imappend(., "z")
     expect_error(Grayscale(notim))
     expect_error(Grayscale(gim))

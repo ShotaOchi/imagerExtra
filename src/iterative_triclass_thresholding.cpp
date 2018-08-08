@@ -13,15 +13,15 @@ Rcpp::NumericVector make_prob_otsu(Rcpp::NumericVector ordered, Rcpp::NumericVec
     {
       out[count] += 1;
     } else {
-    while (ordered[i] > bins[count])
-    {
-      ++count;    
-    }
-    if (count >= intervalnumber || count >= m) 
-    {
-      break;
-    }
-	out[count] += 1;
+      while (ordered[i] > bins[count])
+      {
+        ++count;    
+      }
+      if (count >= intervalnumber || count >= m) 
+      {
+        break;
+      }
+      out[count] += 1;
     }
   }
   double size = (double)width * height;
@@ -76,8 +76,8 @@ double get_th_otsu(Rcpp::NumericVector prob_otsu, Rcpp::NumericVector bins)
     ICV = calc_ICV_ostu(omegak, myuk, myut);
     if (ICV > maxICV) 
     {
-	maxICV = ICV;
-	threshold = bins[i];
+      maxICV = ICV;
+      threshold = bins[i];
     }
   }
   return threshold;

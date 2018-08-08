@@ -17,10 +17,10 @@
 #' ThresholdAdaptive(papers, 0.2, range = c(0,1)) %>% plot(main = "local adaptive (k = 0.2)")
 ThresholdAdaptive <- function(im, k, windowsize = 17, range = c(0,255)) 
 {
-    CheckSanityim(im)
-    CheckSanitypositive0numeric(k, "k")
-    CheckSanitypositivenumeric(windowsize, "windowsize")
-	CheckSanityrange(range)
+  CheckSanityim(im)
+  CheckSanitypositive0numeric(k, "k")
+  CheckSanitypositivenumeric(windowsize, "windowsize")
+  CheckSanityrange(range)
   windowsize <- as.integer(windowsize)  
   if (windowsize <= 2) 
   {

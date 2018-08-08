@@ -33,13 +33,13 @@ double inverse_cumulative_function(double Fu, Rcpp::NumericVector F)
     double x;
     int    pos;
 
-	/* sanity check*/
+    /* sanity check*/
     if (Fu < 0) 
-	{
+    {
         Rcpp::Rcout << "Error: Fu is lower than 0 (Fu: " << Fu << ")" << std::endl;
         return 0;
     }
-	
+
     pos = (int) ceil((double) Fu);
     pos = pos - 1; /*array indexes start at 0*/
 
@@ -67,18 +67,18 @@ void affine_transformation(Rcpp::NumericVector data, int n, double* ptr_data_out
     slope = (y1 - y0) / (x1 - x0);
 
     for (int i = 0; i < n; ++i) 
-	{
+    {
         if (x0 <= data[i] && data[i] <= x1) 
-		{
+        {
             ptr_data_out[i] = y0 + slope * (data[i] - x0);
             if (ptr_data_out[i] > max_range) 
-			{
+            {
                  ptr_data_out[i] = max_range;
-			}
+            }
             if (ptr_data_out[i] < min_range) 
-			{
+            {
                 ptr_data_out[i] = min_range;
-			}
+            }
         }
     }
 }
@@ -116,52 +116,52 @@ Rcpp::NumericVector piecewise_transformation(Rcpp::NumericVector data, Rcpp::Num
     double Fu;
     int    k;
     double slope;
-	
-	int n = data.size();
+
+    int n = data.size();
     Rcpp::NumericVector data_out(n);
-	data_out.fill(0.0);
-	double* ptr_data_out = data_out.begin();
+    data_out.fill(0.0);
+    double* ptr_data_out = data_out.begin();
 
     x0 = min;
     y0 = min_range;
 
     for (k = 1; k <= N; k++) 
-	{
+    {
         Fu = (double) k * n / (double) (N + 1);
         y1 = (max_range * (double) k) / (double) (N + 1);
         x1 = inverse_cumulative_function(Fu, F);
         if (x1 > x0) 
-		{
+        {
             slope = (y1 - y0) / (x1 - x0);
 
             if (slope > smax) 
-			{
+            {
                 y1 = smax * (x1 - x0) + y0;
-			}
+            }
             if (slope < smin) 
-			{
+            {
                 y1 = smin * (x1 - x0) + y0;
-			}
+            }
             affine_transformation(data, n, ptr_data_out, x0, x1, y0, y1, max_range, min_range);
             x0 = x1;
             y0 = y1;
         }
     }
     if (x0 < max) 
-	{
+    {
         y1 = max_range;
         x1 = max;
         slope = (y1 - y0) / (x1 - x0);
         if (slope > smax) 
-		{
+        {
             y1 = smax * (x1 - x0) + y0;
-		}
+        }
         if (slope < smin) 
-		{
+        {
             y1 = smin * (x1 - x0) + y0;
-		}
+        }
         affine_transformation(data, n, ptr_data_out, x0, x1, y0, y1, max_range, min_range);
     }
-	
+
     return data_out;
 }

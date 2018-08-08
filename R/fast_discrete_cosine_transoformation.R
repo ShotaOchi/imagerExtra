@@ -18,16 +18,19 @@ NULL
 
 #' @rdname DCT
 #' @export 
-DCT2D <- function(imormat, returnmat = FALSE) {
+DCT2D <- function(imormat, returnmat = FALSE) 
+{
   CheckSanityimormat(imormat)
   CheckSanitylogical(returnmat, "returnmat")
-  if (is.cimg(imormat)) {
+  if (is.cimg(imormat)) 
+  {
     imormat <- as.matrix(imormat)
   }
   temp <- DCT2D_reorder(imormat)
   temp <- fftw2d(temp)
   res <- DCT2D_fromDFT(temp)
-  if (returnmat) {
+  if (returnmat) 
+  {
     return(res)
   }
   return(as.cimg(res))
@@ -35,10 +38,12 @@ DCT2D <- function(imormat, returnmat = FALSE) {
 
 #' @rdname DCT
 #' @export 
-IDCT2D <- function(imormat, returnmat = FALSE) {
+IDCT2D <- function(imormat, returnmat = FALSE) 
+{
   CheckSanityimormat(imormat)
   CheckSanitylogical(returnmat, "returnmat")
-  if (is.cimg(imormat)) {
+  if (is.cimg(imormat)) 
+  {
     imormat <- as.matrix(imormat)
   }
   dimim <- dim(imormat)
@@ -46,7 +51,8 @@ IDCT2D <- function(imormat, returnmat = FALSE) {
   temp <- IDCT2D_toDFT(imormat)
   temp <- Re(fftw2d(temp, inverse = 1))
   res <- IDCT2D_retrievex(temp) / size
-  if (returnmat) {
+  if (returnmat) 
+  {
     return(res)
   }
   return(as.cimg(res))

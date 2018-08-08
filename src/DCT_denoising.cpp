@@ -114,24 +114,24 @@ void DCT1D(std::vector< double >& in, std::vector< double >& out, int flag)
 {
     // forward transform
     if (flag == 1) 
-	{
+    {
         for (int j = 0; j < PATCHSIZE8; ++j) 
-		{
+    {
             out[j] = 0;
             for (int i = 0; i < PATCHSIZE8; ++i) 
-			{
+            {
                 out[j] += in[i] * DCTbasis8[j][i];
             }
         }
     }
     // reverse transform
     else if (flag == -1) 
-	{
+    {
         for (int j = 0; j < PATCHSIZE8; ++j) 
-		{
+       {
             out[j] = 0;
             for (int i = 0; i < PATCHSIZE8; ++i) 
-			{
+            {
                 out[j] += in[i] * DCTbasis8[i][j];
             }
         }
@@ -148,14 +148,14 @@ void DCT2D(std::vector< std::vector< double > >& patch1, int flag)
     std::vector< std::vector< double > > tmp2;
     tmp2.resize(PATCHSIZE8);
     for (int i = 0; i < PATCHSIZE8; ++i) 
-	{
+    {
         tmp1[i].resize(PATCHSIZE8);
         tmp2[i].resize(PATCHSIZE8);
     }
 
     // transform row by row
     for (int j = 0; j < PATCHSIZE8; ++j) 
-	{
+    {
         DCT1D(patch1[j], tmp1[j], flag);
     }
 
@@ -164,22 +164,22 @@ void DCT2D(std::vector< std::vector< double > >& patch1, int flag)
     // transforming row by row, and
     // transposing again the matrix.)
     for (int j = 0; j < PATCHSIZE8; ++j) 
-	{
+    {
         for (int i = 0; i < PATCHSIZE8; ++i)
-		{
+        {
             tmp2[j][i] = tmp1[i][j];
-		}
+        }
     }
     for (int j = 0; j < PATCHSIZE8; ++j) 
-	{
+    {
         DCT1D(tmp2[j], tmp1[j], flag);
     }
     for (int j = 0; j < PATCHSIZE8; ++j) 
-	{
+    {
         for (int i = 0; i < PATCHSIZE8; ++i)
-		{
+        {
             patch1[j][i] = tmp1[i][j];
-		}
+        }
     }
 }
 
@@ -500,24 +500,24 @@ void DCT1D16(std::vector< double >& in, std::vector< double >& out, int flag)
 {
     // forward transform
     if (flag == 1) 
-	{
+    {
         for (int j = 0; j < PATCHSIZE16; ++j) 
-		{
+        {
             out[j] = 0;
             for (int i = 0; i < PATCHSIZE16; ++i) 
-			{
+            {
                 out[j] += in[i] * DCTbasis16[j][i];
             }
         }
     }
     // reverse transform
     else if (flag == -1) 
-	{
+    {
         for (int j = 0; j < PATCHSIZE16; ++j) 
-		{
+        {
             out[j] = 0;
             for (int i = 0; i < PATCHSIZE16; ++i) 
-			{
+            {
                 out[j] += in[i] * DCTbasis16[i][j];
             }
         }
@@ -534,14 +534,14 @@ void DCT2D16x16(std::vector< std::vector< double > >& patch1, int flag)
     std::vector< std::vector< double > > tmp2;
     tmp2.resize(PATCHSIZE16);
     for (int i = 0; i < PATCHSIZE16; ++i) 
-	{
+    {
         tmp1[i].resize(PATCHSIZE16);
         tmp2[i].resize(PATCHSIZE16);
     }
 
     // transform row by row
     for (int j = 0; j < PATCHSIZE16; ++j) 
-	{
+    {
         DCT1D16(patch1[j], tmp1[j], flag);
     }
 
@@ -550,22 +550,22 @@ void DCT2D16x16(std::vector< std::vector< double > >& patch1, int flag)
     // transforming row by row, and
     // transposing again the matrix.)
     for (int j = 0; j < PATCHSIZE16; ++j) 
-	{
+    {
         for (int i = 0; i < PATCHSIZE16; ++i)
-		{
+        {
             tmp2[j][i] = tmp1[i][j];
-		}
+        }
     }
     for (int j = 0; j < PATCHSIZE16; ++j) 
-	{
+    {
         DCT1D16(tmp2[j], tmp1[j], flag);
     }
     for (int j = 0; j < PATCHSIZE16; ++j) 
-	{
+    {
         for (int i = 0; i < PATCHSIZE16; ++i) 
-		{
+        {
             patch1[j][i] = tmp1[i][j];
-		}
+        }
     }
 }
 
@@ -631,18 +631,18 @@ void Patches2Image(std::vector<double>&,
 // [[Rcpp::export]]
 Rcpp::NumericMatrix DCTdenoising(Rcpp::NumericMatrix ipixelsR, int width, int height, double sigma, int flag_dct16x16)
 {
-	//Convert ipixelsR to std::vector<double>
-	int size_ipixels = width * height;
-	std::vector<double> ipixels;
-	ipixels.resize(size_ipixels);
-	for(int i = 0; i < height; ++i)
-	{
-		for (int j = 0; j < width; ++j)
-		{
-			ipixels[i * width + j] = ipixelsR(i, j);
-		}
-	}
-	
+    //Convert ipixelsR to std::vector<double>
+    int size_ipixels = width * height;
+    std::vector<double> ipixels;
+    ipixels.resize(size_ipixels);
+    for(int i = 0; i < height; ++i)
+    {
+        for (int j = 0; j < width; ++j)
+        {
+            ipixels[i * width + j] = ipixelsR(i, j);
+        }
+    }
+
     // Threshold
     double Th = 3 * sigma;
 
@@ -657,7 +657,7 @@ Rcpp::NumericMatrix DCTdenoising(Rcpp::NumericMatrix ipixelsR, int width, int he
     }
 
     int num_patches = (width - width_p + 1) * (height - height_p + 1);
-	int channel = 1;
+    int channel = 1;
 
     std::vector< std::vector< std::vector< std::vector< double > > > > patches;
     patches.resize(num_patches);
@@ -669,7 +669,7 @@ Rcpp::NumericMatrix DCTdenoising(Rcpp::NumericMatrix ipixelsR, int width, int he
                 patches[p][k][j].resize(width_p);
         }
     }
-	Image2Patches(ipixels, patches, width, height, channel, width_p, height_p);
+    Image2Patches(ipixels, patches, width, height, channel, width_p, height_p);
 
     // 2D DCT forward
     for (int p = 0; p < num_patches; p ++) {
@@ -694,26 +694,25 @@ Rcpp::NumericMatrix DCTdenoising(Rcpp::NumericMatrix ipixelsR, int width, int he
     for (int p = 0; p < num_patches; p ++) {
         for (int k = 0; k < channel; k ++) {
             if (flag_dct16x16 == 0)
-			{
+            {
                 DCT2D16x16(patches[p][k], -1);
             } else {
                 DCT2D(patches[p][k], -1);
-			}
+            }
         }
-
     }
 
     Patches2Image(ipixels, patches, width, height, channel, width_p, height_p);
-	
-	Rcpp::NumericMatrix res(height, width);
-	for(int i = 0; i < height; ++i)
-	{
-		for (int j = 0; j < width; ++j)
-		{
-			res(i ,j) = ipixels[i * width + j];
-		}
-	}
-	return res;
+
+    Rcpp::NumericMatrix res(height, width);
+    for(int i = 0; i < height; ++i)
+    {
+        for (int j = 0; j < width; ++j)
+        {
+            res(i ,j) = ipixels[i * width + j];
+        }
+    }
+    return res;
 }
 
 // Transfer an image im of size width x height x channel to sliding patches of 
@@ -727,26 +726,26 @@ void Image2Patches(std::vector<double>& im, std::vector< std::vector< std::vecto
 
     // Loop over the patch positions
     for (int j = 0; j < height - height_p + 1; ++j)
-	{
+    {
         for (int i = 0; i < width - width_p + 1; ++i) 
-		{
+        {
             int counter_pixel = 0;
             // loop over the pixels in the patch
             for (int kp = 0; kp < channel; ++kp)
-			{
+            {
                 for (int jp = 0; jp < height_p; ++jp)
-				{
+                {
                     for (int ip = 0; ip < width_p; ++ip) 
-					{
+                    {
                         patches[counter_patch][kp][jp][ip] = 
                                          im[kp*size1 + (j+jp)*width + i + ip];
                         ++counter_pixel;
                     }
-				}
-			}
+                }
+            }
             ++counter_patch;
         }
-	}
+    }
 }
 
 // Transfer sliding patches of size width_p x height_p xchannel to an image im 
@@ -760,46 +759,47 @@ void Patches2Image(std::vector<double>& im, std::vector< std::vector< std::vecto
 
     // clean the image
     for (int i = 0; i < size; ++i)
-	{
+    {
         im[i] = 0;
-	}
+    }
 
     // Store the weight
     std::vector<double> im_weight;
     im_weight.resize(size);
     for (int i = 0; i < size; ++i)
-	{
+    {
         im_weight[i] = 0;
-	}
-	
+      }
+
     int counter_patch = 0;
 
     // Loop over the patch positions
     for (int j = 0; j < height - height_p + 1; ++j)
-	{
+    {
         for (int i = 0; i < width - width_p + 1; ++i) 
-		{
+        {
             int counter_pixel = 0;
             // loop over the pixels in the patch
-            for (int kp = 0; kp < channel; ++kp){
+            for (int kp = 0; kp < channel; ++kp)
+            {
                 for (int jp = 0; jp < height_p; ++jp)
-				{
+                {
                     for (int ip = 0; ip < width_p; ++ip) 
-					{
+                    {
                         im[kp*size1 + (j+jp)*width + i + ip] += 
                                        patches[counter_patch][kp][jp][ip];
                         ++im_weight[kp*size1 + (j+jp)*width + i + ip];
                         ++counter_pixel;
                     }
-				}
-			}
+                }
+            }
             ++counter_patch;
         }
-	}
+    }
 
     // Normalize by the weight
     for (int i = 0; i < size; ++i)
-	{
+    {
         im[i] = im[i] / im_weight[i];
-	}
+    }
 }

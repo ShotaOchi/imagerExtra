@@ -47,33 +47,30 @@
 // [[Rcpp::export]]
 Rcpp::NumericMatrix screened_poisson_dct(Rcpp::NumericMatrix data, double L)
 {
-	int nx = data.nrow();
-	int ny = data.ncol();
-	Rcpp::NumericMatrix data_out(Rcpp::Dimension(nx, ny));
-	double normx, normy, coeff, coeff1;
-	normx = 4.0 * M_PI2 / (double)(nx * nx);
-	normy = 4.0 * M_PI2 / (double)(ny * ny);
-	
-	if (L > 0.)
-	{
-		for (int i = 0; i < nx; ++i)
-		{
-			for (int j = 0; j < ny; ++j)
-			{
-				if (i == 0 && j == 0) 
-				{
-					data_out(0, 0) = 0.;
-				}
-				else
-				{
-					coeff = normx * i * i + normy * j * j;
-					coeff1 = coeff / (coeff + L);
-					data_out(i, j) = data(i, j) * coeff1;
-				}
-			
-			}
-		}
-	}
-	
-	return data_out;
+    int nx = data.nrow();
+    int ny = data.ncol();
+    Rcpp::NumericMatrix data_out(Rcpp::Dimension(nx, ny));
+    double normx, normy, coeff, coeff1;
+    normx = 4.0 * M_PI2 / (double)(nx * nx);
+    normy = 4.0 * M_PI2 / (double)(ny * ny);
+
+    if (L > 0.)
+    {
+        for (int i = 0; i < nx; ++i)
+        {
+            for (int j = 0; j < ny; ++j)
+            {
+                if (i == 0 && j == 0) 
+                {
+                    data_out(0, 0) = 0.;
+                } else
+                {
+                    coeff = normx * i * i + normy * j * j;
+                    coeff1 = coeff / (coeff + L);
+                    data_out(i, j) = data(i, j) * coeff1;
+                }
+            }
+        }
+    }
+    return data_out;
 }   

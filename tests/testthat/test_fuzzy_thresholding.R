@@ -3,12 +3,12 @@ test_that("fuzzy thresholding",
 {
     notim <- 1
     im <- boats
-	gim <- grayscale(im)
+    gim <- grayscale(im)
     mat_gim <- as.matrix(gim)
-	gim2 <- imrep(gim, 2) %>% imappend(., "z")
+    gim2 <- imrep(gim, 2) %>% imappend(., "z")
     im_NA <- as.cimg(matrix(NA, 100, 100))
     im_uniform <- as.cimg(matrix(1,100,100))
-	bad1 <- "A"
+    bad1 <- "A"
     bad2 <- -1
     bad3 <- c(0.1,0.1,0.1)
     bad4 <- NA
