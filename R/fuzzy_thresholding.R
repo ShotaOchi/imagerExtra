@@ -21,7 +21,7 @@
 #' layout(matrix(1:2, 1, 2))
 #' plot(g, main = "Original")
 #' ThresholdFuzzy(g) %>% plot(main = "Fuzzy Thresholding")
-ThresholdFuzzy <- function(im, n = 100, maxiter = 100, omegamax = 0.9, omegamin = 0.1, c1 = 2, c2 = 2, mutrate = 0.2, vmaxcoef = 0.1, intervalnumber = 1000, returnvalue = FALSE)
+ThresholdFuzzy <- function(im, n = 50, maxiter = 100, omegamax = 0.9, omegamin = 0.1, c1 = 2, c2 = 2, mutrate = 0.2, vmaxcoef = 0.1, intervalnumber = 1000, returnvalue = FALSE)
 {
   CheckSanityim(im)
   CheckSanitypositivenumeric(n, "n")
@@ -67,7 +67,7 @@ ThresholdFuzzy <- function(im, n = 100, maxiter = 100, omegamax = 0.9, omegamin 
   interval <- seq(minval, maxval, length.out = intervalnumber + 1)
   interval <- interval[2:length(interval)]
   vmax <- vmaxcoef * intervalnumber
-  range_local_search <- as.integer(vmax / 2)
+  range_local_search <- as.integer(intervalnumber * 0.1 / 4)
   ordered <- as.vector(im)
   ordered <- ordered[order(ordered)]
   imhist <- make_histogram_fuzzy(ordered, interval)
