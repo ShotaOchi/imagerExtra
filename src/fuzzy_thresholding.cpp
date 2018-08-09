@@ -63,7 +63,7 @@ double calc_fuzzy_entropy(Rcpp::NumericVector imhist, Rcpp::NumericVector interv
   return res;
 }
 
-bool check_dupl(Rcpp::IntegerVector vec)
+bool check_dupl_fuzzy(Rcpp::IntegerVector vec)
 {
   int n = vec.size();
   bool res = false;
@@ -78,7 +78,7 @@ bool check_dupl(Rcpp::IntegerVector vec)
   return res;
 }
 
-Rcpp::IntegerVector generate_pos(int n_interval)
+Rcpp::IntegerVector generate_pos_fuzzy(int n_interval)
 {
   Rcpp::IntegerVector res(N_PARAMS);
   if (n_interval < N_PARAMS)
@@ -92,7 +92,7 @@ Rcpp::IntegerVector generate_pos(int n_interval)
     res[i] = (int)(tmprand[i]);
   }
   std::sort(res.begin(), res.end());
-  bool flag_dupl = check_dupl(res);
+  bool flag_dupl = check_dupl_fuzzy(res);
   while (flag_dupl)
   {
     tmprand = Rcpp::runif(N_PARAMS, 0, n_interval);
@@ -101,17 +101,17 @@ Rcpp::IntegerVector generate_pos(int n_interval)
       res[i] = (int)(tmprand[i]);
     }
     std::sort(res.begin(), res.end());
-    flag_dupl = check_dupl(res);
+    flag_dupl = check_dupl_fuzzy(res);
   }
   return res;
 }
 
-Rcpp::IntegerMatrix generate_inipos(int n, int n_interval)
+Rcpp::IntegerMatrix generate_inipos_fuzzy(int n, int n_interval)
 {
   Rcpp::IntegerMatrix res(n, N_PARAMS);
   for (int i = 0; i < n; ++i)
   {
-    Rcpp::IntegerVector tmp = generate_pos(n_interval);
+    Rcpp::IntegerVector tmp = generate_pos_fuzzy(n_interval);
     for (int j = 0; j < N_PARAMS; ++j)
     {
       res(i,j) = tmp[j];
@@ -120,7 +120,7 @@ Rcpp::IntegerMatrix generate_inipos(int n, int n_interval)
   return res;
 }
 
-Rcpp::NumericMatrix generate_iniv(int n, double vmax)
+Rcpp::NumericMatrix generate_iniv_fuzzy(int n, double vmax)
 {
   Rcpp::NumericMatrix res(n, N_PARAMS);
   for (int i = 0; i < n; ++i)
@@ -150,8 +150,8 @@ double fuzzy_threshold(Rcpp::NumericVector imhist, Rcpp::NumericVector interval,
   }
   
   int n_interval = interval.size();
-  Rcpp::IntegerMatrix pos = generate_inipos(n, n_interval);
-  Rcpp::NumericMatrix v = generate_iniv(n, vmax);
+  Rcpp::IntegerMatrix pos = generate_inipos_fuzzy(n, n_interval);
+  Rcpp::NumericMatrix v = generate_iniv_fuzzy(n, vmax);
   Rcpp::IntegerVector gbest(N_PARAMS);
   double gbeste = 0;
   double omegacoef = (omegamax - omegamin) / (maxiter - 1);
@@ -218,7 +218,7 @@ double fuzzy_threshold(Rcpp::NumericVector imhist, Rcpp::NumericVector interval,
       }
       if (flag_range)
       {
-        Rcpp::IntegerVector tmp_newpos = generate_pos(n_interval);
+        Rcpp::IntegerVector tmp_newpos = generate_pos_fuzzy(n_interval);
         for (int j = 0; j < N_PARAMS; ++j)
         {
           pos(i,j) = tmp_newpos[j];
