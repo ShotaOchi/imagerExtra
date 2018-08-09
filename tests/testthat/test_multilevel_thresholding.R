@@ -1,0 +1,55 @@
+library(imagerExtra)
+test_that("multilevel thresholding",
+{
+    notim <- 1
+    im <- boats
+    gim <- grayscale(im)
+    mat_gim <- as.matrix(gim)
+    gim2 <- imrep(gim, 2) %>% imappend(., "z")
+    im_NA <- as.cimg(matrix(NA, 100, 100))
+    im_uniform <- as.cimg(matrix(1,100,100))
+    bad1 <- "A"
+    bad2 <- -1
+    bad3 <- c(0.1,0.1,0.1)
+    bad4 <- NA
+    bad5 <- NULL
+    k_c <- 2
+    
+    expect_error(ThresholdML(notim, k_c))
+    expect_error(ThresholdML(im, k_c))
+    expect_error(ThresholdML(gim2, k_c))
+    expect_error(ThresholdML(im_NA, k_c))
+    expect_error(ThresholdML(im_uniform, k_c))
+    expect_error(ThresholdML(gim, bad1))
+    expect_error(ThresholdML(gim, bad2))
+    expect_error(ThresholdML(gim, bad3))
+    expect_error(ThresholdML(gim, bad4))
+    expect_error(ThresholdML(gim, bad5))
+    expect_error(ThresholdML(gim, k_c, returnvalue = bad1))
+    expect_error(ThresholdML(gim, k_c, returnvalue = bad2))
+    expect_error(ThresholdML(gim, k_c, returnvalue = bad3))
+    expect_error(ThresholdML(gim, k_c, returnvalue = bad4))
+    expect_error(ThresholdML(gim, k_c, returnvalue = bad5))
+    expect_error(ThresholdML(gim, k_c, sn = bad1))
+    expect_error(ThresholdML(gim, k_c, sn = bad2))
+    expect_error(ThresholdML(gim, k_c, sn = bad3))
+    expect_error(ThresholdML(gim, k_c, sn = bad4))
+    expect_error(ThresholdML(gim, k_c, sn = bad5))
+    expect_error(ThresholdML(gim, k_c, sn = 1))
+    expect_error(ThresholdML(gim, k_c, mcn = bad1))
+    expect_error(ThresholdML(gim, k_c, mcn = bad2))
+    expect_error(ThresholdML(gim, k_c, mcn = bad3))
+    expect_error(ThresholdML(gim, k_c, mcn = bad4))
+    expect_error(ThresholdML(gim, k_c, mcn = bad5))
+    expect_error(ThresholdML(gim, k_c, intervalnumber = bad1))
+    expect_error(ThresholdML(gim, k_c, intervalnumber = bad2))
+    expect_error(ThresholdML(gim, k_c, intervalnumber = bad3))
+    expect_error(ThresholdML(gim, k_c, intervalnumber = bad4))
+    expect_error(ThresholdML(gim, k_c, intervalnumber = bad5))    
+    expect_error(ThresholdML(gim, k_c, intervalnumber = 1))
+    expect_error(ThresholdML(gim, k_c, limit = bad1))
+    expect_error(ThresholdML(gim, k_c, limit = bad2))
+    expect_error(ThresholdML(gim, k_c, limit = bad3))
+    expect_error(ThresholdML(gim, k_c, limit = bad4))
+    expect_error(ThresholdML(gim, k_c, limit = bad5))
+})

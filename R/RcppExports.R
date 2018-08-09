@@ -41,6 +41,22 @@ threshold_adaptive <- function(mat, k, windowsize, maxsd) {
     .Call(`_imagerExtra_threshold_adaptive`, mat, k, windowsize, maxsd)
 }
 
+make_density_multilevel <- function(ordered, interval) {
+    .Call(`_imagerExtra_make_density_multilevel`, ordered, interval)
+}
+
+make_integral_density_multilevel <- function(density) {
+    .Call(`_imagerExtra_make_integral_density_multilevel`, density)
+}
+
+get_threshold_multilevel <- function(im_density, im_integral_density, n_thres, sn, mcn, limit) {
+    .Call(`_imagerExtra_get_threshold_multilevel`, im_density, im_integral_density, n_thres, sn, mcn, limit)
+}
+
+threshold_multilevel <- function(im, thresvals) {
+    .Call(`_imagerExtra_threshold_multilevel`, im, thresvals)
+}
+
 piecewise_transformation <- function(data, F, N, smax, smin, max, min, max_range, min_range) {
     .Call(`_imagerExtra_piecewise_transformation`, data, F, N, smax, smin, max, min, max_range, min_range)
 }
