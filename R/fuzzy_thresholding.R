@@ -37,9 +37,9 @@ ThresholdFuzzy <- function(im, n = 50, maxiter = 100, omegamax = 0.9, omegamin =
 
   minval <- min(im)
   maxval <- max(im)
-  if (n < 2) 
+  if (n < 1) 
   {
-    stop("n must be greater than or equal to 2.", call.=FALSE)
+    stop("n must be greater than or equal to 1.", call.=FALSE)
   }
   if (omegamax >= 1)
   {
