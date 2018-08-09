@@ -25,8 +25,8 @@ make_histogram_fuzzy <- function(ordered, interval) {
     .Call(`_imagerExtra_make_histogram_fuzzy`, ordered, interval)
 }
 
-fuzzy_threshold <- function(imhist, interval, pos, v, n, maxiter, omegamax, omegamin, c1, c2, mutrate, vmax, localsearch, maxval, minval) {
-    .Call(`_imagerExtra_fuzzy_threshold`, imhist, interval, pos, v, n, maxiter, omegamax, omegamin, c1, c2, mutrate, vmax, localsearch, maxval, minval)
+fuzzy_threshold <- function(imhist, interval, n, maxiter, omegamax, omegamin, c1, c2, mutrate, vmax, localsearch) {
+    .Call(`_imagerExtra_fuzzy_threshold`, imhist, interval, n, maxiter, omegamax, omegamin, c1, c2, mutrate, vmax, localsearch)
 }
 
 make_prob_otsu <- function(ordered, bins, intervalnumber, width, height) {

@@ -37,9 +37,6 @@ ThresholdFuzzy <- function(im, n = 100, maxiter = 100, omegamax = 0.9, omegamin 
 
   minval <- min(im)
   maxval <- max(im)
-  n <- as.integer(n)
-  maxiter <- as.integer(maxiter)
-  intervalnumber <- as.integer(intervalnumber)
   if (n < 2) 
   {
     stop("n must be greater than or equal to 2.", call.=FALSE)
@@ -56,7 +53,7 @@ ThresholdFuzzy <- function(im, n = 100, maxiter = 100, omegamax = 0.9, omegamin 
   {
     stop("maxiter must be greater than or equal to 2.", call. = FALSE)
   }
-  if (intervalnumber <= 1)
+  if (intervalnumber < 2)
   {
     stop("intervalnumber must be greater than or equal to 2.", call. = FALSE)
   }
@@ -64,18 +61,17 @@ ThresholdFuzzy <- function(im, n = 100, maxiter = 100, omegamax = 0.9, omegamin 
   {
     stop("im has only one unique value. ThresholdFuzzy can't be applied for such a image.", call. = FALSE)
   }
-
+  n <- as.integer(n)
+  maxiter <- as.integer(maxiter)
+  intervalnumber <- as.integer(intervalnumber)
   interval <- seq(minval, maxval, length.out = intervalnumber + 1)
   interval <- interval[2:length(interval)]
-  vmax <- vmaxcoef * (maxval - minval)
-  range_local_search <- vmax / 2
+  vmax <- vmaxcoef * intervalnumber
+  range_local_search <- as.integer(vmax / 2)
   ordered <- as.vector(im)
   ordered <- ordered[order(ordered)]
   imhist <- make_histogram_fuzzy(ordered, interval)
-  inia <- runif(n, min = minval, max = interval[length(interval) - 1])
-  inipos <- cbind(inia, sapply(inia, function(x) runif(1, min = x, max = maxval)))
-  iniv <- -vmax + 2 * vmax * matrix(runif(2 * n), n, 2)
-  thresval <- fuzzy_threshold(imhist, interval, inipos, iniv, n, maxiter, omegamax, omegamin, c1, c2, mutrate, vmax, range_local_search, maxval, minval)
+  thresval <- fuzzy_threshold(imhist, interval, n, maxiter, omegamax, omegamin, c1, c2, mutrate, vmax, range_local_search)
   if (returnvalue)
   {
     return(thresval)

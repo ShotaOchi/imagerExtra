@@ -77,15 +77,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // fuzzy_threshold
-double fuzzy_threshold(Rcpp::NumericVector imhist, Rcpp::NumericVector interval, Rcpp::NumericMatrix pos, Rcpp::NumericMatrix v, int n, int maxiter, double omegamax, double omegamin, double c1, double c2, double mutrate, double vmax, double localsearch, double maxval, double minval);
-RcppExport SEXP _imagerExtra_fuzzy_threshold(SEXP imhistSEXP, SEXP intervalSEXP, SEXP posSEXP, SEXP vSEXP, SEXP nSEXP, SEXP maxiterSEXP, SEXP omegamaxSEXP, SEXP omegaminSEXP, SEXP c1SEXP, SEXP c2SEXP, SEXP mutrateSEXP, SEXP vmaxSEXP, SEXP localsearchSEXP, SEXP maxvalSEXP, SEXP minvalSEXP) {
+double fuzzy_threshold(Rcpp::NumericVector imhist, Rcpp::NumericVector interval, int n, int maxiter, double omegamax, double omegamin, double c1, double c2, double mutrate, double vmax, int localsearch);
+RcppExport SEXP _imagerExtra_fuzzy_threshold(SEXP imhistSEXP, SEXP intervalSEXP, SEXP nSEXP, SEXP maxiterSEXP, SEXP omegamaxSEXP, SEXP omegaminSEXP, SEXP c1SEXP, SEXP c2SEXP, SEXP mutrateSEXP, SEXP vmaxSEXP, SEXP localsearchSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type imhist(imhistSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type interval(intervalSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type pos(posSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type v(vSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
     Rcpp::traits::input_parameter< int >::type maxiter(maxiterSEXP);
     Rcpp::traits::input_parameter< double >::type omegamax(omegamaxSEXP);
@@ -94,10 +92,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type c2(c2SEXP);
     Rcpp::traits::input_parameter< double >::type mutrate(mutrateSEXP);
     Rcpp::traits::input_parameter< double >::type vmax(vmaxSEXP);
-    Rcpp::traits::input_parameter< double >::type localsearch(localsearchSEXP);
-    Rcpp::traits::input_parameter< double >::type maxval(maxvalSEXP);
-    Rcpp::traits::input_parameter< double >::type minval(minvalSEXP);
-    rcpp_result_gen = Rcpp::wrap(fuzzy_threshold(imhist, interval, pos, v, n, maxiter, omegamax, omegamin, c1, c2, mutrate, vmax, localsearch, maxval, minval));
+    Rcpp::traits::input_parameter< int >::type localsearch(localsearchSEXP);
+    rcpp_result_gen = Rcpp::wrap(fuzzy_threshold(imhist, interval, n, maxiter, omegamax, omegamin, c1, c2, mutrate, vmax, localsearch));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -196,7 +192,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_imagerExtra_IDCT2D_toDFT", (DL_FUNC) &_imagerExtra_IDCT2D_toDFT, 1},
     {"_imagerExtra_IDCT2D_retrievex", (DL_FUNC) &_imagerExtra_IDCT2D_retrievex, 1},
     {"_imagerExtra_make_histogram_fuzzy", (DL_FUNC) &_imagerExtra_make_histogram_fuzzy, 2},
-    {"_imagerExtra_fuzzy_threshold", (DL_FUNC) &_imagerExtra_fuzzy_threshold, 15},
+    {"_imagerExtra_fuzzy_threshold", (DL_FUNC) &_imagerExtra_fuzzy_threshold, 11},
     {"_imagerExtra_make_prob_otsu", (DL_FUNC) &_imagerExtra_make_prob_otsu, 5},
     {"_imagerExtra_get_th_otsu", (DL_FUNC) &_imagerExtra_get_th_otsu, 2},
     {"_imagerExtra_threshold_adaptive", (DL_FUNC) &_imagerExtra_threshold_adaptive, 4},

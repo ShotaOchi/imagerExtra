@@ -1,5 +1,7 @@
 #include <Rcpp.h>
 
+#define N_PARAMS 2
+
 // [[Rcpp::export]]
 Rcpp::NumericVector make_histogram_fuzzy(Rcpp::NumericVector ordered, Rcpp::NumericVector interval)
 {
@@ -28,9 +30,11 @@ Rcpp::NumericVector make_histogram_fuzzy(Rcpp::NumericVector ordered, Rcpp::Nume
   return res;
 }
 
-double calc_fuzzy_entropy(Rcpp::NumericVector imhist, Rcpp::NumericVector interval, double a, double c)
+double calc_fuzzy_entropy(Rcpp::NumericVector imhist, Rcpp::NumericVector interval, int idx_a, int idx_c)
 {
   int n = imhist.size();
+  double a = interval[idx_a];
+  double c = interval[idx_c];
   double b = (a + c) / 2;
   double res = 0.0;
   for (int i = 0; i < n; ++i)
@@ -59,135 +63,252 @@ double calc_fuzzy_entropy(Rcpp::NumericVector imhist, Rcpp::NumericVector interv
   return res;
 }
 
+bool check_dupl(Rcpp::IntegerVector vec)
+{
+  int n = vec.size();
+  bool res = false;
+  for (int i = 0; i < n - 1; ++i)
+  {
+    if (vec[i] == vec[i+1])
+    {
+      res = true;
+      break;
+    }
+  }
+  return res;
+}
+
+Rcpp::IntegerVector generate_pos(int n_interval)
+{
+  Rcpp::IntegerVector res(N_PARAMS);
+  if (n_interval < N_PARAMS)
+  {
+    Rcpp::Rcout << "n_interval is smaller than " << N_PARAMS << "." << std::endl;
+    return res;
+  }
+  Rcpp::NumericVector tmprand = Rcpp::runif(N_PARAMS, 0, n_interval);
+  for (int i = 0; i < N_PARAMS; ++i)
+  {
+    res[i] = (int)(tmprand[i]);
+  }
+  std::sort(res.begin(), res.end());
+  bool flag_dupl = check_dupl(res);
+  while (flag_dupl)
+  {
+    tmprand = Rcpp::runif(N_PARAMS, 0, n_interval);
+    for (int i = 0; i < N_PARAMS; ++i)
+    {
+      res[i] = (int)(tmprand[i]);
+    }
+    std::sort(res.begin(), res.end());
+    flag_dupl = check_dupl(res);
+  }
+  return res;
+}
+
+Rcpp::IntegerMatrix generate_inipos(int n, int n_interval)
+{
+  Rcpp::IntegerMatrix res(n, N_PARAMS);
+  for (int i = 0; i < n; ++i)
+  {
+    Rcpp::IntegerVector tmp = generate_pos(n_interval);
+    for (int j = 0; j < N_PARAMS; ++j)
+    {
+      res(i,j) = tmp[j];
+    }
+  }
+  return res;
+}
+
+Rcpp::NumericMatrix generate_iniv(int n, double vmax)
+{
+  Rcpp::NumericMatrix res(n, N_PARAMS);
+  for (int i = 0; i < n; ++i)
+  {
+    Rcpp::NumericVector tmp = Rcpp::runif(N_PARAMS, 0, 1);
+    for (int j = 0; j < N_PARAMS; ++j)
+    {
+      res(i,j) = vmax * (tmp[j] + tmp[j] - 1);
+    }
+  }
+  return res;
+}
+
 // [[Rcpp::export]]
-double fuzzy_threshold(Rcpp::NumericVector imhist, Rcpp::NumericVector interval, Rcpp::NumericMatrix pos, Rcpp::NumericMatrix v, int n, int maxiter, double omegamax, double omegamin, double c1, double c2, double mutrate, double vmax, double localsearch, double maxval, double minval)
+double fuzzy_threshold(Rcpp::NumericVector imhist, Rcpp::NumericVector interval, int n, int maxiter, double omegamax, double omegamin, double c1, double c2, double mutrate, double vmax, int localsearch)
 {
   // sanity ckeck
-  if (pos.ncol() != 2 || v.ncol() != 2 || pos.nrow() != n || v.nrow() != n)
-  {
-    Rcpp::Rcout << "dimension of pos or v is not appropriate." << std::endl;
-    return 0.0;
-  }
   if (imhist.size() != interval.size())
   {
-    Rcpp::Rcout << "The length of imhist is not same as the length of interval" << std::endl;
+    Rcpp::Rcout << "The length of imhist is not same as the length of interval." << std::endl;
     return 0.0;
   }
-
-  double gbesta = 0;
-  double gbestc = 0;
+  if (maxiter < 2)
+  {
+    Rcpp::Rcout << "maxiter must be greater than or equal to 2." << std::endl;
+    return 0.0;
+  }
+  
+  int n_interval = interval.size();
+  Rcpp::IntegerMatrix pos = generate_inipos(n, n_interval);
+  Rcpp::NumericMatrix v = generate_iniv(n, vmax);
+  Rcpp::IntegerVector gbest(N_PARAMS);
   double gbeste = 0;
   double omegacoef = (omegamax - omegamin) / (maxiter - 1);
-  Rcpp::NumericMatrix pbest(n,3); // a, c, entropy (from left to right)
+  Rcpp::IntegerMatrix pbest(n,N_PARAMS); // a, c(from left to right)
+  Rcpp::NumericVector pbeste(n); // maximum entropy of each particles
   double vmax_squared = vmax * vmax;
-  Rcpp::NumericMatrix prepos(n,2);
-  Rcpp::NumericMatrix prev(n,2);
-  double sigma = 0.1 * (maxval - minval);
+  Rcpp::IntegerMatrix prepos(n,N_PARAMS);
+  Rcpp::NumericMatrix prev(n,N_PARAMS);
+  double sigma = 0.1 * n_interval;
   
-  for(int j = 0; j < n; ++j)
+  for (int i = 0; i < n; ++i)
   {
-    pbest(j,0) = pos(j,0);
-    pbest(j,1) = pos(j,1);
-    prepos(j,0) = pos(j,0);
-    prepos(j,1) = pos(j,1);
-    prev(j,0) = v(j,0);
-    prev(j,1) = v(j,1);
-    pbest(j,2) = calc_fuzzy_entropy(imhist, interval, pos(j,0), pos(j,1));
-    if (pbest(j,2) > gbeste)
+    for (int j = 0; j < N_PARAMS; ++j)
     {
-      gbesta = pbest(j,0);
-      gbestc = pbest(j,1);
-      gbeste = pbest(j,2);
+      pbest(i,j) = pos(i,j);
+      prepos(i,j) = pos(i,j);
+      prev(i,j) = v(i,j);
+    }
+    pbeste[i] = calc_fuzzy_entropy(imhist, interval, pos(i,0), pos(i,1));
+    if (pbeste[i] > gbeste)
+    {
+      for (int j = 0; j < N_PARAMS; ++j)
+      {
+        gbest[j] = pbest(i,j);
+      }
+      gbeste = pbeste[i];
     }   
   }
   for(int k = 1; k < maxiter; ++k)
   {
     double omegak = omegamax - k * omegacoef;
-    for (int j = 0; j < n; ++j)
+    for (int i = 0; i < n; ++i)
     {
-      Rcpp::NumericVector temprunif = Rcpp::runif(4); 
-      v(j,0) = v(j,0) * omegak + c1 * temprunif[0] * (pbest(j,0) - prepos(j,0)) + c2 * temprunif[1] * (gbesta - prepos(j,0));
-      v(j,1) = v(j,1) * omegak + c1 * temprunif[2] * (pbest(j,1) - prepos(j,1)) + c2 * temprunif[3] * (gbestc - prepos(j,1));
-      double vmag = v(j,0) * v(j,0) + v(j,1) * v(j,1); 
+      bool flag_range = false;
+      for (int j = 0; j < N_PARAMS; ++j)
+      {
+        Rcpp::NumericVector temprunif = Rcpp::runif(2);
+        v(i,j) = v(i,j) * omegak + c1 * temprunif[0] * (pbest(i,j) - prepos(i,j)) + c2 * temprunif[1] * (gbest[j] - prepos(i,j));
+        pos(i,j) = (int)(prepos(i,j) + prev(i,j));
+        if (pos(i,j) < 0 || pos(i,j) >= n_interval)
+        {
+          flag_range = true;
+        }
+      }
+      double vmag = 0.0;
+      for (int j = 0; j < N_PARAMS; ++j)
+      {
+        vmag += v(i,j) * v(i,j);
+      }
       if (vmag > vmax_squared)
       {
         double vmag_sqrt = sqrt(vmag);
-        v(j,0) *= vmax / vmag_sqrt;
-        v(j,1) *= vmax / vmag_sqrt;
+        for (int j = 0; j < N_PARAMS; ++j)
+        {
+          v(i,j) *= vmax / vmag_sqrt;
+        }
       }
-      pos(j,0) = prepos(j,0) + prev(j,0);
-      pos(j,1) = prepos(j,1) + prev(j,1);
-      if (pos(j,0) < minval || pos(j,0) > maxval || pos(j,1) < minval || pos(j,1) > maxval || pos(j,0) >= pos(j,1))
+      for (int j = 0; j < N_PARAMS - 1; ++j)
       {
-        Rcpp::NumericVector tempunif1 = Rcpp::runif(1, 0, 0.999);
-        Rcpp::NumericVector tempunif2 = Rcpp::runif(1, tempunif1[0], 1);
-        pos(j,0) = minval + tempunif1[0] * (maxval - minval);
-        pos(j,1) = minval + tempunif2[0] * (maxval - minval);
+        if (pos(i,j) >= pos(i,j+1))
+        {
+          flag_range = true;
+        }
       }
-      
-
-      double tempe = calc_fuzzy_entropy(imhist, interval, pos(j,0), pos(j,1));
+      if (flag_range)
+      {
+        Rcpp::IntegerVector tmp_newpos = generate_pos(n_interval);
+        for (int j = 0; j < N_PARAMS; ++j)
+        {
+          pos(i,j) = tmp_newpos[j];
+        }
+      }
+      double tempe = calc_fuzzy_entropy(imhist, interval, pos(i,0), pos(i,1));
       //gaussian mutation
       Rcpp::NumericVector mutran = Rcpp::runif(1);
       if (mutran[0] <= mutrate) 
       {
-        Rcpp::NumericVector tempgaus = Rcpp::rnorm(2,0,sigma);
-        double temppos1 = pos(j,0) * (1 + tempgaus[0]);
-        double temppos2 = pos(j,1) * (1 + tempgaus[1]);
-        if (temppos1 >= minval && temppos1 <= maxval && temppos2 >= minval && temppos2 <= maxval && temppos1 < temppos2)
+        Rcpp::NumericVector tempgaus = Rcpp::rnorm(N_PARAMS,0,sigma);
+        Rcpp::IntegerVector tmppos(N_PARAMS);
+        bool bool_gaus = true;
+        for (int j = 0; j < N_PARAMS; ++j)
         {
-          double mute = calc_fuzzy_entropy(imhist, interval, temppos1, temppos2);
+          tmppos[j] = (int)(pos(i,j) * (1 + tempgaus[j]));
+          if (tmppos[j] < 0 || tmppos[j] >= n_interval)
+          {
+            bool_gaus = false;
+          }
+        }
+        for (int j = 0; j < N_PARAMS - 1; ++j)
+        {
+          if (tmppos[j] >= tmppos[j+1])
+          {
+            bool_gaus = false;
+          }
+        }
+        if (bool_gaus)
+        {
+          double mute = calc_fuzzy_entropy(imhist, interval, tmppos[0], tmppos[1]);
           if (mute > tempe)
           {
-            pos(j,0) = temppos1;
-            pos(j,1) = temppos2;
+            for (int j = 0; j < N_PARAMS; ++j)
+            { 
+              pos(i,j) = tmppos[j];
+            }
             tempe = mute;
           }
         }
       }
       
-      if (tempe >= pbest(j,2))
+      if (tempe >= pbeste[i])
       {
-        pbest(j,0) = pos(j,0);
-        pbest(j,1) = pos(j,1);
-        pbest(j,2) = tempe;
+        for (int j = 0; j < N_PARAMS; ++j)
+        {
+          pbest(i,j) = pos(i,j);
+        }
+        pbeste[i] = tempe;
         if (tempe >= gbeste)
         {
-          gbesta = pos(j,0);
-          gbestc = pos(j,1);
+          for (int j = 0; j < N_PARAMS; ++j)
+          {
+            gbest[j] = pos(i,j);
+          }
           gbeste = tempe;
         }
       }
-      prepos(j,0) = pos(j,0);
-      prepos(j,1) = pos(j,1);
-      prev(j,0) = v(j,0);
-      prev(j,1) = v(j,1);
+      for (int j = 0; j < N_PARAMS; ++j)
+      {
+        prepos(i,j) = pos(i,j);
+        prev(i,j) = v(i,j);
+      }
     }
-    
   }
 
   // local search
-  double localamin = gbesta - localsearch > minval ? gbesta - localsearch : minval;
-  double localamax = gbesta + localsearch < maxval ? gbesta + localsearch : maxval;
-  double localcmin = gbestc - localsearch > minval ? gbestc - localsearch : minval;
-  double localcmax = gbestc + localsearch < maxval ? gbestc + localsearch : maxval;
-  double stepsize = localsearch / 50;
-  for (double ia = localamin; ia <= localamax; ia += stepsize)
+  Rcpp::IntegerVector localmin(N_PARAMS);
+  Rcpp::IntegerVector localmax(N_PARAMS);
+  for (int j = 0; j < N_PARAMS; ++j)
   {
-    for (double ic = localcmin; ic <= localcmax; ic += stepsize)
+    localmin[j] = gbest[j] - localsearch  > 0 ? gbest[j] - localsearch : 0;
+    localmax[j] = gbest[j] + localsearch < n_interval ? gbest[j] + localsearch : n_interval - 1;
+  }
+  for (int ia = localmin[0]; ia <= localmax[0]; ++ia)
+  {
+    for (int ic = localmin[1]; ic <= localmax[1]; ++ic)
     {
       if (ia < ic)
       {
         double tempe = calc_fuzzy_entropy(imhist, interval, ia, ic);
         if (tempe > gbeste)
         {
-          gbesta = ia;
-          gbestc = ic;
+          gbest[0] = ia;
+          gbest[1] = ic;
           gbeste = tempe;
         }
       }
     }
   }  
   
-  return (gbesta + gbestc) / 2;
+  return (interval[gbest[0]] + interval[gbest[1]]) / 2;
 }
