@@ -74,7 +74,6 @@ CheckSanityimcol <- function(imcol)
   return(invisible(TRUE))
 }
 
-
 CheckSanityrange <- function(range)
 {
   if (length(range) != 2)
@@ -140,6 +139,23 @@ CheckSanitypositive0numeric <- function(mynumeric, varname = "numericvar")
   if (mynumeric < 0)
   {
     stop(sprintf("%s must be greater than or equal to 0.", varname), call. = FALSE)
+  }
+  return(invisible(TRUE))  
+}
+
+CheckSanitynumericvec <- function(numericvec, varname = "numericvec")
+{
+  if (length(numericvec) < 1)
+  {
+    stop(sprintf("The length of %s must be greater than or equal to 1.", varname), call. = FALSE)
+  }
+  if (any(is.na(numericvec)))
+  {
+    stop(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
+  }
+  if (!is.numeric(numericvec))
+  {
+    stop(sprintf("%s must be numeric.", varname), call. = FALSE)
   }
   return(invisible(TRUE))  
 }
@@ -240,4 +256,21 @@ CheckSanityimorpx <- function(imorpx)
         }
     }
     return(invisible(TRUE))    
+}
+
+CheckSanitychar <- function(mychar, varname = "char")
+{
+  if (length(mychar) < 1)
+  {
+    stop(sprintf("The length of %s must be greater than 0.", varname), call. = FALSE)
+  }
+  if (any(is.na(mychar)))
+  {
+    stop(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
+  }
+  if (!is.character(mychar))
+  {
+    stop(sprintf("%s must be character.", varname), call. = FALSE)
+  }
+  return(invisible(TRUE))  
 }
