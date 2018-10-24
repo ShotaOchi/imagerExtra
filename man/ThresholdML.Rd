@@ -2,23 +2,25 @@
 % Please edit documentation in R/multilevel_thresholding.R
 \name{ThresholdML}
 \alias{ThresholdML}
-\title{Multilevel Thresholding (Maximum Entropy Based Artificial Bee Colony Thresholding)}
+\title{Multilevel Thresholding}
 \usage{
-ThresholdML(im, k, sn = 30, mcn = 100, limit = 100,
+ThresholdML(im, k, thr = "fast", sn = 30, mcn = 100, limit = 100,
   intervalnumber = 1000, returnvalue = FALSE)
 }
 \arguments{
 \item{im}{a grayscale image of class cimg}
 
-\item{k}{the number of thresholds}
+\item{k}{level of thresholding. k is ignored when thr is a numeric vector.}
 
-\item{sn}{population size}
+\item{thr}{thresholds, either numeric vector, or "fast", or "precise", or "manual"}
 
-\item{mcn}{maximum cycle number}
+\item{sn}{population size. sn is ignored except when thr is "manual".}
 
-\item{limit}{abandonment criteria}
+\item{mcn}{maximum cycle number. mcn is ignored except when thr is "manual".}
 
-\item{intervalnumber}{interval number of histogram}
+\item{limit}{abandonment criteria. limit is ignored except when thr is "manual".}
+
+\item{intervalnumber}{interval number of histogram. intervalnumber is ignored except when thr is "manual".}
 
 \item{returnvalue}{if returnvalue is TRUE, returns threshold values. if FALSE, returns a grayscale image of class cimg.}
 }
@@ -26,11 +28,11 @@ ThresholdML(im, k, sn = 30, mcn = 100, limit = 100,
 a grayscale image of class cimg or a numeric vector
 }
 \description{
-automatic multilevel thresholding based on Maximum Entropy Based Artificial Bee Colony Thresholding
+multilevel thresholding
 }
 \examples{
 g <- grayscale(boats)
-ThresholdML(g, 2) \%>\% plot
+ThresholdML(g, k = 2) \%>\% plot
 }
 \references{
 Ming-HuwiHorng (2011). Multilevel thresholding selection based on the artificial bee colony algorithm for image segmentation. Expert Systems with Applications.
