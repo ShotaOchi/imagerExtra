@@ -108,5 +108,25 @@ test_that("utils",
     expect_error(CheckSanityimorpx(gim2pix))
     expect_error(CheckSanityimorpx(impix))
     expect_error(CheckSanityimorpx(impix_NA))
-    expect_equal(CheckSanityimorpx(gimpix), TRUE)      
+    expect_equal(CheckSanityimorpx(gimpix), TRUE)   
+
+    numericvec_good <- c(1,2)
+    numericvec_bad1 <- NA
+    numericvec_bad2 <- NaN
+    numericvec_bad3 <- "A"
+    expect_error(CheckSanitynumericvec(numericvec_bad1))
+    expect_error(CheckSanitynumericvec(numericvec_bad2))	
+    expect_error(CheckSanitynumericvec(numericvec_bad3))
+    expect_equal(CheckSanitynumericvec(numericvec_good), TRUE) 
+
+    char_good <- "GOOD"
+    char_bad1 <- 1
+    char_bad2 <- NULL
+    char_bad3 <- NA
+    char_bad4 <- character(0)
+    expect_error(CheckSanitychar(char_bad1))
+    expect_error(CheckSanitychar(char_bad2))	
+    expect_error(CheckSanitychar(char_bad3))
+    expect_error(CheckSanitychar(char_bad4))
+    expect_equal(CheckSanitychar(char_good), TRUE) 
 })
