@@ -3,3 +3,11 @@
 * add muti-scale DCT denoising
 
 -done-* add multilevel thresholding
+
+* add adaptive contrast enhancement
+
+* add shape descriptor
+
+* add text detection
+
+* add active contours without edges
