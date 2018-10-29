@@ -67,10 +67,12 @@ ThresholdML_MEABCT <- function(im, k, sn = 30, mcn = 100, limit = 100, intervaln
 
 #' Multilevel Thresholding
 #'
-#' multilevel thresholding
+#' Segments a grayscale image into several gray levels.
+#' Multilevelz thresholding selection based on the artificial bee colony algorithm is used when thr is not a numeric vector. Preset parameters for fast computing is used when thr is "fast". Preset parameters for precise computing is used when thr is "precise". You can tune the parameters if thr is "manual".
+#' Also you can specify the values of thresholds by setting thr as a numeric vector.
 #' @param im a grayscale image of class cimg
 #' @param k level of thresholding. k is ignored when thr is a numeric vector.
-#' @param thr thresholds, either numeric vector, or "fast", or "precise", or "manual"
+#' @param thr thresholds, either numeric vector, or "fast", or "precise", or "manual".
 #' @param sn population size. sn is ignored except when thr is "manual".
 #' @param mcn maximum cycle number. mcn is ignored except when thr is "manual".
 #' @param limit abandonment criteria. limit is ignored except when thr is "manual".
