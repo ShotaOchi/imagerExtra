@@ -164,6 +164,8 @@ The functions for image segmentation are
 
 * ThresholdTriclass
 * ThresholdAdaptive
+* ThresholdFuzzy
+* ThresholdML
 
 ### ThresholdTriclass (Iterative Triclass Thresholding)
 
@@ -200,6 +202,28 @@ layout(matrix(1:2,1,2))
 plot(papers, main = "Original")
 hello <- ThresholdAdaptive(papers, 0.1, windowsize = 17, range = c(0,1))
 plot(hello, main = "Binarizesd")
+```
+
+### ThresholdFuzzy (Fuzzy Thresholding)
+
+Fuzzy thresholding is an automatic thresholding based on fuzzy set theory.
+
+```{r, fig.width=7, fig.height=7}
+layout(matrix(1:2,1,2))
+plot(g, main = "Original")
+ThresholdFuzzy(g) %>% plot(main = "Fuzzy Thresholding")
+```
+
+### ThresholdML (Multilevel Thresholding)
+
+Multilevel thresholding segments an image into several gray levels.
+
+You can specify level of thresholds or values of thresholds.
+
+```{r, fig.width=7, fig.height=7}
+layout(matrix(1:2,1,2))
+ThresholdML(g, 3) %>% plot(main = "k = 3")
+ThresholdML(g, thr = c(0.2, 0.4, 0.6)) %>% plot(main = "thr = c(0.2, 0.4, 0.6)")
 ```
 
 ## Others
