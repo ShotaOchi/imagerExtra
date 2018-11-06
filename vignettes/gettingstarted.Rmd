@@ -85,9 +85,9 @@ If you want to prevent excessive enhancement of contrast, you should make *smax*
 ```{r, fig.width=8, fig.height=8, dev='jpeg'}
 layout(matrix(1:4, 2, 2))
 plot(g, main = "Original")
-plot(EqualizePiecewise(g, 2), main = "N = 2")
-plot(EqualizePiecewise(g, 10), main = "N = 10")
-plot(EqualizePiecewise(g, 1000), main = "N = 1000")
+EqualizePiecewise(g, 2) %>% plot(main = "N = 2")
+EqualizePiecewise(g, 10) %>% plot(main = "N = 10")
+EqualizePiecewise(g, 1000) %>% plot(main = "N = 1000")
 ```
 
 ### BalanceSimplest (Simplest Color Balance)
@@ -101,7 +101,7 @@ See [Nicolas Limare, et al., IPOL, 1 (2011), pp. 297-315.](https://doi.org/10.52
 ```{r, fig.width=7, fig.height=7, dev='jpeg'}
 layout(matrix(1:2, 1, 2))
 plot(g, main = "Original")
-plot(BalanceSimplest(g, 1, 1), main = "sleft = 1, sright = 1")
+BalanceSimplest(g, 1, 1) %>% plot(main = "sleft = 1, sright = 1")
 ```
 
 ### SPE (Screened Poisson Equation)
@@ -116,9 +116,8 @@ SPE corrects inhomogeneous background strongly if *lamda* is large.
 
 ```{r, fig.width=7, fig.height=7, dev='jpeg'}
 layout(matrix(1:2, 1, 2))
-gbirds <- load.example("birds") %>% grayscale()
-plot(gbirds, main = "Original")
-plot(SPE(gbirds, 0.01), main = "SPE (lamda = 0.01)")
+plot(papers, main = "Original")
+SPE(papers, 0.1) %>% plot(main = "SPE (lamda = 0.1)")
 ```
 
 <br />
