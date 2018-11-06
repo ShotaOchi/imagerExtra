@@ -2,7 +2,7 @@
 % Please edit documentation in R/piecewize_equalization.R
 \name{EqualizePiecewise}
 \alias{EqualizePiecewise}
-\title{Enhance contrast of image by Piecewise Affine Equalization}
+\title{Piecewise Affine Histogram Equalization}
 \usage{
 EqualizePiecewise(im, N, smax = 255, smin = 0, range = c(0, 255))
 }
@@ -23,7 +23,7 @@ if you change range, you should change smax. one example is this (smax = range[2
 a grayscale image of class cimg
 }
 \description{
-Enhance contrast of image by Piecewise Affine Equalization
+enhance contrast of image by piecewise affine histogram equalization
 }
 \examples{
 dev.new()

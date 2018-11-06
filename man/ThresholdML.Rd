@@ -12,7 +12,7 @@ ThresholdML(im, k, thr = "fast", sn = 30, mcn = 100, limit = 100,
 
 \item{k}{level of thresholding. k is ignored when thr is a numeric vector.}
 
-\item{thr}{thresholds, either numeric vector, or "fast", or "precise", or "manual"}
+\item{thr}{thresholds, either numeric vector, or "fast", or "precise", or "manual".}
 
 \item{sn}{population size. sn is ignored except when thr is "manual".}
 
@@ -28,7 +28,9 @@ ThresholdML(im, k, thr = "fast", sn = 30, mcn = 100, limit = 100,
 a grayscale image of class cimg or a numeric vector
 }
 \description{
-multilevel thresholding
+Segments a grayscale image into several gray levels.
+Multilevel thresholding selection based on the artificial bee colony algorithm is used when thr is not a numeric vector. Preset parameters for fast computing is used when thr is "fast". Preset parameters for precise computing is used when thr is "precise". You can tune the parameters if thr is "manual".
+Also you can specify the values of thresholds by setting thr as a numeric vector.
 }
 \examples{
 g <- grayscale(boats)

@@ -1,5 +1,6 @@
-#' Enhance contrast of image by Piecewise Affine Equalization
+#' Piecewise Affine Histogram Equalization
 #'
+#' enhance contrast of image by piecewise affine histogram equalization
 #' @param im a grayscale image of class cimg
 #' @param N number of subintervals of partition. N controls how the input gray levels will be mapped in the output image.
 #' if N is large, Piecewise Affine Equalization and Histogram Equalization are very similar.
