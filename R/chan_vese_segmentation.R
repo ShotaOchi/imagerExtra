@@ -63,7 +63,7 @@ SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol
   if (missing(returnstep))
   {
     res <- ChanVese(as.matrix(im), mu, nu, lambda1, lambda2, tol, maxiter, dt, as.matrix(initial))
-    return(res[[2]] >= 0)
+    return(as.cimg(res[[2]]) >= 0)
   } else
   {
     CheckSanitynumericvec(returnstep, "returnstep")
@@ -91,7 +91,7 @@ SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol
       tmp_maxiter <- returnstep[i] - returnstep2[i]
       tmp_res <- ChanVese(as.matrix(im), mu, nu, lambda1, lambda2, tol, tmp_maxiter, dt, pre_phi)
       pre_phi <- tmp_res[[2]]
-      tmp_res[[2]] <- tmp_res[[2]] >= 0
+      tmp_res[[2]] <- as.cimg(tmp_res[[2]]) >= 0
       tmp_res[[1]] <- tmp_res[[1]] + returnstep2[i]
       res <- c(res, list(tmp_res))
       if (tmp_res[[1]] != returnstep[i])
