@@ -1,7 +1,7 @@
 #' Optical Character Recognition with tesseract
 #'
-#' OCR and OCR_data are shortcuts to ocr and ocr_data of **tesseract** package.
-#' You need to install **tesseract** package to use these functions.
+#' OCR and OCR_data are shortcuts to ocr and ocr_data of tesseract package.
+#' You need to install tesseract package to use these functions.
 #' @name OCR
 #' @param imorpx a grayscale image of class cimg or a pixel set
 #' @param engine a tesseract engine. See the reference manual of tesseract for detail.

@@ -18,8 +18,8 @@ OCR_data(imorpx, engine = tesseract::tesseract("eng"))
 \item{HOCR}{if TRUE return results as HOCR xml instead of plain text}
 }
 \description{
-OCR and OCR_data are shortcuts to ocr and ocr_data of **tesseract** package.
-You need to install **tesseract** package to use these functions.
+OCR and OCR_data are shortcuts to ocr and ocr_data of tesseract package.
+You need to install tesseract package to use these functions.
 }
 \examples{
 hello <- DenoiseDCT(papers, 0.01) \%>\% ThresholdAdaptive(., 0.1, range = c(0,1))
