@@ -1,6 +1,7 @@
 #' Optical Character Recognition with tesseract
 #'
-#' OCR and OCR_data are shortcuts to ocr and ocr_data of tesseract
+#' OCR and OCR_data are shortcuts to ocr and ocr_data of **tesseract** package.
+#' You need to install **tesseract** package to use these functions.
 #' @name OCR
 #' @param imorpx a grayscale image of class cimg or a pixel set
 #' @param engine a tesseract engine. See the reference manual of tesseract for detail.
@@ -14,7 +15,7 @@ NULL
 
 #' @rdname OCR
 #' @export
-OCR <- function(imorpx, engine = tesseract("eng"), HOCR=FALSE) 
+OCR <- function(imorpx, engine = tesseract::tesseract("eng"), HOCR=FALSE) 
 {
   CheckSanityimorpx(imorpx)
   if (is.pixset(imorpx)) 
@@ -24,12 +25,12 @@ OCR <- function(imorpx, engine = tesseract("eng"), HOCR=FALSE)
   tmp <- tempfile(fileext = ".png")
   on.exit(unlink(tmp))
   imager::save.image(imorpx, tmp)
-  ocr(tmp, engine = engine, HOCR = HOCR)
+  tesseract::ocr(tmp, engine = engine, HOCR = HOCR)
 }
 
 #' @rdname OCR
 #' @export
-OCR_data <- function(imorpx, engine = tesseract("eng")) 
+OCR_data <- function(imorpx, engine = tesseract::tesseract("eng")) 
 {
   CheckSanityimorpx(imorpx)
   if (is.pixset(imorpx)) 
@@ -39,5 +40,5 @@ OCR_data <- function(imorpx, engine = tesseract("eng"))
   tmp <- tempfile(fileext = ".png")
   on.exit(unlink(tmp))
   imager::save.image(imorpx, tmp)
-  ocr_data(tmp, engine = engine)
+  tesseract::ocr_data(tmp, engine = engine)
 }

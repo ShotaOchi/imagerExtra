@@ -17,12 +17,12 @@ Depends:
 Imports: 
     fftwtools,
     magrittr,
-    Rcpp (>= 0.12.14),
-    tesseract
+    Rcpp (>= 0.12.14)
 Suggests: 
     testthat (>= 2.0.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    tesseract
 URL: https://github.com/ShotaOchi/imagerExtra
 BugReports:	https://github.com/ShotaOchi/imagerExtra/issues
 LinkingTo: Rcpp
