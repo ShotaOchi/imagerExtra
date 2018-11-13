@@ -53,6 +53,7 @@ test_that("utils",
     numeric_bad5 <- -1
     numeric_good <- 1
     numeric_zero <- 0
+    numeric_mi1 <- -1
     expect_error(CheckSanitypositivenumeric(numeric_bad1))
     expect_error(CheckSanitypositivenumeric(numeric_bad2))	
     expect_error(CheckSanitypositivenumeric(numeric_bad3))
@@ -67,7 +68,15 @@ test_that("utils",
     expect_error(CheckSanitypositive0numeric(numeric_bad4))
     expect_error(CheckSanitypositive0numeric(numeric_bad5))
     expect_equal(CheckSanitypositive0numeric(numeric_zero), TRUE)
-    expect_equal(CheckSanitypositive0numeric(numeric_good), TRUE)	    
+    expect_equal(CheckSanitypositive0numeric(numeric_good), TRUE)
+    
+    expect_error(CheckSanitynumeric(numeric_bad1))
+    expect_error(CheckSanitynumeric(numeric_bad2))
+    expect_error(CheckSanitynumeric(numeric_bad3))
+    expect_error(CheckSanitynumeric(numeric_bad4))
+    expect_equal(CheckSanitynumeric(numeric_zero), TRUE)
+    expect_equal(CheckSanitynumeric(numeric_good), TRUE)
+    expect_equal(CheckSanitynumeric(numeric_mi1), TRUE)
 
     logical_bad1 <- c(TRUE, FALSE)
     logical_bad2 <- NA
@@ -93,12 +102,12 @@ test_that("utils",
     expect_error(CheckSanityimormat(mat_bad2))
     expect_error(CheckSanityimormat(mat_bad3))
     expect_error(CheckSanityimormat(mat_bad4))
-    expect_equal(CheckSanityimormat(mat_c), TRUE)   
+    expect_equal(CheckSanityimormat(mat_c), TRUE)
 
     impix <- boats %>% as.pixset
     gimpix <- gim %>% as.pixset
     gim2pix <- gim2 %>% as.pixset
-    impix_NA <- im_NA %>% as.pixset   
+    impix_NA <- im_NA %>% as.pixset
     expect_error(CheckSanityimorpx(notim))
     expect_error(CheckSanityimorpx(gim2))
     expect_error(CheckSanityimorpx(im))
@@ -115,9 +124,9 @@ test_that("utils",
     numericvec_bad2 <- NaN
     numericvec_bad3 <- "A"
     expect_error(CheckSanitynumericvec(numericvec_bad1))
-    expect_error(CheckSanitynumericvec(numericvec_bad2))	
+    expect_error(CheckSanitynumericvec(numericvec_bad2))
     expect_error(CheckSanitynumericvec(numericvec_bad3))
-    expect_equal(CheckSanitynumericvec(numericvec_good), TRUE) 
+    expect_equal(CheckSanitynumericvec(numericvec_good), TRUE)
 
     char_good <- "GOOD"
     char_bad1 <- 1

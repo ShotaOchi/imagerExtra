@@ -143,6 +143,23 @@ CheckSanitypositive0numeric <- function(mynumeric, varname = "numericvar")
   return(invisible(TRUE))  
 }
 
+CheckSanitynumeric <- function(mynumeric, varname = "numericvar")
+{
+  if (length(mynumeric) != 1)
+  {
+    stop(sprintf("The length of %s must be 1.", varname), call. = FALSE)
+  }
+  if (is.na(mynumeric))
+  {
+    stop(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
+  }
+  if (!is.numeric(mynumeric))
+  {
+    stop(sprintf("%s must be numeric.", varname), call. = FALSE)
+  }
+  return(invisible(TRUE))  
+}
+
 CheckSanitynumericvec <- function(numericvec, varname = "numericvec")
 {
   if (length(numericvec) < 1)
