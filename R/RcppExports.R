@@ -5,6 +5,18 @@ DCTdenoising <- function(ipixelsR, width, height, sigma, flag_dct16x16) {
     .Call(`_imagerExtra_DCTdenoising`, ipixelsR, width, height, sigma, flag_dct16x16)
 }
 
+ChanVeseInitPhi <- function(Width, Height) {
+    .Call(`_imagerExtra_ChanVeseInitPhi`, Width, Height)
+}
+
+ChanVeseInitPhi_Rect <- function(Width, Height, rect) {
+    .Call(`_imagerExtra_ChanVeseInitPhi_Rect`, Width, Height, rect)
+}
+
+ChanVese <- function(im, Mu, Nu, Lambda1, Lambda2, tol, maxiter, dt, phi) {
+    .Call(`_imagerExtra_ChanVese`, im, Mu, Nu, Lambda1, Lambda2, tol, maxiter, dt, phi)
+}
+
 DCT2D_reorder <- function(mat) {
     .Call(`_imagerExtra_DCT2D_reorder`, mat)
 }

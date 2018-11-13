@@ -10,6 +10,6 @@
 
 * add text detection
 
-* add active contours without edges
+-done-* add active contours without edges
 
 -done-* move tesseract package to suggest field

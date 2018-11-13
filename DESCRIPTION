@@ -7,7 +7,8 @@ Authors@R: c(
     person("Guoshen", "Yu", email = "yu@cmap.polytechnique.fr", role = c("ctb", "cph")),
     person("Guillermo", "Sapiro", email = "guille@umn.edu", role = c("ctb", "cph")),
     person("Catalina", "Sbert", email = "catalina.sbert@uib.es", role = c("ctb", "cph")),
-    person("Image Processing On Line", role = "cph"))
+    person("Image Processing On Line", role = "cph"),
+    person("Pascal", "Getreuer", email = "getreuer@gmail.com", role = c("ctb", "cph")))
 Maintainer: Shota Ochi <shotaochi1990@gmail.com>
 Description: Providing several advanced functions for image processing based on the package 'imager'.
 License: GPL (>= 3)

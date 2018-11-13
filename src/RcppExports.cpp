@@ -20,6 +20,50 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// ChanVeseInitPhi
+Rcpp::NumericMatrix ChanVeseInitPhi(int Width, int Height);
+RcppExport SEXP _imagerExtra_ChanVeseInitPhi(SEXP WidthSEXP, SEXP HeightSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type Width(WidthSEXP);
+    Rcpp::traits::input_parameter< int >::type Height(HeightSEXP);
+    rcpp_result_gen = Rcpp::wrap(ChanVeseInitPhi(Width, Height));
+    return rcpp_result_gen;
+END_RCPP
+}
+// ChanVeseInitPhi_Rect
+Rcpp::NumericMatrix ChanVeseInitPhi_Rect(int Width, int Height, Rcpp::IntegerVector rect);
+RcppExport SEXP _imagerExtra_ChanVeseInitPhi_Rect(SEXP WidthSEXP, SEXP HeightSEXP, SEXP rectSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type Width(WidthSEXP);
+    Rcpp::traits::input_parameter< int >::type Height(HeightSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type rect(rectSEXP);
+    rcpp_result_gen = Rcpp::wrap(ChanVeseInitPhi_Rect(Width, Height, rect));
+    return rcpp_result_gen;
+END_RCPP
+}
+// ChanVese
+Rcpp::List ChanVese(Rcpp::NumericMatrix im, double Mu, double Nu, double Lambda1, double Lambda2, double tol, int maxiter, double dt, Rcpp::NumericMatrix phi);
+RcppExport SEXP _imagerExtra_ChanVese(SEXP imSEXP, SEXP MuSEXP, SEXP NuSEXP, SEXP Lambda1SEXP, SEXP Lambda2SEXP, SEXP tolSEXP, SEXP maxiterSEXP, SEXP dtSEXP, SEXP phiSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type im(imSEXP);
+    Rcpp::traits::input_parameter< double >::type Mu(MuSEXP);
+    Rcpp::traits::input_parameter< double >::type Nu(NuSEXP);
+    Rcpp::traits::input_parameter< double >::type Lambda1(Lambda1SEXP);
+    Rcpp::traits::input_parameter< double >::type Lambda2(Lambda2SEXP);
+    Rcpp::traits::input_parameter< double >::type tol(tolSEXP);
+    Rcpp::traits::input_parameter< int >::type maxiter(maxiterSEXP);
+    Rcpp::traits::input_parameter< double >::type dt(dtSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericMatrix >::type phi(phiSEXP);
+    rcpp_result_gen = Rcpp::wrap(ChanVese(im, Mu, Nu, Lambda1, Lambda2, tol, maxiter, dt, phi));
+    return rcpp_result_gen;
+END_RCPP
+}
 // DCT2D_reorder
 Rcpp::NumericMatrix DCT2D_reorder(Rcpp::NumericMatrix mat);
 RcppExport SEXP _imagerExtra_DCT2D_reorder(SEXP matSEXP) {
@@ -238,6 +282,9 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_imagerExtra_DCTdenoising", (DL_FUNC) &_imagerExtra_DCTdenoising, 5},
+    {"_imagerExtra_ChanVeseInitPhi", (DL_FUNC) &_imagerExtra_ChanVeseInitPhi, 2},
+    {"_imagerExtra_ChanVeseInitPhi_Rect", (DL_FUNC) &_imagerExtra_ChanVeseInitPhi_Rect, 3},
+    {"_imagerExtra_ChanVese", (DL_FUNC) &_imagerExtra_ChanVese, 9},
     {"_imagerExtra_DCT2D_reorder", (DL_FUNC) &_imagerExtra_DCT2D_reorder, 1},
     {"_imagerExtra_DCT2D_fromDFT", (DL_FUNC) &_imagerExtra_DCT2D_fromDFT, 1},
     {"_imagerExtra_IDCT2D_toDFT", (DL_FUNC) &_imagerExtra_IDCT2D_toDFT, 1},

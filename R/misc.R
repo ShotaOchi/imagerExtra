@@ -17,6 +17,7 @@ NULL
 #' @importFrom imager depth
 #' @importFrom imager G
 #' @importFrom imager G<-
+#' @importFrom imager grabRect
 #' @importFrom imager height
 #' @importFrom imager imfill
 #' @importFrom imager is.cimg
