@@ -26,7 +26,7 @@ SegmentCV(im, mu = 0.25, nu = 0, lambda1 = 1, lambda2 = 1,
 
 \item{initial}{"interactive" or a grayscale image of class cimg. you can define initial condition as a rectangle shape interactively if initial is "interactive". If initial is a grayscale image of class cimg, pixels whose values are negative will be treated as outside of contour. pixels whose values are non-negative will be treated as inside of contour. checker board condition will be used if initial is not specified.}
 
-\item{returnstep}{a numeric vector that determines which result will be returned. 0 means initial condition, and 1 means the result after 1 iteration. only final result will be returned if returnstep is not specified.}
+\item{returnstep}{a numeric vector that determines which result will be returned. 0 means initial condition, and 1 means the result after 1 iteration. final result will be returned if returnstep is not specified.}
 }
 \value{
 a pixel set or a list of lists of numeric and pixel set
@@ -38,11 +38,11 @@ iterative image segmentation with Chan-Vese model
 layout(matrix(1:2, 1, 2))
 g <- grayscale(dogs)
 plot(g, main = "Original")
-SegmentCV(g) \%>\% plot(main = "Binarized")
+SegmentCV(g, lambda2 = 15) \%>\% plot(main = "Binarized")
 }
 \references{
 Pascal Getreuer (2012). Chan-Vese Segmentation. Image Processing On Line 2, 214-224.
 }
 \author{
-Shota Ochi1
+Shota Ochi
 }

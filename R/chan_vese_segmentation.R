@@ -10,16 +10,16 @@
 #' @param maxiter maximum number of iterations
 #' @param dt time step
 #' @param initial "interactive" or a grayscale image of class cimg. you can define initial condition as a rectangle shape interactively if initial is "interactive". If initial is a grayscale image of class cimg, pixels whose values are negative will be treated as outside of contour. pixels whose values are non-negative will be treated as inside of contour. checker board condition will be used if initial is not specified. 
-#' @param returnstep a numeric vector that determines which result will be returned. 0 means initial condition, and 1 means the result after 1 iteration. only final result will be returned if returnstep is not specified.
+#' @param returnstep a numeric vector that determines which result will be returned. 0 means initial condition, and 1 means the result after 1 iteration. final result will be returned if returnstep is not specified.
 #' @return a pixel set or a list of lists of numeric and pixel set
 #' @references Pascal Getreuer (2012). Chan-Vese Segmentation. Image Processing On Line 2, 214-224.
-#' @author Shota Ochi1
+#' @author Shota Ochi
 #' @export
 #' @examples
 #' layout(matrix(1:2, 1, 2))
 #' g <- grayscale(dogs)
 #' plot(g, main = "Original")
-#' SegmentCV(g) %>% plot(main = "Binarized")
+#' SegmentCV(g, lambda2 = 15) %>% plot(main = "Binarized")
 SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol = 0.0001, maxiter = 500, dt = 0.5, initial, returnstep)
 {
   CheckSanityim(im)
@@ -63,6 +63,10 @@ SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol
   if (missing(returnstep))
   {
     res <- ChanVese(as.matrix(im), mu, nu, lambda1, lambda2, tol, maxiter, dt, as.matrix(initial))
+    if (res[[1]] == maxiter)
+    {
+      message("The iteration stopped because the number of iteration reached maxiter.")
+    }
     return(as.cimg(res[[2]]) >= 0)
   } else
   {
@@ -96,6 +100,7 @@ SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol
       res <- c(res, list(tmp_res))
       if (tmp_res[[1]] != returnstep[i])
       {
+        message("iteration stopped on the way because stop criterion was satisified")
         break
       }
     }
