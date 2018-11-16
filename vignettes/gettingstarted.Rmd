@@ -34,8 +34,8 @@ See the vignettes of **imager** if you aren't familiar with **imager**.
 The functions in imagerExtra are classified into 4 groups by their function.
 
 * Contrast Enhancement
-* Image Segmentation
-* Image Denoising
+* Segmentation
+* Denoising
 * Others
 
 See below to know what functions are implemented.
@@ -122,7 +122,7 @@ SPE(papers, 0.1) %>% plot(main = "SPE (lamda = 0.1)")
 
 <br />
 
-## Image Denoising
+## Denoising
 
 The function for image denoising is
 
@@ -157,7 +157,7 @@ DenoiseDCT(noisy, 0.1, flag_dct16x16 = TRUE) %>% plot(., main = "Denoised (16x16
 
 <br />
 
-## Image Segmentation
+## Segmentation
 
 The functions for image segmentation are
 
