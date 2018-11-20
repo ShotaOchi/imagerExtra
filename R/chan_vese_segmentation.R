@@ -52,7 +52,7 @@ SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol
       dim_ini <- dim(initial)
       if (any(dim_ini != dim_im))
       {
-        stop("dimension of initial is not same as dimension of im.", call. = FALSE)
+        stop("The dimension of initial is not same as dimension of im.", call. = FALSE)
       }
     } else
     {
@@ -65,7 +65,7 @@ SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol
     res <- ChanVese(as.matrix(im), mu, nu, lambda1, lambda2, tol, maxiter, dt, as.matrix(initial))
     if (res[[1]] == maxiter)
     {
-      message("The iteration stopped because the number of iteration reached maxiter.")
+      message("The computation stopped because the number of iteration reached maxiter.")
     }
     return(as.cimg(res[[2]]) >= 0)
   } else
@@ -100,7 +100,7 @@ SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol
       res <- c(res, list(tmp_res))
       if (tmp_res[[1]] != returnstep[i])
       {
-        message("iteration stopped on the way because stop criterion was satisified")
+        message("The computation stopped in the middle because stop criterion was satisified")
         break
       }
     }
