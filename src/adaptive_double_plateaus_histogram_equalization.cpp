@@ -33,7 +33,6 @@ Rcpp::NumericVector find_local_maximum_ADPHE(const Rcpp::NumericVector& hist, in
 {
   int size = hist.length();
   int nhalf = n / 2;
-  int size_minhalf = size - nhalf;
   Rcpp::LogicalVector tmp(size);
   int count = 0;
   std::list< std::pair<int,double> > window;
@@ -169,13 +168,19 @@ Rcpp::NumericVector histogram_equalization_ADPHE(const Rcpp::NumericMatrix& im, 
             tmp_k_ratio = (im(i,j) - tmp_min_range) / (interval2[l] - tmp_min_range);
           } else
           {
-            tmp_k_ratio = 1;
+            tmp_k_ratio = -1;
           }
           break;
         }
       }
       double tmp_min = tmp_k > 0 ? hist_equalized[tmp_k-1] : 0;
-      res(i,j) = tmp_k_ratio * (hist_equalized[tmp_k] - tmp_min) + tmp_min;
+      if (tmp_k_ratio >= 0)
+      {
+        res(i,j) = tmp_k_ratio * (hist_equalized[tmp_k] - tmp_min) + tmp_min;
+      } else
+      {
+        res(i,j) = hist_equalized[tmp_k];
+      }
     }
   }
   return res;
