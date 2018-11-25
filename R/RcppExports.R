@@ -5,6 +5,22 @@ DCTdenoising <- function(ipixelsR, width, height, sigma, flag_dct16x16) {
     .Call(`_imagerExtra_DCTdenoising`, ipixelsR, width, height, sigma, flag_dct16x16)
 }
 
+make_histogram_ADPHE <- function(ordered, interval) {
+    .Call(`_imagerExtra_make_histogram_ADPHE`, ordered, interval)
+}
+
+find_local_maximum_ADPHE <- function(hist, n) {
+    .Call(`_imagerExtra_find_local_maximum_ADPHE`, hist, n)
+}
+
+modify_histogram_ADPHE <- function(imhist, t_down, t_up) {
+    .Call(`_imagerExtra_modify_histogram_ADPHE`, imhist, t_down, t_up)
+}
+
+histogram_equalization_ADPHE <- function(im, interval2, imhist_modified, min_range, max_range) {
+    .Call(`_imagerExtra_histogram_equalization_ADPHE`, im, interval2, imhist_modified, min_range, max_range)
+}
+
 ChanVeseInitPhi <- function(Width, Height) {
     .Call(`_imagerExtra_ChanVeseInitPhi`, Width, Height)
 }

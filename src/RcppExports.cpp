@@ -20,6 +20,58 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// make_histogram_ADPHE
+Rcpp::NumericVector make_histogram_ADPHE(const Rcpp::NumericVector& ordered, const Rcpp::NumericVector& interval);
+RcppExport SEXP _imagerExtra_make_histogram_ADPHE(SEXP orderedSEXP, SEXP intervalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type ordered(orderedSEXP);
+    Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type interval(intervalSEXP);
+    rcpp_result_gen = Rcpp::wrap(make_histogram_ADPHE(ordered, interval));
+    return rcpp_result_gen;
+END_RCPP
+}
+// find_local_maximum_ADPHE
+Rcpp::NumericVector find_local_maximum_ADPHE(const Rcpp::NumericVector& hist, int n);
+RcppExport SEXP _imagerExtra_find_local_maximum_ADPHE(SEXP histSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type hist(histSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(find_local_maximum_ADPHE(hist, n));
+    return rcpp_result_gen;
+END_RCPP
+}
+// modify_histogram_ADPHE
+Rcpp::NumericVector modify_histogram_ADPHE(const Rcpp::NumericVector& imhist, double t_down, double t_up);
+RcppExport SEXP _imagerExtra_modify_histogram_ADPHE(SEXP imhistSEXP, SEXP t_downSEXP, SEXP t_upSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type imhist(imhistSEXP);
+    Rcpp::traits::input_parameter< double >::type t_down(t_downSEXP);
+    Rcpp::traits::input_parameter< double >::type t_up(t_upSEXP);
+    rcpp_result_gen = Rcpp::wrap(modify_histogram_ADPHE(imhist, t_down, t_up));
+    return rcpp_result_gen;
+END_RCPP
+}
+// histogram_equalization_ADPHE
+Rcpp::NumericVector histogram_equalization_ADPHE(const Rcpp::NumericMatrix& im, const Rcpp::NumericVector& interval2, const Rcpp::NumericVector& imhist_modified, double min_range, double max_range);
+RcppExport SEXP _imagerExtra_histogram_equalization_ADPHE(SEXP imSEXP, SEXP interval2SEXP, SEXP imhist_modifiedSEXP, SEXP min_rangeSEXP, SEXP max_rangeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type im(imSEXP);
+    Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type interval2(interval2SEXP);
+    Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type imhist_modified(imhist_modifiedSEXP);
+    Rcpp::traits::input_parameter< double >::type min_range(min_rangeSEXP);
+    Rcpp::traits::input_parameter< double >::type max_range(max_rangeSEXP);
+    rcpp_result_gen = Rcpp::wrap(histogram_equalization_ADPHE(im, interval2, imhist_modified, min_range, max_range));
+    return rcpp_result_gen;
+END_RCPP
+}
 // ChanVeseInitPhi
 Rcpp::NumericMatrix ChanVeseInitPhi(int Width, int Height);
 RcppExport SEXP _imagerExtra_ChanVeseInitPhi(SEXP WidthSEXP, SEXP HeightSEXP) {
@@ -282,6 +334,10 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_imagerExtra_DCTdenoising", (DL_FUNC) &_imagerExtra_DCTdenoising, 5},
+    {"_imagerExtra_make_histogram_ADPHE", (DL_FUNC) &_imagerExtra_make_histogram_ADPHE, 2},
+    {"_imagerExtra_find_local_maximum_ADPHE", (DL_FUNC) &_imagerExtra_find_local_maximum_ADPHE, 2},
+    {"_imagerExtra_modify_histogram_ADPHE", (DL_FUNC) &_imagerExtra_modify_histogram_ADPHE, 3},
+    {"_imagerExtra_histogram_equalization_ADPHE", (DL_FUNC) &_imagerExtra_histogram_equalization_ADPHE, 5},
     {"_imagerExtra_ChanVeseInitPhi", (DL_FUNC) &_imagerExtra_ChanVeseInitPhi, 2},
     {"_imagerExtra_ChanVeseInitPhi_Rect", (DL_FUNC) &_imagerExtra_ChanVeseInitPhi_Rect, 3},
     {"_imagerExtra_ChanVese", (DL_FUNC) &_imagerExtra_ChanVese, 9},

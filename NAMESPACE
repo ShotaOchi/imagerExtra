@@ -3,6 +3,8 @@
 export(BalanceSimplest)
 export(DCT2D)
 export(DenoiseDCT)
+export(EqualizeADP)
+export(EqualizeDP)
 export(EqualizePiecewise)
 export(GetHue)
 export(Grayscale)
