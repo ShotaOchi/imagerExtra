@@ -169,7 +169,7 @@ Rcpp::NumericVector histogram_equalization_ADPHE(const Rcpp::NumericMatrix& im, 
             tmp_k_ratio = (im(i,j) - tmp_min_range) / (interval2[l] - tmp_min_range);
           } else
           {
-            tmp_k_ratio = 0;
+            tmp_k_ratio = 1;
           }
           break;
         }
