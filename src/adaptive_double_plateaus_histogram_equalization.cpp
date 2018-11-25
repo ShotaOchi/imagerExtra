@@ -159,7 +159,7 @@ Rcpp::NumericVector histogram_equalization_ADPHE(const Rcpp::NumericMatrix& im, 
       double tmp_k_ratio = 0;
       for (int l = 0; l < len; ++l)
       {
-        if (im(i,j) < interval2[l])
+        if (im(i,j) <= interval2[l])
         {
           tmp_k = l;
           double tmp_min_range = l > 0 ? interval2[l-1] : 0;
