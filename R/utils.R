@@ -28,7 +28,7 @@ CheckSanityim <- function(im)
 {
     if (!is.cimg(im)) 
     {
-        stop("im must be a image of class cimg.", call. = FALSE)
+        stop("im must be a grayscale image of class cimg.", call. = FALSE)
     }
     if (depth(im) != 1) 
     {
@@ -53,7 +53,7 @@ CheckSanityimcol <- function(imcol)
 {
   if (!is.cimg(imcol)) 
   {
-      stop("imcol must be a image of class cimg.", call. = FALSE)
+      stop("imcol must be an image of class cimg.", call. = FALSE)
   }
   if (depth(imcol) != 1) 
   {
