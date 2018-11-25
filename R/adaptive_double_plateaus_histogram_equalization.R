@@ -11,10 +11,10 @@
 #' @author Shota Ochi
 #' @export
 #' @examples
-#' g <- load.example("coins")
+#' g <- grayscale(dogs)
 #' layout(matrix(1:2, 1, 2))
 #' plot(g, main = "Original")
-#' EqualizeDP(g, 100, 1000) %>% plot(main = "Contrast Enhanced")
+#' EqualizeDP(g, 20, 186) %>% plot(main = "Contrast Enhanced")
 EqualizeDP <- function(im, t_down, t_up, N = 1000, range = c(0,255))
 {
   CheckSanityim(im)
@@ -65,7 +65,7 @@ EqualizeDP <- function(im, t_down, t_up, N = 1000, range = c(0,255))
 #' @author Shota Ochi
 #' @export
 #' @examples
-#' g <- load.example("coins")
+#' g <- grayscale(dogs)
 #' layout(matrix(1:2, 1, 2))
 #' plot(g, main = "Original")
 #' EqualizeADP(g) %>% plot(main = "Contrast Enhanced")

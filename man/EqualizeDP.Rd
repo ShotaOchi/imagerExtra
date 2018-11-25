@@ -25,10 +25,10 @@ a grayscale image of class cimg
 enhance contrast of image by double plateaus histogram equalization.
 }
 \examples{
-g <- load.example("coins")
+g <- grayscale(dogs)
 layout(matrix(1:2, 1, 2))
 plot(g, main = "Original")
-EqualizeDP(g, 100, 1000) \%>\% plot(main = "Contrast Enhanced")
+EqualizeDP(g, 20, 186) \%>\% plot(main = "Contrast Enhanced")
 }
 \references{
 Kun Liang, Yong Ma, Yue Xie, Bo Zhou ,Rui Wang (2012). A new adaptive contrast enhancement algorithm for infrared images based on double plateaus histogram equalization. Infrared Phys. Technol. 55, 309-315.

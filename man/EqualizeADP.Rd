@@ -25,7 +25,7 @@ a grayscale image of class cimg or a numericvector
 compute the paramters, t_down and t_up, and then apply double plateaus histogram equalization.
 }
 \examples{
-g <- load.example("coins")
+g <- grayscale(dogs)
 layout(matrix(1:2, 1, 2))
 plot(g, main = "Original")
 EqualizeADP(g) \%>\% plot(main = "Contrast Enhanced")
