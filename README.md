@@ -30,7 +30,7 @@ devtools::install_github("ShotaOchi/imagerExtra")
 You need the R package tesseract to do OCR with imagerExtra.
 
 
-See the [instllation guide of tesseract](https://github.com/ropensci/tesseract) if you haven't installed tesseract.
+See the [installation guide of tesseract](https://github.com/ropensci/tesseract#installation) if you haven't installed tesseract.
 
 
 Here is a small demo that shows imagerExtra can expand the scope of the application of tesseract.
@@ -54,4 +54,4 @@ You're welcome to fork this repository and send me a pull request for bug fixes 
 
 
 ## Development Blog
-URL of Development blog of imagerExtra is [https://shotaochi.github.io/](https://shotaochi.github.io/).
+URL of development blog of imagerExtra is [https://shotaochi.github.io/](https://shotaochi.github.io/).
