@@ -62,18 +62,19 @@ The latter needs three functions: Grayscale, GetHue, RestoreHue.
 * GetHue: stores hue of image
 * RestoreHue: restores hue of image
 
-grayscale function of **imager** computes as below by default.
+grayscale function of imager computes as shown below by default.
 
 ```{r , echo = FALSE, size = "huge"}
 text1 <- sprintf("Y = %fR + %fG + %fB", res[[1]], res[[2]], res[[3]])
 cat(text1)
 ```
+where Y is grayscale value, R is R value, G is G value, and B is B value.
 
 This equation reflects the way of human visual perception.
 
 This grayscale conversion makes it difficult to restore hue of image.
 
-That's why we need Grayscale, which just compute average of RGB channels.
+That's why we need Grayscale function, which just compute average of RGB channels.
 
 How to use these functions is shown below.
 
