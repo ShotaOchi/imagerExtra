@@ -30,7 +30,7 @@ devtools::install_github("ShotaOchi/imagerExtra")
 ```
 
 ## Optical Character Recognition (OCR)
-You need the R package tesseract to do OCR with imagerExtra.
+You need the R package [tesseract](https://github.com/ropensci/tesseract#tesseract) to do OCR with imagerExtra.
 
 
 See the [installation guide of tesseract](https://github.com/ropensci/tesseract#installation) if you haven't installed tesseract.
