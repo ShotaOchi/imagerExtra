@@ -135,6 +135,7 @@ H_{m}(g) = \begin{cases}
   T_{DOWN} & h(g) <= T_{DOWN}
   \end{cases}
 $$
+where $g$ is the gray level, $h(g)$ is the original histogram, and $H_{m}(g)$ is the modified histogram.
 
 You will tune the two key parameters, $T_{DOWN}$ and $T_{UP}$.
 
