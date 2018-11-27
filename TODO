@@ -13,3 +13,5 @@
 -done-* add active contours without edges
 
 -done-* move tesseract package to suggest field
+
+* add LICENSE file (GPL-3)
