@@ -117,7 +117,7 @@ The parameter *lamda* controls how strong corrects inhomogeneous background of i
 
 SPE corrects inhomogeneous background strongly if *lamda* is large.
 
-```{r, fig.width=7}
+```{r, fig.height=3}
 layout(matrix(1:2, 1, 2))
 plot(papers, main = "Original")
 SPE(papers, 0.1) %>% plot(main = "SPE (lamda = 0.1)")
