@@ -8,3 +8,11 @@ r:
   - oldrel
   - release
   - devel
+
+addons:
+  apt:
+    packages:
+      - libtiff-dev
+      - libpng-dev
+      - libjpeg-dev
+      - libfftw3-dev
