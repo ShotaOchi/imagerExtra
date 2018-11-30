@@ -260,7 +260,7 @@ The values of thresholds are computed automatically if you specify the level of 
 ```{r, fig.width=7}
 layout(matrix(1:2,1,2))
 ThresholdML(g, k = 3) %>% plot(main = "Level of Thresholds: 3")
-ThresholdML(g, thr = c(0.2, 0.4, 0.6)) %>% plot(main = "Values of Thresholds: 0.2, 0.4, and 0.6")
+ThresholdML(g, thr = c(0.2, 0.4, 0.6)) %>% plot(main = "Thresholds: 0.2, 0.4, and 0.6")
 ```
 
 ### SegmentCV (Chan-Vese Segmentation)
@@ -271,7 +271,7 @@ CVS can extract objects whose pixel values aren't homogeneous.
 
 This is the distinction of CVS.
 
-There are many parameters of SegmentCV and most of the parameters are key paramters.
+SegmentCV has many arguments and most of the arguments are key paramters.
 
 It's too many to explain briefly.
 
