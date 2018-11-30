@@ -1,8 +1,10 @@
+# imagerExtra
+
 [![Build Status](https://travis-ci.org/ShotaOchi/imagerExtra.svg?branch=master)](https://travis-ci.org/ShotaOchi/imagerExtra)
 [![CRAN Version](https://www.r-pkg.org/badges/version/imagerExtra)](https://cran.r-project.org/package=imagerExtra)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-# imagerExtra
+## About
 imagerExtra is a R package for image processing based on the R package [imager](https://github.com/dahtah/imager).
 
 
