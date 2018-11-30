@@ -1,17 +1,5 @@
--done-* add fuzzy thresholding 
-
 * add muti-scale DCT denoising
-
--done-* add multilevel thresholding
-
--done-* add adaptive contrast enhancement
 
 * add shape descriptor
 
 * add text detection
-
--done-* add active contours without edges
-
--done-* move tesseract package to suggest field
-
--done-* add LICENSE file (GPL-3)
