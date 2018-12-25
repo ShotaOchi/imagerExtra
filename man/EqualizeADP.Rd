@@ -5,7 +5,8 @@
 \alias{EqualizeADP}
 \title{Adaptive Double Plateaus Histogram Equalization}
 \usage{
-EqualizeADP(im, n = 5, N = 1000, range = c(0, 255), returnparam = FALSE)
+EqualizeADP(im, n = 5, N = 1000, range = c(0, 255),
+  returnparam = FALSE)
 }
 \arguments{
 \item{im}{a grayscale image of class cimg}

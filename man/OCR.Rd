@@ -2,7 +2,6 @@
 % Please edit documentation in R/OCR.R
 \name{OCR}
 \alias{OCR}
-\alias{OCR}
 \alias{OCR_data}
 \title{Optical Character Recognition with tesseract}
 \usage{

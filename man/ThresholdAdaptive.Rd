@@ -9,7 +9,7 @@ ThresholdAdaptive(im, k, windowsize = 17, range = c(0, 255))
 \arguments{
 \item{im}{a grayscale image of class cimg}
 
-\item{k}{a numeric in the range [0,1]. when k is high, local threshold values tend to be lower. when k is high, local threshold value tend to be higher.}
+\item{k}{a numeric in the range [0,1]. when k is high, local threshold values tend to be lower. when k is low, local threshold value tend to be higher.}
 
 \item{windowsize}{windowsize controls the number of local neighborhood}
 

@@ -1,7 +1,7 @@
 #' Local Adaptive Thresholding
 #' 
 #' @param im a grayscale image of class cimg
-#' @param k a numeric in the range [0,1]. when k is high, local threshold values tend to be lower. when k is high, local threshold value tend to be higher.
+#' @param k a numeric in the range [0,1]. when k is high, local threshold values tend to be lower. when k is low, local threshold value tend to be higher.
 #' @param windowsize windowsize controls the number of local neighborhood
 #' @param range this function assumes that the range of pixel values of of input image is [0,255] by default. you may prefer [0,1]. 
 #'        Note that range determines the max standard deviation. The max standard deviation plays an important role in this function.
