@@ -23,18 +23,20 @@ pre {
 </style>
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(warning=FALSE, message=FALSE, cache=FALSE, 
-               comment=NA, verbose=TRUE, fig.width=5, fig.height=5, dev='jpeg',dev.args=list(quality=50))
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, cache = FALSE, 
+               comment = NA, verbose = TRUE, fig.width = 5, fig.height = 5, dev = 'jpeg', dev.args=list(quality=50))
+isnot_solaris <- Sys.info()["sysname"] != "SunOS"
 ```
 
 You need the R package tesseract, which is bindings to a powerful optical character recognition (OCR) engine, to do OCR with imagerExtra.
 
 See the [installation guide of tesseract](https://github.com/ropensci/tesseract#installation) if you haven't installed tesseract.
+Note that tesseract isn't available on Solaris.
 
 ocr function of tesseract works best for images with high contrast, little noise, and horizontal text.
 
 ocr function doesn't show a good performance for degraded images as shown below.
-```{r, fig.height=3}
+```{r, fig.height = 3, eval = isnot_solaris}
 library(imagerExtra)
 plot(papers, main = "Original")
 OCR(papers) %>% print
@@ -46,7 +48,7 @@ We can see OCR function and OCR_data function failed to recognize the text "Hell
 
 We need to clean the image before using OCR function.
 
-```{r, fig.height=3}
+```{r, fig.height = 3, eval = isnot_solaris}
 hello <- DenoiseDCT(papers, 0.01) %>% ThresholdAdaptive(., 0.1, range = c(0,1))
 plot(hello, main = "Hello")
 OCR(hello) %>% print

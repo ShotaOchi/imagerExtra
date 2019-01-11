@@ -2,6 +2,9 @@ library(imagerExtra)
 
 test_that("OCR",
 {
+  isnot_solaris <- Sys.info()["sysname"] != "SunOS"
+  if (isnot_solaris)
+  {
     notim <- 1
     im <- boats
     gim <- grayscale(im)
@@ -30,4 +33,5 @@ test_that("OCR",
     expect_error(OCR_data(impix))
     expect_error(OCR_data(gim2pix))
     expect_error(OCR_data(impix_NA))
+  }
 })

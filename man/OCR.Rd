@@ -22,8 +22,11 @@ You need to install tesseract package to use these functions.
 }
 \examples{
 hello <- DenoiseDCT(papers, 0.01) \%>\% ThresholdAdaptive(., 0.1, range = c(0,1))
-OCR(hello) \%>\% cat
-OCR_data(hello)
+if (Sys.info()["sysname"] != "SunOS")
+{
+  OCR(hello) \%>\% cat
+  OCR_data(hello)
+}
 }
 \author{
 Shota Ochi
