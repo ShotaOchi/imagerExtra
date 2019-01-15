@@ -303,6 +303,6 @@ See the vignette [Treating Color Image with imagerExtra](https://cran.r-project.
 
 ### OCR and OCR_data
 
-These functions are shortcuts to the ocr function and ocr_data function of the R package tesseract.
+These functions are wrappers for ocr function and ocr_data function of the R package tesseract.
 
 See the vignette [Optical Character Recognition with imagerExtra](https://cran.r-project.org/package=imagerExtra/vignettes/OCR_with_imagerExtra.html) for detail.

@@ -1,6 +1,6 @@
 #' Optical Character Recognition with tesseract
 #'
-#' OCR and OCR_data are shortcuts to ocr and ocr_data of tesseract package.
+#' OCR and OCR_data are wrappers for ocr and ocr_data of tesseract package.
 #' You need to install tesseract package to use these functions.
 #' @name OCR
 #' @param imorpx a grayscale image of class cimg or a pixel set
@@ -9,7 +9,10 @@
 #' @author Shota Ochi
 #' @examples
 #' hello <- DenoiseDCT(papers, 0.01) %>% ThresholdAdaptive(., 0.1, range = c(0,1))
-#' if (Sys.info()["sysname"] != "SunOS")
+#' suppressWarnings({
+#'   is_available_tesseract <- require("tesseract")
+#' })
+#' if (is_available_tesseract)
 #' {
 #'   OCR(hello) %>% cat
 #'   OCR_data(hello)
