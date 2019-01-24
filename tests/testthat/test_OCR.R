@@ -2,10 +2,7 @@ library(imagerExtra)
 
 test_that("OCR",
 {
-  suppressWarnings({
-    is_available_tessract  <- require("tesseract")
-  })
-  if (is_available_tessract)
+  if (requireNamespace("tesseract", quietly = TRUE))
   {
     notim <- 1
     im <- boats

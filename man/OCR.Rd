@@ -22,10 +22,7 @@ You need to install tesseract package to use these functions.
 }
 \examples{
 hello <- DenoiseDCT(papers, 0.01) \%>\% ThresholdAdaptive(., 0.1, range = c(0,1))
-suppressWarnings({
-  is_available_tesseract <- require("tesseract")
-})
-if (is_available_tesseract)
+if (requireNamespace("tesseract", quietly = TRUE))
 {
   OCR(hello) \%>\% cat
   OCR_data(hello)
