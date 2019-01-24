@@ -299,7 +299,7 @@ The functions classified as others are
 
 These functions are for treating color image with imagerExtra.
 
-See the vignette [Treating Color Image with imagerExtra](https://cran.r-project.org/package=imagerExtra/vignettes/treat_colorimage.html) for detail.
+See the vignette Treating Color Image with imagerExtra for detail.
 
 ### OCR and OCR_data
 
