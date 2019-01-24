@@ -44,9 +44,6 @@ plot(papers, main = "Original")
 OCR(papers) %>% print
 OCR_data(papers) %>% print
 ```
-```{r, fig.height = 3, eval = !is_available_tesseract}
-print("OCR function and OCR_data function can't be used because tesseract is not available.")
-```
 
 OCR function and OCR_data function are wrappers for ocr function and ocr_data function of tesseract.
 
@@ -59,9 +56,6 @@ hello <- DenoiseDCT(papers, 0.01) %>% ThresholdAdaptive(., 0.1, range = c(0,1))
 plot(hello, main = "Hello")
 OCR(hello) %>% print
 OCR_data(hello) %>% print
-```
-```{r, fig.height = 3, eval = !is_available_tesseract}
-print("OCR function and OCR_data function can't be used because tesseract is not available.")
 ```
 
 We can see the text "Hello" was recognized.
