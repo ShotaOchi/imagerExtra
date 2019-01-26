@@ -6,7 +6,7 @@
 [![codecov](https://codecov.io/gh/ShotaOchi/imagerExtra/branch/master/graph/badge.svg)](https://codecov.io/gh/ShotaOchi/imagerExtra)
 
 ## About
-imagerExtra is a R package for image processing based on the R package [imager](https://github.com/dahtah/imager).
+imagerExtra is an R package for image processing based on the R package [imager](https://github.com/dahtah/imager).
 
 
 imagerExtra provides advanced functions for image processing.
