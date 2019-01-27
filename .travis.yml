@@ -20,6 +20,7 @@ addons:
       - libtesseract-dev
       - tesseract-ocr-eng
       - tesseract-ocr-fra
+      - libpoppler-cpp-dev
 
 r_packages:
   - covr
