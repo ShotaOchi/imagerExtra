@@ -18,6 +18,7 @@ addons:
       - libjpeg-dev
       - libfftw3-dev
       - libtesseract-dev
+      - libleptonica-dev
       - tesseract-ocr-eng
       - tesseract-ocr-fra
       - libpoppler-cpp-dev
