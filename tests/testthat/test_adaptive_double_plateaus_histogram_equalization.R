@@ -1,5 +1,3 @@
-library(imagerExtra)
-
 test_that("adaptive_double_plateaus_histogram_equalization",
 {
     notim <- 1

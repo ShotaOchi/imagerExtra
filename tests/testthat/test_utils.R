@@ -1,5 +1,3 @@
-library(imagerExtra)
-
 test_that("utils", 
 {
     expect_error(ConvertPercentile(1))

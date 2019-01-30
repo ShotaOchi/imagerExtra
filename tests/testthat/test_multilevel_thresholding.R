@@ -1,4 +1,3 @@
-library(imagerExtra)
 test_that("multilevel thresholding",
 {
     notim <- 1

@@ -1,5 +1,3 @@
-library(imagerExtra)
-
 test_that("treat color image", 
 {
     notim <- 1

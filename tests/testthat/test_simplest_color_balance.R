@@ -1,5 +1,3 @@
-library(imagerExtra)
-
 test_that("simplest_color_balance",
 {
     notim <- 1

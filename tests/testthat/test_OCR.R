@@ -1,5 +1,3 @@
-library(imagerExtra)
-
 test_that("OCR",
 {
   if (requireNamespace("tesseract", quietly = TRUE))

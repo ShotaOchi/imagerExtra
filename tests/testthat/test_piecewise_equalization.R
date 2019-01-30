@@ -1,5 +1,3 @@
-library(imagerExtra)
-
 test_that("piecewise_equalization", 
 {
     notim <- 1

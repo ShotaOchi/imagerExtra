@@ -1,5 +1,3 @@
-library(imagerExtra)
-
 test_that("screened_poisson_equation",
 {
     notim <- 1

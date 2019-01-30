@@ -1,5 +1,3 @@
-library(imagerExtra)
-
 test_that("Iterative Triclass Thresholding",
 {
   notim <- 1

@@ -1,5 +1,3 @@
-library(imagerExtra)
-
 test_that("local adaptive thresholding",
 {
     notim <- 1

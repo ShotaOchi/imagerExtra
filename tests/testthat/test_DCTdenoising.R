@@ -1,5 +1,3 @@
-library(imagerExtra)
-
 test_that("DCTdenoising",
 {
     notim <- 1

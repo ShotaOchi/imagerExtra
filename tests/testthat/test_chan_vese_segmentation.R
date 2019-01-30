@@ -1,4 +1,3 @@
-library(imagerExtra)
 test_that("Chan-Vese segmentation",
 {
     notim <- 1

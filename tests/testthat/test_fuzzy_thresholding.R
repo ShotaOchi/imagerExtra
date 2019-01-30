@@ -1,4 +1,3 @@
-library(imagerExtra)
 test_that("fuzzy thresholding",
 {
     notim <- 1

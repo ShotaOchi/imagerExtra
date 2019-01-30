@@ -1,5 +1,3 @@
-library(imagerExtra)
-
 test_that("fast discrete cosine transformation",
 {
     notim <- 1
