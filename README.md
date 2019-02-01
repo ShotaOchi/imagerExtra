@@ -1,6 +1,7 @@
 # imagerExtra
 
 [![Build Status](https://travis-ci.org/ShotaOchi/imagerExtra.svg?branch=master)](https://travis-ci.org/ShotaOchi/imagerExtra)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShotaOchi/imagerExtra?branch=master&svg=true)](https://ci.appveyor.com/project/ShotaOchi/imagerExtra)
 [![CRAN Version](https://www.r-pkg.org/badges/version/imagerExtra)](https://cran.r-project.org/package=imagerExtra)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![codecov](https://codecov.io/gh/ShotaOchi/imagerExtra/branch/master/graph/badge.svg)](https://codecov.io/gh/ShotaOchi/imagerExtra)
