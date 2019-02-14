@@ -10,6 +10,8 @@ r:
   - release
   - devel
 
+r_check_args: --use-valgrind
+
 addons:
   apt:
     packages:
@@ -22,6 +24,7 @@ addons:
       - tesseract-ocr-eng
       - tesseract-ocr-fra
       - libpoppler-cpp-dev
+      - valgrind
 
 r_packages:
   - covr
