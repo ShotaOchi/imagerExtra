@@ -38,7 +38,7 @@ devtools::install_github("ShotaOchi/imagerExtra")
 ```
 
 ## 光学文字認識 (OCR)
-imagerExtraでOCRを行うには[tesseract](https://github.com/ropensci/tesseract#tesseract)Rパッケージが必要です。
+imagerExtraでOCRを行うには[tesseract](https://github.com/ropensci/tesseract#tesseract)というRパッケージが必要です。
 
 
 まだtesseractをインストールしてなければ[tesseractのインストールガイド](https://github.com/ropensci/tesseract#installation)をご覧ください。
