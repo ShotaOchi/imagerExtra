@@ -5,7 +5,7 @@
 [![CRAN Version](https://www.r-pkg.org/badges/version/imagerExtra)](https://cran.r-project.org/package=imagerExtra)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![codecov](https://codecov.io/gh/ShotaOchi/imagerExtra/branch/master/graph/badge.svg)](https://codecov.io/gh/ShotaOchi/imagerExtra)
-[:jp:](/docs/js/README.md)
+[:us:](/README.md)
 
 ## About
 imagerExtra is an R package for image processing based on the R package [imager](https://github.com/dahtah/imager).
