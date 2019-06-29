@@ -5,29 +5,31 @@
 [![CRAN Version](https://www.r-pkg.org/badges/version/imagerExtra)](https://cran.r-project.org/package=imagerExtra)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![codecov](https://codecov.io/gh/ShotaOchi/imagerExtra/branch/master/graph/badge.svg)](https://codecov.io/gh/ShotaOchi/imagerExtra)
-[:us:](/README.md)
 
-## About
-imagerExtra is an R package for image processing based on the R package [imager](https://github.com/dahtah/imager).
+## 翻訳
+[:us: English](/README.md)
 
-
-imagerExtra provides advanced functions for image processing.
-
-
-See the vignette [Getting Started with imagerExtara](https://cran.r-project.org/package=imagerExtra/vignettes/gettingstarted.html) to know what functions imagerExtra provides. 
+## 概要
+imagerExtraはR言語の画像処理用パッケージ[imager](https://github.com/dahtah/imager)を拡張したパッケージです。
 
 
-See the [introduction of imager](http://dahtah.github.io/imager/) if you don't know imager.
+imagerExtraは画像処理のためのより発展的な関数を提供します。
 
 
-See the [vignette of imager](https://CRAN.R-project.org/package=imager/vignettes/gettingstarted.html) if you aren't familiar with imager.
+関数に関する詳細はこちらから [imagerExtaraの使い方](https://cran.r-project.org/package=imagerExtra/vignettes/gettingstarted.html)
 
 
-## Installation
-You can install imagerExtra from CRAN or GitHub.
+imagerを知らない方はこちらをご確認ください。 [imagerの紹介](http://dahtah.github.io/imager/)
 
 
-Run the following R code to install imagerExtra.
+imagerに精通してない方はこちらをご確認ください。[imagerの使い方](https://CRAN.R-project.org/package=imager/vignettes/gettingstarted.html)
+
+
+## インストール
+CRANもしくはGitHubからインストール可能です。
+
+
+以下Rコードを実行し、imagerExtraを使用できます。
 ```r
 # install from CRAN
 install.packages("imagerExtra")
@@ -35,14 +37,14 @@ install.packages("imagerExtra")
 devtools::install_github("ShotaOchi/imagerExtra")
 ```
 
-## Optical Character Recognition (OCR)
-You need the R package [tesseract](https://github.com/ropensci/tesseract#tesseract) to do OCR with imagerExtra.
+## 光学文字認識 (OCR)
+imagerExtraでOCRを行うには[tesseract](https://github.com/ropensci/tesseract#tesseract)Rパッケージが必要です。
 
 
-See the [installation guide of tesseract](https://github.com/ropensci/tesseract#installation) if you haven't installed tesseract.
+まだtesseractをインストールしてなければ[tesseractのインストールガイド](https://github.com/ropensci/tesseract#installation)をご覧ください。
 
 
-Here is a small demo that shows imagerExtra can expand the scope of the application of tesseract.
+これはimagerExtraがtesseractの適用範囲を拡大できることを示す簡単なデモです。
 ```r
 library(imagerExtra)
 # OCR doesn't work well for degraded images
@@ -55,12 +57,12 @@ OCR(hello)
 ```
 
 
-## Contribution
-You can create issues for any bug report or suggestion on the [issues page](https://github.com/ShotaOchi/imagerExtra/issues).
+## コントリビューション
+バグの報告やコントリビューションをお願いします。 [issues page](https://github.com/ShotaOchi/imagerExtra/issues)
 
 
-You're welcome to fork this repository and send me a pull request for bug fixes or additional features.
+このリポジトリをフォークして、バグ修正や追加機能を求めてプルリクエストを送ってください。
 
 
-## Development Blog
-URL of development blog of imagerExtra is [https://shotaochi.github.io/](https://shotaochi.github.io/).
+## 開発ログ
+imagerExtraの開発履歴はこちらから。[https://shotaochi.github.io/](https://shotaochi.github.io/)
