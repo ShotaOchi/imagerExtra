@@ -90,6 +90,6 @@ plot(y, main = "Processed While Preserving Hue")
 
 Which way is better?
 
-It's your call.
+It depends on your image and your purpose.
 
 You should consider which way is better when treating color images.
