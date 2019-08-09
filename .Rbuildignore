@@ -2,6 +2,4 @@ README.md
 TODO
 ^\.travis\.yml$
 ^appveyor\.yml$
-.git
-.gitignore
-.gitattributes
+LICENSE
