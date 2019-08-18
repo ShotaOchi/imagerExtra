@@ -7,6 +7,7 @@ test_that("local adaptive thresholding",
   windowsize_bad1 <- NA
   windowsize_bad2 <- 2
   windowsize_bad3 <- 12
+  windowsize_bad4 <- max(dim(gim))
   
   range_bad3 <- c(NA, 255)
 
@@ -21,6 +22,7 @@ test_that("local adaptive thresholding",
   expect_error(ThresholdAdaptive(gim, k_c, windowsize_bad1))
   expect_error(ThresholdAdaptive(gim, k_c, windowsize_bad2))
   expect_warning(ThresholdAdaptive(gim, k_c, windowsize_bad3))
+  expect_error(ThresholdAdaptive(gim, k_c, windowsize_bad4))
   
   expect_class(ThresholdAdaptive(gim, k_c), class_pixset)
 })

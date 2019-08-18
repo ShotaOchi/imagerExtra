@@ -9,6 +9,12 @@ test_that("adaptive_double_plateaus_histogram_equalization",
   t_bad3 <- "T"
   t_bad4 <- c(1,1)
   
+  N_bad1 <- NULL
+  N_bad2 <- NA
+  N_bad3 <- "T"
+  N_bad4 <- c(1,1)
+  N_bad5 <- 1
+  
   expect_error(EqualizeDP(gim_bad, t_down, t_up))
   expect_error(EqualizeDP(gim_uniform, t_down, t_up))
   
@@ -45,6 +51,7 @@ test_that("adaptive_double_plateaus_histogram_equalization",
   param_boats <- EqualizeADP(gim, returnparam = TRUE)
   
   expect_error(EqualizeADP(gim_bad))
+  expect_error(EqualizeADP(gim_uniform))
   
   expect_error(EqualizeADP(gim, n_bad))
   expect_error(EqualizeADP(gim, n_bad1))
