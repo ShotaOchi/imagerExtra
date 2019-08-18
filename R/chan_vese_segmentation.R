@@ -22,15 +22,15 @@
 #' SegmentCV(g, lambda2 = 15) %>% plot(main = "Binarized")
 SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol = 0.0001, maxiter = 500, dt = 0.5, initial, returnstep)
 {
-  CheckSanityim(im)
-  CheckSanitynumeric(mu, "mu")
-  CheckSanitynumeric(nu, "nu")
-  CheckSanitynumeric(lambda1, "lambda1")
-  CheckSanitynumeric(lambda2, "lambda2")
-  CheckSanitypositive0numeric(tol, "tol")
-  CheckSanitypositivenumeric(maxiter, "maxiter")
-  CheckSanitypositivenumeric(dt, "dt")
+  assert_im(im)
+  assert_numeric_one_elem(mu)
+  assert_numeric_one_elem(nu)
+  assert_numeric_one_elem(lambda1)
+  assert_numeric_one_elem(lambda2)
+  assert_positive0_numeric_one_elem(tol)
+  assert_positive_numeric_one_elem(maxiter)
   maxiter <- as.integer(maxiter)
+  assert_positive_numeric_one_elem(dt)
   
   dim_im <- dim(im)
   if (missing(initial))
@@ -40,11 +40,10 @@ SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol
   {
     if (is.character(initial))
     {
-      #Checksanitychar(initial, "initial")
       pos_rect <- grabRect(im)
       if (pos_rect[1] == pos_rect[3] && pos_rect[2] == pos_rect[4])
       {
-        stop("Specifying initial condition failed.", call. = FALSE)
+        stop("Specifying initial condition failed.")
       }
       initial <- ChanVeseInitPhi_Rect(dim_im[1], dim_im[2], pos_rect) %>% as.cimg()
     } else if (is.cimg(initial))
@@ -52,11 +51,11 @@ SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol
       dim_ini <- dim(initial)
       if (any(dim_ini != dim_im))
       {
-        stop("The dimension of initial is not same as dimension of im.", call. = FALSE)
+        stop("The dimension of initial is not same as dimension of im.")
       }
     } else
     {
-      stop('initial must be "interactive" or a grayscale image of class cimg', call. = FALSE)
+      stop('initial must be "interactive" or a grayscale image of class cimg')
     }
   }
   
@@ -70,13 +69,13 @@ SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol
     return(as.cimg(res[[2]]) >= 0)
   } else
   {
-    CheckSanitynumericvec(returnstep, "returnstep")
+    assert_numeric_vec(returnstep)
     returnstep <- as.integer(returnstep)
     tmpidx_returnstep <- returnstep >= 0 && returnstep <= maxiter
     returnstep <- returnstep[tmpidx_returnstep]
     if (length(returnstep) < 1)
     {
-      stop("The elements of returnstep must be in the range [0,maxiter].", call. = FALSE)
+      stop("The elements of returnstep must be in the range [0,maxiter].")
     }
     returnstep <- unique(returnstep)
     returnstep <- returnstep[order(returnstep)]

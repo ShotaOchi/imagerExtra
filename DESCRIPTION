@@ -1,7 +1,7 @@
 Package: imagerExtra
 Type: Package
 Title: Extra Image Processing Library Based on 'imager'
-Version: 1.3.2
+Version: 2.0.0
 Authors@R: c(
     person("Shota", "Ochi", email = "shotaochi1990@gmail.com", role = c("aut", "cre", "cph")),
     person("Guoshen", "Yu", email = "yu@cmap.polytechnique.fr", role = c("ctb", "cph")),
@@ -16,14 +16,15 @@ Depends:
     R (>= 2.10.0),
     imager (>= 0.40.2)
 Imports: 
+    checkmate,
     fftwtools,
     magrittr,
     Rcpp (>= 0.12.14)
 Suggests: 
-    testthat (>= 2.0.0),
     knitr,
     rmarkdown,
-    tesseract
+    tesseract,
+    testthat (>= 2.0.0)
 URL: https://github.com/ShotaOchi/imagerExtra
 BugReports: https://github.com/ShotaOchi/imagerExtra/issues
 LinkingTo: Rcpp

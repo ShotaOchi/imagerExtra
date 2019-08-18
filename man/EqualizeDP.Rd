@@ -22,7 +22,7 @@ EqualizeDP(im, t_down, t_up, N = 1000, range = c(0, 255))
 a grayscale image of class cimg
 }
 \description{
-enhance contrast of image by double plateaus histogram equalization.
+enhances contrast of image by double plateaus histogram equalization.
 }
 \examples{
 g <- grayscale(dogs)

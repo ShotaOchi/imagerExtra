@@ -23,7 +23,7 @@ EqualizeADP(im, n = 5, N = 1000, range = c(0, 255),
 a grayscale image of class cimg or a numericvector
 }
 \description{
-compute the paramters, t_down and t_up, and then apply double plateaus histogram equalization.
+computes the paramters, t_down and t_up, and then apply double plateaus histogram equalization.
 }
 \examples{
 g <- grayscale(dogs)

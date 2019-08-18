@@ -3,7 +3,7 @@
 #' OCR and OCR_data are wrappers for ocr and ocr_data of tesseract package.
 #' You need to install tesseract package to use these functions.
 #' @name OCR
-#' @param imorpx a grayscale image of class cimg or a pixel set
+#' @param imorpx a grayscale image of class cimg, a color image of class cimg, or a pixel set
 #' @param engine a tesseract engine. See the reference manual of tesseract for detail.
 #' @param HOCR if TRUE return results as HOCR xml instead of plain text
 #' @author Shota Ochi
@@ -20,7 +20,7 @@ NULL
 #' @export
 OCR <- function(imorpx, engine = tesseract::tesseract("eng"), HOCR=FALSE) 
 {
-  CheckSanityimorpx(imorpx)
+  assert_im_px(imorpx)
   if (is.pixset(imorpx)) 
   {
     imorpx <- as.cimg(imorpx)
@@ -35,7 +35,7 @@ OCR <- function(imorpx, engine = tesseract::tesseract("eng"), HOCR=FALSE)
 #' @export
 OCR_data <- function(imorpx, engine = tesseract::tesseract("eng")) 
 {
-  CheckSanityimorpx(imorpx)
+  assert_im_px(imorpx)
   if (is.pixset(imorpx)) 
   {
     imorpx <- as.cimg(imorpx)

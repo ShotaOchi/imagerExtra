@@ -20,8 +20,8 @@ NULL
 #' @export 
 DCT2D <- function(imormat, returnmat = FALSE) 
 {
-  CheckSanityimormat(imormat)
-  CheckSanitylogical(returnmat, "returnmat")
+  assert_im_mat(imormat)
+  assert_logical_one_elem(returnmat)
   if (is.cimg(imormat)) 
   {
     imormat <- as.matrix(imormat)
@@ -40,8 +40,8 @@ DCT2D <- function(imormat, returnmat = FALSE)
 #' @export 
 IDCT2D <- function(imormat, returnmat = FALSE) 
 {
-  CheckSanityimormat(imormat)
-  CheckSanitylogical(returnmat, "returnmat")
+  assert_im_mat(imormat)
+  assert_logical_one_elem(returnmat)
   if (is.cimg(imormat)) 
   {
     imormat <- as.matrix(imormat)

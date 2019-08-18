@@ -1,62 +1,51 @@
+# check assert_numeric_vec(), assert_numeric_one_elem(), and assert_positive0_numeric_one_elem()
+
 test_that("Chan-Vese segmentation",
 {
-    notim <- 1
-    im <- boats
-    gim <- grayscale(im)
-    mat_gim <- as.matrix(gim)
-    gim2 <- imrep(gim, 2) %>% imappend(., "z")
-    im_NA <- as.cimg(matrix(NA, 100, 100))
-    bad1 <- "A"
-    bad2 <- -1
-    bad3 <- c(0.1,0.1,0.1)
-    bad4 <- NA
-    bad5 <- NULL
-    bad6 <- 0
-    
-    expect_error(SegmentCV(notim))
-    expect_error(SegmentCV(im))
-    expect_error(SegmentCV(gim2))
-    expect_error(SegmentCV(im_NA))
-    expect_error(SegmentCV(gim, mu = bad1))
-    expect_error(SegmentCV(gim, mu = bad3))
-    expect_error(SegmentCV(gim, mu = bad4))
-    expect_error(SegmentCV(gim, mu = bad5))
-    expect_error(SegmentCV(gim, nu = bad1))
-    expect_error(SegmentCV(gim, nu = bad3))
-    expect_error(SegmentCV(gim, nu = bad4))
-    expect_error(SegmentCV(gim, nu = bad5))
-    expect_error(SegmentCV(gim, lambda1 = bad1))
-    expect_error(SegmentCV(gim, lambda1 = bad3))
-    expect_error(SegmentCV(gim, lambda1 = bad4))
-    expect_error(SegmentCV(gim, lambda1 = bad5))
-    expect_error(SegmentCV(gim, lambda2 = bad1))
-    expect_error(SegmentCV(gim, lambda2 = bad3))
-    expect_error(SegmentCV(gim, lambda2 = bad4))
-    expect_error(SegmentCV(gim, lambda2 = bad5))
-    expect_error(SegmentCV(gim, tol = bad1))
-    expect_error(SegmentCV(gim, tol = bad2))
-    expect_error(SegmentCV(gim, tol = bad3))
-    expect_error(SegmentCV(gim, tol = bad4))
-    expect_error(SegmentCV(gim, tol = bad5))
-    expect_error(SegmentCV(gim, maxiter = bad1))
-    expect_error(SegmentCV(gim, maxiter = bad2))
-    expect_error(SegmentCV(gim, maxiter = bad3))
-    expect_error(SegmentCV(gim, maxiter = bad4))
-    expect_error(SegmentCV(gim, maxiter = bad5))    
-    expect_error(SegmentCV(gim, maxiter = bad6))
-    expect_error(SegmentCV(gim, dt = bad1))
-    expect_error(SegmentCV(gim, dt = bad2))
-    expect_error(SegmentCV(gim, dt = bad3))
-    expect_error(SegmentCV(gim, dt = bad4))
-    expect_error(SegmentCV(gim, dt = bad5))    
-    expect_error(SegmentCV(gim, dt = bad6))
-    expect_error(SegmentCV(gim, initial = bad2))
-    expect_error(SegmentCV(gim, initial = bad3))
-    expect_error(SegmentCV(gim, initial = bad4))
-    expect_error(SegmentCV(gim, initial = bad5))    
-    expect_error(SegmentCV(gim, initial = 1))
-    expect_error(SegmentCV(gim, returnstep = bad1))
-    expect_error(SegmentCV(gim, returnstep = bad2))
-    expect_error(SegmentCV(gim, returnstep = bad4))
-    expect_error(SegmentCV(gim, returnstep = bad5)) 
+  num_one_bad1 <- "A"
+  num_one_bad2 <- -1
+  num_one_bad3 <- c(0.1,0.1,0.1)
+  num_one_bad4 <- NA
+  num_one_bad5 <- NULL
+  num_one_bad6 <- 0
+  
+  expect_error(SegmentCV(gim_bad))
+  
+  expect_error(SegmentCV(gim, mu = num_one_bad1))
+  expect_error(SegmentCV(gim, mu = num_one_bad3))
+  expect_error(SegmentCV(gim, mu = num_one_bad4))
+  expect_error(SegmentCV(gim, mu = num_one_bad5))
+  
+  expect_error(SegmentCV(gim, nu = num_one_bad4))
+  
+  expect_error(SegmentCV(gim, lambda1 = num_one_bad1))
+  expect_error(SegmentCV(gim, lambda1 = num_one_bad3))
+  expect_error(SegmentCV(gim, lambda1 = num_one_bad4))
+  expect_error(SegmentCV(gim, lambda1 = num_one_bad5))
+  
+  expect_error(SegmentCV(gim, lambda2 = num_one_bad4))
+  
+  expect_error(SegmentCV(gim, tol = num_one_bad1))
+  expect_error(SegmentCV(gim, tol = num_one_bad2))
+  expect_error(SegmentCV(gim, tol = num_one_bad3))
+  expect_error(SegmentCV(gim, tol = num_one_bad4))
+  expect_error(SegmentCV(gim, tol = num_one_bad5))
+  
+  expect_error(SegmentCV(gim, maxiter = num_one_bad4))
+
+  expect_error(SegmentCV(gim, dt = num_one_bad4))
+  
+  expect_error(SegmentCV(gim, initial = num_one_bad2))
+  expect_error(SegmentCV(gim, initial = num_one_bad3))
+  expect_error(SegmentCV(gim, initial = num_one_bad4))
+  expect_error(SegmentCV(gim, initial = num_one_bad5))    
+  expect_error(SegmentCV(gim, initial = 1))
+  
+  expect_error(SegmentCV(gim, returnstep = num_one_bad1))
+  expect_error(SegmentCV(gim, returnstep = num_one_bad2))
+  expect_error(SegmentCV(gim, returnstep = num_one_bad4))
+  expect_error(SegmentCV(gim, returnstep = num_one_bad5))
+  
+  expect_class(SegmentCV(gim), class_pixset)
+  expect_class(SegmentCV(gim, returnstep = c(1)), "list")
 })
