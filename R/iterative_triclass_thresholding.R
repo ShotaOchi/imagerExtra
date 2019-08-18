@@ -40,10 +40,9 @@
 #' ThresholdTriclass(g) %>% plot(main = "Triclass")
 ThresholdTriclass <- function(im, stopval = 0.01, repeatnum, intervalnumber = 1000, returnvalue = FALSE)
 {
-  #sanity check of im ,intervalnumber, and returnvalue
-  CheckSanityim(im)
-  CheckSanitypositivenumeric(intervalnumber, "intervalnumber")
-  CheckSanitylogical(returnvalue, "returnvalue")
+  assert_im(im)
+  assert_positive_numeric_one_elem(intervalnumber)
+  assert_logical_one_elem(returnvalue)
   minim <- min(im)
   maxim <- max(im)
   if (minim == maxim) 
@@ -52,10 +51,8 @@ ThresholdTriclass <- function(im, stopval = 0.01, repeatnum, intervalnumber = 10
   }
   
   if (missing(repeatnum))
-  { 
-    #sanity check of stopval
-    CheckSanitypositivenumeric(stopval, "stopval")
-
+  {
+    assert_positive_numeric_one_elem(stopval)
     dimim <- dim(im)
     ordered <- as.vector(im)
     ordered <- ordered[order(ordered)]
@@ -91,9 +88,11 @@ ThresholdTriclass <- function(im, stopval = 0.01, repeatnum, intervalnumber = 10
     thresval_pre <- thresval
     }
   } else {
-    #sanity check of repeatnum (repeatnum >= 1)
-    CheckSanitypositivenumeric(repeatnum, "repeatnum")
-
+    assert_positive_numeric_one_elem(repeatnum)
+    if (repeatnum < 1)
+    {
+      stop("repeatnum must be greater than or equal to 1.")
+    }
     dimim <- dim(im)
     ordered <- as.vector(im)
     ordered <- ordered[order(ordered)]
@@ -103,27 +102,27 @@ ThresholdTriclass <- function(im, stopval = 0.01, repeatnum, intervalnumber = 10
     thresval <- get_th_otsu(prob_otsu, bins)
     for (i in seq_len(as.integer(repeatnum) - 1))
     {
-    indexf <- ordered > thresval
-    indexb <- !indexf
-    myu1 <- mean(ordered[indexf])
-    myu0 <- mean(ordered[indexb])
-    ordered <- ordered[ordered >= myu0 & ordered <= myu1]
-    if (is.nan(myu0) || is.nan(myu1)) 
-    {
+      indexf <- ordered > thresval
+      indexb <- !indexf
+      myu1 <- mean(ordered[indexf])
+      myu0 <- mean(ordered[indexb])
+      ordered <- ordered[ordered >= myu0 & ordered <= myu1]
+      if (is.nan(myu0) || is.nan(myu1)) 
+      {
         message("Iteration was stopped in the middle.")          
-      break
+        break
+      }
+      indexTBD <- bins >= myu0 & bins <= myu1
+      bins <- bins[indexTBD]
+      prob_otsu <- prob_otsu[indexTBD]
+      if (sum(prob_otsu) == 0  || length(prob_otsu) < 2)
+      {
+        message("Iteration was stopped in the middle.")  
+        break
+      }
+      prob_otsu <- prob_otsu / sum(prob_otsu)
+      thresval <- get_th_otsu(prob_otsu, bins)
     }
-    indexTBD <- bins >= myu0 & bins <= myu1
-    bins <- bins[indexTBD]
-    prob_otsu <- prob_otsu[indexTBD]
-    if (sum(prob_otsu) == 0  || length(prob_otsu) < 2)
-    {
-      message("Iteration was stopped in the middle.")  
-      break
-    }
-    prob_otsu <- prob_otsu / sum(prob_otsu)
-    thresval <- get_th_otsu(prob_otsu, bins)
-    } 
   }
   if (returnvalue) 
   {  

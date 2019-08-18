@@ -16,10 +16,10 @@
 #' DenoiseDCT(boats_g, 0.05) %>% plot(., main = "Denoised Boats")
 DenoiseDCT <- function(im, sdn, flag_dct16x16 = FALSE)
 {
-    CheckSanityim(im)
-    CheckSanitypositivenumeric(sdn, "sdn")
-    CheckSanitylogical(flag_dct16x16, "flag_dct16x16")
+    assert_im(im)
+    assert_positive_numeric_one_elem(sdn)
+    assert_logical_one_elem(flag_dct16x16)
     dim_im <- dim(im)
-    res <- DCTdenoising(as.matrix(im), dim_im[2], dim_im[1], sdn, as.integer(!flag_dct16x16)) %>% as.cimg()
-    return(res)
+    res <- DCTdenoising(as.matrix(im), dim_im[2], dim_im[1], sdn, as.integer(!flag_dct16x16))
+    return(as.cimg(res))
 }

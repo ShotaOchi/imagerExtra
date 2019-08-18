@@ -1,293 +1,137 @@
-#$' Convert string to numeric as percentile
-#$'
-#$' @param stringInput string that means a percentile
-#$' @return numeric that means a percentile
-#$' @examples
-#$' ConvertPercentile("1%") # return 1
-ConvertPercentile <- function(stringInput)
-{
-    if (!is.character(stringInput))
-    {
-        stop("saturation percentage parameter (s, sleft, or sright) must be character or numeric.", call. = FALSE)
-    }
-    splitted <- strsplit(stringInput , "%")
-    candidate <- splitted[[1]][1]
-    if (length(candidate) == 0) 
-    {
-        stop("saturation percentage parameter (s, sleft, or sright) is not appropriate.", call. = FALSE)
-    }
-    candidate <- suppressWarnings(as.numeric(candidate))
-    if (is.na(candidate)) 
-    {
-        stop("saturation percentage parameter (s, sleft, or sright) are not appropriate.", call. = FALSE)
-    }
-    return(candidate)
-}
+class_imager <- "cimg"
 
-CheckSanityim <- function(im)
+assert_im <- function(im)
 {
-    if (!is.cimg(im)) 
-    {
-        stop("im must be a grayscale image of class cimg.", call. = FALSE)
-    }
-    if (depth(im) != 1) 
-    {
-        stop("the depth of im must be 1.", call. = FALSE)
-    }
-  if (imager::spectrum(im) != 1) 
+  assert_class(im, class_imager)
+  if (depth(im) != 1)
   {
-      stop("im must be a grayscale image.", call. = FALSE)
+    stop(sprintf("%s must be a grayscale image.", deparse(substitute(range))))
+  }
+  if (spectrum(im) != 1) 
+  {
+    stop(sprintf("%s must be a grayscale image.", deparse(substitute(range))))
   }
   if (any(is.na(im))) 
   {
-      stop("im has NA. NA is unacceptable.", call. = FALSE)
+    stop(sprintf("%s has NA. NA is unacceptable.", deparse(substitute(range))))
   }
-  if (!is.numeric(im))
-  {
-      stop("im must be numeric.", call. = FALSE)
-  }
-  return(invisible(TRUE))
 }
 
-CheckSanityimcol <- function(imcol)
+assert_imcol <- function(imcol)
 {
-  if (!is.cimg(imcol)) 
+  assert_class(imcol, class_imager)
+  if (depth(imcol) != 1)
   {
-      stop("imcol must be an image of class cimg.", call. = FALSE)
+    stop(sprintf("%s must be an image of class cimg.", deparse(substitute(range))))
   }
-  if (depth(imcol) != 1) 
+  if (spectrum(imcol) != 3) 
   {
-    stop("the depth of imcol must be 1.", call. = FALSE)
-  }
-  if (imager::spectrum(imcol) != 3) 
-  {
-    stop("imcol must be a color image.", call. = FALSE)
+    stop(sprintf("%s number of color channels of imcol must be 3.", deparse(substitute(range))))
   }
   if (any(is.na(imcol))) 
   {
-    stop("imcol has NA. NA is unacceptable.", call. = FALSE)
+    stop(sprintf("%s has NA. NA is unacceptable.", deparse(substitute(range))))
   }
-  if (!is.numeric(imcol))
-  {
-    stop("imcol must be numeric.", call. = FALSE)
-  }
-  return(invisible(TRUE))
 }
 
-CheckSanityrange <- function(range)
+assert_range <- function(range)
 {
-  if (length(range) != 2)
-  {
-    stop("the length of range must be 2.", call. = FALSE)
-  }
-  if (any(is.na(range)))
-  {
-    stop("range has NA. NA is unacceptable.", call. = FALSE)
-  }
-  if (!is.numeric(range))
-  {
-    stop("range must be a vector of numeric.", call. = FALSE)
-  }
-  if (any(range < 0))
-  {
-    stop("elements of range must be greater than or equal to 0.", call. = FALSE)
-  }
-  if (range[1] > range[2])
-  {
-    warning("range was ordered.", call. = FALSE)
-    range_ordered <- range[order(range)]
-    assign("range", range_ordered, pos = parent.frame())
-  }
-  return(invisible(TRUE))
+  assert_numeric(range, lower = 0, finite = TRUE, any.missing = FALSE, sorted = TRUE, len = 2, .var.name = deparse(substitute(range)))
 }
 
-CheckSanitypositivenumeric <- function(mynumeric, varname = "numericvar")
+assert_positive_numeric_one_elem <- function(mynumeric)
 {
-  if (length(mynumeric) != 1)
-  {
-    stop(sprintf("The length of %s must be 1.", varname), call. = FALSE)
-  }
-  if (is.na(mynumeric))
-  {
-    stop(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
-  }
-  if (!is.numeric(mynumeric))
-  {
-    stop(sprintf("%s must be numeric.", varname), call. = FALSE)
-  }
+  assert_numeric(mynumeric, finite = TRUE, any.missing = FALSE, len = 1, .var.name = deparse(substitute(mynumeric)))
   if (mynumeric <= 0)
   {
-    stop(sprintf("%s must be greater than 0.", varname), call. = FALSE)
+    stop(sprintf("%s must be greater than 0.", deparse(substitute(mynumeric))))
   }
-  return(invisible(TRUE))  
 }
 
-CheckSanitypositive0numeric <- function(mynumeric, varname = "numericvar")
+assert_positive0_numeric_one_elem <- function(mynumeric)
 {
-  if (length(mynumeric) != 1)
-  {
-    stop(sprintf("The length of %s must be 1.", varname), call. = FALSE)
-  }
-  if (is.na(mynumeric))
-  {
-    stop(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
-  }
-  if (!is.numeric(mynumeric))
-  {
-    stop(sprintf("%s must be numeric.", varname), call. = FALSE)
-  }
-  if (mynumeric < 0)
-  {
-    stop(sprintf("%s must be greater than or equal to 0.", varname), call. = FALSE)
-  }
-  return(invisible(TRUE))  
+  assert_numeric(mynumeric, lower = 0, finite = TRUE, any.missing = FALSE, len = 1, .var.name = deparse(substitute(mynumeric)))
 }
 
-CheckSanitynumeric <- function(mynumeric, varname = "numericvar")
+assert_numeric_one_elem <- function(mynumeric)
 {
-  if (length(mynumeric) != 1)
-  {
-    stop(sprintf("The length of %s must be 1.", varname), call. = FALSE)
-  }
-  if (is.na(mynumeric))
-  {
-    stop(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
-  }
-  if (!is.numeric(mynumeric))
-  {
-    stop(sprintf("%s must be numeric.", varname), call. = FALSE)
-  }
-  return(invisible(TRUE))  
+  assert_numeric(mynumeric, finite = TRUE, any.missing = FALSE, len = 1, .var.name = deparse(substitute(mynumeric)))
 }
 
-CheckSanitynumericvec <- function(numericvec, varname = "numericvec")
+assert_numeric_vec <- function(numericvec)
 {
-  if (length(numericvec) < 1)
-  {
-    stop(sprintf("The length of %s must be greater than or equal to 1.", varname), call. = FALSE)
-  }
-  if (any(is.na(numericvec)))
-  {
-    stop(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
-  }
-  if (!is.numeric(numericvec))
-  {
-    stop(sprintf("%s must be numeric.", varname), call. = FALSE)
-  }
-  return(invisible(TRUE))  
+  assert_numeric(numericvec, finite = TRUE, any.missing = FALSE, min.len = 1, .var.name = deparse(substitute(numericvec)))
 }
 
-CheckSanitylogical <- function(mylogical, varname = "logicalcvar")
+assert_logical_one_elem <- function(mylogical)
 {
-  if (length(mylogical) != 1)
-  {
-    stop(sprintf("The length of %s must be 1.", varname), call. = FALSE)
-  }
-  if (is.na(mylogical))
-  {
-    stop(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
-  }
-  if (!is.logical(mylogical))
-  {
-    stop(sprintf("%s must be logical.", varname), call. = FALSE)
-  }
-  return(invisible(TRUE))  
+  assert_logical(mylogical, any.missing = FALSE, len = 1, .var.name = deparse(substitute(mylogical)))
 }
 
-CheckSanityimormat <- function(imormat)
+assert_im_mat <- function(imormat)
 {
-    if (!is.cimg(imormat)) 
-    {
-        if (!is.matrix(imormat))
-        {
-            stop("imormat must be a image of class cimg or a numeric matrix.", call. = FALSE)
-        }
-        if (any(is.na(imormat)))
-        {
-            stop("imormat has NA. NA is unacceptable.", call. = FALSE)
-        }
-        if (!is.numeric(imormat))
-        {
-            stop("imormat must be numeric", call.=FALSE)
-        }
-    }
-    else 
-    {
-        if (depth(imormat) != 1) 
-        {
-            stop("the depth of imormat must be 1.", call. = FALSE)
-        }
-        if (spectrum(imormat) != 1) 
-        {
-            stop("imormat must not be a color image.", call. = FALSE)
-        }
-        if (any(is.na(imormat))) 
-        {
-            stop("imormat has NA. NA is unacceptable.", call. = FALSE)
-        }
-        if (!is.numeric(imormat))
-        {
-            stop("imormat must be numeric.", call. = FALSE)
-        }
-    }
-    return(invisible(TRUE))    
+  assert(check_class(imormat, class_imager), check_class(imormat, "matrix"), .var.name = deparse(substitute(imormat)))
+  if (any(class(imormat) == class_imager))
+  {
+    assert_im(imormat)
+  } else
+  {
+    assert(check_matrix(imormat, mode = "numeric", any.missing = FALSE),
+           check_matrix(imormat, mode = "double", any.missing = FALSE),
+           check_matrix(imormat, mode = "integer", any.missing = FALSE),
+           .var.name = deparse(substitute(imormat)))
+  }
 }
 
-CheckSanityimorpx <- function(imorpx)
+assert_im_px <- function(imorpx)
 {
-    if (is.cimg(imorpx)) 
-    {
-        if (depth(imorpx) != 1) 
-        {
-            stop("the depth of imorpx must be 1.", call. = FALSE)
-        }
-        if (spectrum(imorpx) != 1) 
-        {
-            stop("imorpx must be a grayscale image.", call. = FALSE)
-        }
-        if (any(is.na(imorpx))) 
-        {
-            stop("imorpx has NA. NA is unacceptable.", call. = FALSE)
-        }
-        if (!is.numeric(imorpx))
-        {
-            stop("imorpx has invalid values.", call. = FALSE)
-        }
-    } else 
-    {
-        if (!is.pixset(imorpx))
-        {
-            stop("imorpx must be a image of class cimg or a pixel set.", call. = FALSE)
-        }
-        if (depth(imorpx) != 1) 
-        {
-            stop("the depth of imorpx must be 1.", call. = FALSE)
-        }
-        if (spectrum(imorpx) != 1) 
-        {
-            stop("imorpx must be a grayscale image.", call. = FALSE)
-        }
-        if (any(is.na(imorpx)))
-        {
-            stop("imorpx has NA. NA is unacceptable.", call. = FALSE)
-        }
-    }
-    return(invisible(TRUE))    
+  assert(check_class(imorpx, class_imager), check_class(imorpx, "pixset"), .var.name = deparse(substitute(imorpx)))
+  imorpx <- as.cimg(imorpx)
+  if (spectrum(imorpx) == 1)
+  {
+    assert_im(imorpx)
+  } else
+  {
+    assert_imcol(imorpx)
+  }
 }
 
-CheckSanitychar <- function(mychar, varname = "char")
+#$' Convert string to numeric as percentile
+#$'
+#$' @param s_input string that means a percentile
+#$' @return numeric that means a percentile
+#$' @examples
+#$' convert_percentile("1%") # return 1
+convert_percentile <- function(s_input)
 {
-  if (length(mychar) < 1)
+  splitted <- strsplit(s_input , "%")
+  candidate <- suppressWarnings(as.numeric(splitted[[1]][1]))
+  if (!test_numeric(s_input, lower = 0, finite = TRUE, len = 1)) 
   {
-    stop(sprintf("The length of %s must be greater than 0.", varname), call. = FALSE)
+    stop("saturation percentage parameter (s, sleft, or sright) is not appropriate.")
   }
-  if (any(is.na(mychar)))
+  return(candidate)
+}
+
+assert_s <- function(s_input)
+{
+  assert(check_character(s_input, min.chars = 1, any.missing = FALSE, len = 1), check_numeric(s_input, lower = 0, finite = TRUE, len = 1), .var.name = deparse(substitute(s_input)))
+  if (!is.numeric(s_input))
   {
-    stop(sprintf("%s has NA. NA is unacceptable.", varname), call. = FALSE)
+    s_input <- convert_percentile(s_input)
   }
-  if (!is.character(mychar))
+  return(s_input)
+}
+
+assert_s_left_right <- function(sleft, sright)
+{
+  if (sleft + sright > 100)
   {
-    stop(sprintf("%s must be character.", varname), call. = FALSE)
+    stop("Saturation parameters (s, sleft, or sright) are too large. Confirm the following condition is satisfied. s <= 50 or sleft + sright <= 100.")
   }
-  return(invisible(TRUE))  
+}
+
+assert_char <- function(mychar)
+{
+  assert_character(mychar, min.chars = 1, any.missing = FALSE, len = 1, .var.name = deparse(substitute(s_input)))
 }

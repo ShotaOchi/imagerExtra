@@ -16,38 +16,38 @@
 #$' ThresholdML(g, 2) %>% plot
 ThresholdML_MEABCT <- function(im, k, sn = 30, mcn = 100, limit = 100, intervalnumber = 1000, returnvalue = FALSE)
 {
-  CheckSanityim(im)
-  CheckSanitypositivenumeric(k, "k")
-  CheckSanitypositivenumeric(sn, "sn")
-  CheckSanitypositivenumeric(mcn, "mcn")
-  CheckSanitypositivenumeric(limit, "limit")
-  CheckSanitypositivenumeric(intervalnumber, "intervalnumber")
-  CheckSanitylogical(returnvalue, "returnvalue")
+  assert_im(im)
+  assert_positive_numeric_one_elem(k)
+  assert_positive_numeric_one_elem(sn)
+  assert_positive_numeric_one_elem(mcn)
+  assert_positive_numeric_one_elem(limit)
+  assert_positive_numeric_one_elem(intervalnumber)
+  assert_logical_one_elem(returnvalue)
   minval <- min(im)
   maxval <- max(im)
   if (k < 1)
   {
-    stop("k must be greater than or equal to 1.", call. = FALSE)
+    stop("k must be greater than or equal to 1.")
   }
-  if (sn < 2) 
+  if (sn < 2)
   {
-    stop("sn must be greater than or equal to 2.", call.=FALSE)
+    stop("sn must be greater than or equal to 2.")
   }
-  if (mcn < 1) 
+  if (mcn < 1)
   {
-    stop("mcn must be greater than or equal to 1.", call.=FALSE)
+    stop("mcn must be greater than or equal to 1.")
   }
-  if (limit < 1) 
+  if (limit < 1)
   {
-    stop("limit must be greater than or equal to 1.", call.=FALSE)
+    stop("limit must be greater than or equal to 1.")
   }
   if (intervalnumber < 2) 
   {
-    stop("intervalnumber must be greater than or equal to 2.", call.=FALSE)
+    stop("intervalnumber must be greater than or equal to 2.")
   }
-  if (minval == maxval) 
+  if (minval == maxval)
   {
-    stop("im has only one unique value. ThresholdML can't be applied for such a image.", call. = FALSE)
+    stop("im has only one unique value. ThresholdML can't be applied for such a image.")
   }
   intervalnumber <- as.integer(intervalnumber)
   interval <- seq(minval, maxval, length.out = intervalnumber + 1)
@@ -88,10 +88,10 @@ ThresholdML_MEABCT <- function(im, k, sn = 30, mcn = 100, limit = 100, intervaln
 ThresholdML <- function(im, k, thr = "fast", sn = 30, mcn = 100, limit = 100, intervalnumber = 1000, returnvalue = FALSE)
 {
   res <- NULL
-  CheckSanityim(im)
+  assert_im(im)
   if (is.character(thr))
   {
-    CheckSanitychar(thr, "thr")
+    assert_char(thr)
     if (thr == "fast")
     {
       res <- ThresholdML_MEABCT(im, k, 30, 100, 100, 1000, returnvalue)
@@ -103,24 +103,21 @@ ThresholdML <- function(im, k, thr = "fast", sn = 30, mcn = 100, limit = 100, in
       res <- ThresholdML_MEABCT(im, k, sn, mcn, limit, intervalnumber, returnvalue)
     } else 
     {
-      stop("thr must be a numeric vector, or 'fast', or 'precise', or 'manual'.", call. = FALSE)
-    } 
-  } else if (is.numeric(thr))
+      stop("thr must be a numeric vector, or 'fast', or 'precise', or 'manual'.")
+    }
+  } else
   {
-    CheckSanitynumericvec(thr, "thr")
+    assert_numeric_vec(thr)
     ordered <- thr[order(thr)]
     if (any(ordered != thr))
     {
-      warning("thr was arranged in ascending order.", call.=FALSE)
+      warning("thr was arranged in ascending order.")
     }
     if (returnvalue)
     {
       return(ordered)
     }
     res <- as.cimg(threshold_multilevel(as.matrix(im), ordered))
-  } else
-  {
-    stop("thr must be a numeric vector, or 'fast', or 'precise', or 'manual'.", call. = FALSE)
-  }  
+  }
   return(res)
 }

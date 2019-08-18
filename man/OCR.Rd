@@ -10,7 +10,7 @@ OCR(imorpx, engine = tesseract::tesseract("eng"), HOCR = FALSE)
 OCR_data(imorpx, engine = tesseract::tesseract("eng"))
 }
 \arguments{
-\item{imorpx}{a grayscale image of class cimg or a pixel set}
+\item{imorpx}{a grayscale image of class cimg, a color image of class cimg, or a pixel set}
 
 \item{engine}{a tesseract engine. See the reference manual of tesseract for detail.}
 

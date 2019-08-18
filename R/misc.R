@@ -7,6 +7,16 @@
 NULL
 
 #' @useDynLib imagerExtra, .registration=TRUE
+#' @importFrom checkmate assert
+#' @importFrom checkmate assert_character
+#' @importFrom checkmate assert_class
+#' @importFrom checkmate assert_logical
+#' @importFrom checkmate assert_numeric
+#' @importFrom checkmate check_character
+#' @importFrom checkmate check_class
+#' @importFrom checkmate check_matrix
+#' @importFrom checkmate check_numeric
+#' @importFrom checkmate test_numeric
 #' @importFrom fftwtools fftw2d
 #' @importFrom imager add.color
 #' @importFrom imager as.cimg

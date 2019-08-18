@@ -8,8 +8,8 @@
 #' Grayscale(boats) %>% plot
 Grayscale <- function(imcol) 
 {
-    CheckSanityimcol(imcol)
-    (R(imcol) + G(imcol) + B(imcol)) / 3
+  assert_imcol(imcol)
+  (R(imcol) + G(imcol) + B(imcol)) / 3
 }
 
 #' store hue of color image
@@ -22,15 +22,15 @@ Grayscale <- function(imcol)
 #' GetHue(boats)
 GetHue <- function(imcol) 
 {
-    CheckSanityimcol(imcol)
-    res <- imfill(dim=dim(imcol)) %>% add.color
-    sumRGB <- Grayscale(imcol)
-    pixels0 <- where(sumRGB == 0)
-    at(sumRGB, pixels0[,"x"], pixels0[,"y"]) <- 1
-    R(res) <- R(imcol) / sumRGB
-    G(res) <- G(imcol) / sumRGB
-    B(res) <- B(imcol) / sumRGB
-    return(res)
+  assert_imcol(imcol)
+  res <- imfill(dim=dim(imcol)) %>% add.color
+  sumRGB <- Grayscale(imcol)
+  pixels0 <- where(sumRGB == 0)
+  at(sumRGB, pixels0[,"x"], pixels0[,"y"]) <- 1
+  R(res) <- R(imcol) / sumRGB
+  G(res) <- G(imcol) / sumRGB
+  B(res) <- B(imcol) / sumRGB
+  return(res)
 }
 
 #' restore hue of color image
@@ -48,11 +48,11 @@ GetHue <- function(imcol)
 #' RestoreHue(g, hue) %>% plot(main="Resotred")
 RestoreHue <- function(im, hueim) 
 {
-    CheckSanityim(im)
-    CheckSanityimcol(hueim)
-    res <- imfill(dim=dim(im)) %>% add.color
-    R(res) <- im * R(hueim)
-    G(res) <- im * G(hueim)
-    B(res) <- im * B(hueim)
-    return(res)
+  assert_im(im)
+  assert_imcol(hueim)
+  res <- imfill(dim=dim(im)) %>% add.color
+  R(res) <- im * R(hueim)
+  G(res) <- im * G(hueim)
+  B(res) <- im * B(hueim)
+  return(res)
 }

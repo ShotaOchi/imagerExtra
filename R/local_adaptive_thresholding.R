@@ -17,14 +17,14 @@
 #' ThresholdAdaptive(papers, 0.2, range = c(0,1)) %>% plot(main = "local adaptive (k = 0.2)")
 ThresholdAdaptive <- function(im, k, windowsize = 17, range = c(0,255)) 
 {
-  CheckSanityim(im)
-  CheckSanitypositive0numeric(k, "k")
-  CheckSanitypositivenumeric(windowsize, "windowsize")
-  CheckSanityrange(range)
+  assert_im(im)
+  assert_positive0_numeric_one_elem(k)
+  assert_positive_numeric_one_elem(windowsize)
+  assert_range(range)
   windowsize <- as.integer(windowsize)  
   if (windowsize <= 2) 
   {
-    stop("windowsize must be greater than or equal to 3", call.=FALSE)  
+    stop("windowsize must be greater than or equal to 3")  
   } 
   if (windowsize %% 2 == 0) 
   {
@@ -33,17 +33,17 @@ ThresholdAdaptive <- function(im, k, windowsize = 17, range = c(0,255))
   }
   if (windowsize >= width(im) || windowsize >= height(im)) 
   {
-    stop("windowsize is too large.", call.=FALSE)
+    stop("windowsize is too large.")
   }
   if (k > 1) 
   {
-    stop("k is out of range. k must be in [0,1].", call.=FALSE)
+    stop("k is out of range. k must be in [0,1].")
   }
   
   maxsd <- (range[2] - range[1]) / 2
   if (maxsd == 0) 
   {
-    stop("range[1] must not be same as range[2].", call.=FALSE)
+    stop("range[1] must not be same as range[2].")
   }
   
   res <- threshold_adaptive(as.matrix(im), k, windowsize, maxsd)

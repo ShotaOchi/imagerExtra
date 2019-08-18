@@ -16,17 +16,12 @@
 #' BalanceSimplest(boats_g, 1, 1) %>% plot(., main = "Simplest Color Balance")
 BalanceSimplest <- function(im, sleft, sright, range = c(0,255))
 {
-  CheckSanityim(im)
-  CheckSanityrange(range)
-  if (!is.numeric(sleft)) sleft <- ConvertPercentile(sleft)
-  if (!is.numeric(sright)) sright <- ConvertPercentile(sright)
-  if (is.null(sleft) || is.null(sright)) return(NULL)
-  CheckSanitypositive0numeric(sleft, "s, sleft, or sright")
-  CheckSanitypositive0numeric(sright, "s, sleft, or sright")
-  if (sleft + sright > 100)
-  {
-    stop("saturation parameters (s, sleft, or sright) are too large. confirm the following condition is satisfied. s <= 50 or sleft + sright <= 100.", call. = FALSE)
-  }
+  assert_im(im)
+  assert_range(range)
+  sleft <- assert_s(sleft)
+  sright <- assert_s(sright)
+  assert_s_left_right(sleft, sright)
+  
   dim_im <- dim(im)
   im <- as.vector(im)
   im_ordered <- im[order(im)]
