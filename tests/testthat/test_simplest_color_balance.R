@@ -26,8 +26,8 @@ test_that("simplest_color_balance",
   expect_error(BalanceSimplest(gim, s_c, s_bad2))
   expect_error(BalanceSimplest(gim, s_bad3_1, s_bad3_2))
   expect_error(BalanceSimplest(gim, s_c, s_bad4))
-  expect_error(BalanceSimplest(notim, s_c, s_bad5))
-  expect_error(BalanceSimplest(notim, s_bad6, s_bad6))
+  expect_error(BalanceSimplest(gim, s_c, s_bad5))
+  expect_error(BalanceSimplest(gim, s_bad6, s_C))
   
   expect_class(BalanceSimplest(gim, s_c, s_c), class_imager)
   expect_class(BalanceSimplest(gim, s_c2, s_c2), class_imager)
