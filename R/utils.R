@@ -106,7 +106,7 @@ convert_percentile <- function(s_input)
 {
   splitted <- strsplit(s_input , "%")
   candidate <- suppressWarnings(as.numeric(splitted[[1]][1]))
-  if (!test_numeric(candidate, lower = 0, finite = TRUE, len = 1)) 
+  if (!test_numeric(candidate, lower = 0, finite = TRUE, any.missing = TRUE, len = 1)) 
   {
     stop("saturation percentage parameter (s, sleft, or sright) is not appropriate.")
   }
