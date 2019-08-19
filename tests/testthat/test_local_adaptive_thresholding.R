@@ -7,7 +7,7 @@ test_that("local adaptive thresholding",
   windowsize_bad1 <- NA
   windowsize_bad2 <- 2
   windowsize_bad3 <- 12
-  windowsize_bad4 <- max(dim(gim))
+  windowsize_bad4 <- 2 * max(dim(gim)) + 1
   
   range_bad3 <- c(NA, 255)
 
