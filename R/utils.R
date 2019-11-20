@@ -5,15 +5,15 @@ assert_im <- function(im)
   assert_class(im, class_imager)
   if (depth(im) != 1)
   {
-    stop(sprintf("%s must be a grayscale image.", deparse(substitute(range))))
+    stop(sprintf("%s must be a grayscale image.", deparse(substitute(im))))
   }
   if (spectrum(im) != 1) 
   {
-    stop(sprintf("%s must be a grayscale image.", deparse(substitute(range))))
+    stop(sprintf("%s must be a grayscale image.", deparse(substitute(im))))
   }
   if (any(is.na(im))) 
   {
-    stop(sprintf("%s has NA. NA is unacceptable.", deparse(substitute(range))))
+    stop(sprintf("%s has NA. NA is unacceptable.", deparse(substitute(im))))
   }
 }
 
@@ -22,15 +22,15 @@ assert_imcol <- function(imcol)
   assert_class(imcol, class_imager)
   if (depth(imcol) != 1)
   {
-    stop(sprintf("%s must be an image of class cimg.", deparse(substitute(range))))
+    stop(sprintf("%s must be an image of class cimg.", deparse(substitute(imcol))))
   }
   if (spectrum(imcol) != 3) 
   {
-    stop(sprintf("%s number of color channels of imcol must be 3.", deparse(substitute(range))))
+    stop(sprintf("%s number of color channels of imcol must be 3.", deparse(substitute(imcol))))
   }
   if (any(is.na(imcol))) 
   {
-    stop(sprintf("%s has NA. NA is unacceptable.", deparse(substitute(range))))
+    stop(sprintf("%s has NA. NA is unacceptable.", deparse(substitute(imcol))))
   }
 }
 
