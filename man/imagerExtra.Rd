@@ -3,7 +3,6 @@
 \docType{package}
 \name{imagerExtra}
 \alias{imagerExtra}
-\alias{imagerExtra-package}
 \title{imagerExtra: Extra Image Processing Library Based on Imager}
 \description{
 imagerExtra is built on imager. imager by Simon Simon Barthelme provides an interface with CImg that is a C++ library for image processing. imager makes functions of CImg accessible from R and adds many utilities for accessing and working with image data from R.

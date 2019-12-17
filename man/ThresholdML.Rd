@@ -4,8 +4,16 @@
 \alias{ThresholdML}
 \title{Multilevel Thresholding}
 \usage{
-ThresholdML(im, k, thr = "fast", sn = 30, mcn = 100, limit = 100,
-  intervalnumber = 1000, returnvalue = FALSE)
+ThresholdML(
+  im,
+  k,
+  thr = "fast",
+  sn = 30,
+  mcn = 100,
+  limit = 100,
+  intervalnumber = 1000,
+  returnvalue = FALSE
+)
 }
 \arguments{
 \item{im}{a grayscale image of class cimg}

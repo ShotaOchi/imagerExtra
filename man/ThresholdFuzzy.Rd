@@ -4,9 +4,19 @@
 \alias{ThresholdFuzzy}
 \title{Fuzzy Entropy Image Segmentation}
 \usage{
-ThresholdFuzzy(im, n = 50, maxiter = 100, omegamax = 0.9,
-  omegamin = 0.1, c1 = 2, c2 = 2, mutrate = 0.2, vmaxcoef = 0.1,
-  intervalnumber = 1000, returnvalue = FALSE)
+ThresholdFuzzy(
+  im,
+  n = 50,
+  maxiter = 100,
+  omegamax = 0.9,
+  omegamin = 0.1,
+  c1 = 2,
+  c2 = 2,
+  mutrate = 0.2,
+  vmaxcoef = 0.1,
+  intervalnumber = 1000,
+  returnvalue = FALSE
+)
 }
 \arguments{
 \item{im}{a grayscale image of class cimg}

@@ -4,8 +4,18 @@
 \alias{SegmentCV}
 \title{Chan-Vese segmentation}
 \usage{
-SegmentCV(im, mu = 0.25, nu = 0, lambda1 = 1, lambda2 = 1,
-  tol = 1e-04, maxiter = 500, dt = 0.5, initial, returnstep)
+SegmentCV(
+  im,
+  mu = 0.25,
+  nu = 0,
+  lambda1 = 1,
+  lambda2 = 1,
+  tol = 1e-04,
+  maxiter = 500,
+  dt = 0.5,
+  initial,
+  returnstep
+)
 }
 \arguments{
 \item{im}{a grayscale image of class cimg}

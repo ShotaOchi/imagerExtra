@@ -4,8 +4,13 @@
 \alias{ThresholdTriclass}
 \title{Iterative Triclass Thresholding}
 \usage{
-ThresholdTriclass(im, stopval = 0.01, repeatnum, intervalnumber = 1000,
-  returnvalue = FALSE)
+ThresholdTriclass(
+  im,
+  stopval = 0.01,
+  repeatnum,
+  intervalnumber = 1000,
+  returnvalue = FALSE
+)
 }
 \arguments{
 \item{im}{a grayscale image of class cimg}
