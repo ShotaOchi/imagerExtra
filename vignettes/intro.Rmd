@@ -173,7 +173,7 @@ The parameter *sdn* determines how strong denoise a image.
 
 Noise is strongly denoised if *sdn* is large.
 
-The parameter *flag_dct16x16* determiens window size of local patches. 
+The parameter *flag_dct16x16* determines window size of local patches. 
 
 DenoiseDCT uses 8x8 windows or 16x16 window.
 

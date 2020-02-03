@@ -4,12 +4,12 @@
 #' @param im a grayscale image of class cimg
 #' @param mu length penalty
 #' @param nu area penalty
-#' @param lambda1 fit weight inside the cuve
+#' @param lambda1 fit weight inside the curve
 #' @param lambda2 fit weight outside the curve
 #' @param tol convergence tolerance
 #' @param maxiter maximum number of iterations
 #' @param dt time step
-#' @param initial "interactive" or a grayscale image of class cimg. you can define initial condition as a rectangle shape interactively if initial is "interactive". If initial is a grayscale image of class cimg, pixels whose values are negative will be treated as outside of contour. pixels whose values are non-negative will be treated as inside of contour. checker board condition will be used if initial is not specified. 
+#' @param initial "interactive" or a grayscale image of class cimg. you can define initial condition as a rectangle shape interactively if initial is "interactive". If initial is a grayscale image of class cimg, pixels whose values are negative will be treated as outside of contour. pixels whose values are non-negative will be treated as inside of contour. checker board condition will be used if initial is not specified.
 #' @param returnstep a numeric vector that determines which result will be returned. 0 means initial condition, and 1 means the result after 1 iteration. final result will be returned if returnstep is not specified.
 #' @return a pixel set or a list of lists of numeric and pixel set
 #' @references Pascal Getreuer (2012). Chan-Vese Segmentation. Image Processing On Line 2, 214-224.
@@ -31,7 +31,7 @@ SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol
   assert_positive_numeric_one_elem(maxiter)
   maxiter <- as.integer(maxiter)
   assert_positive_numeric_one_elem(dt)
-  
+
   dim_im <- dim(im)
   if (missing(initial))
   {
@@ -58,7 +58,7 @@ SegmentCV <- function(im, mu = 0.25, nu = 0.0, lambda1 = 1.0, lambda2 = 1.0, tol
       stop('initial must be "interactive" or a grayscale image of class cimg')
     }
   }
-  
+
   if (missing(returnstep))
   {
     res <- ChanVese(as.matrix(im), mu, nu, lambda1, lambda2, tol, maxiter, dt, as.matrix(initial))

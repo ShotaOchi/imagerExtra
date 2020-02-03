@@ -1,6 +1,6 @@
 #' Fuzzy Entropy Image Segmentation
 #'
-#' automatic fuzzy thresholding based on particle swarm optimization 
+#' automatic fuzzy thresholding based on particle swarm optimization
 #' @param im a grayscale image of class cimg
 #' @param n swarm size
 #' @param maxiter maximum iterative time
@@ -12,7 +12,7 @@
 #' @param vmaxcoef coefficient of maximum velocity
 #' @param intervalnumber interval number of histogram
 #' @param returnvalue if returnvalue is TRUE, returns a threshold value. if FALSE, returns a pixel set.
-#' @return a pixsel set or a numeric
+#' @return a pixel set or a numeric
 #' @references Linyi Li, Deren Li (2008). Fuzzy entropy image segmentation based on particle swarm optimization. Progress in Natural Science.
 #' @author Shota Ochi
 #' @export
@@ -30,19 +30,19 @@ ThresholdFuzzy <- function(im, n = 50, maxiter = 100, omegamax = 0.9, omegamin =
   assert_positive_numeric_one_elem(omegamin)
   assert_positive_numeric_one_elem(c1)
   assert_positive_numeric_one_elem(c2)
-  assert_positive_numeric_one_elem(mutrate) 
-  assert_positive_numeric_one_elem(vmaxcoef)  
+  assert_positive_numeric_one_elem(mutrate)
+  assert_positive_numeric_one_elem(vmaxcoef)
   assert_positive_numeric_one_elem(intervalnumber)
   assert_logical_one_elem(returnvalue)
   minval <- min(im)
   maxval <- max(im)
-  if (n < 1) 
+  if (n < 1)
   {
     stop("n must be greater than or equal to 1.")
   }
   if (omegamax >= 1)
   {
-    stop("omegamax must be smaller than 1") 
+    stop("omegamax must be smaller than 1")
   }
   if (omegamin >= omegamax)
   {
@@ -56,14 +56,14 @@ ThresholdFuzzy <- function(im, n = 50, maxiter = 100, omegamax = 0.9, omegamin =
   {
     stop("intervalnumber must be greater than or equal to 2.")
   }
-  if (minval == maxval) 
+  if (minval == maxval)
   {
     stop("im has only one unique value. ThresholdFuzzy can't be applied for such a image.")
   }
   n <- as.integer(n)
   maxiter <- as.integer(maxiter)
   intervalnumber <- as.integer(intervalnumber)
-  
+
   interval <- seq(minval, maxval, length.out = intervalnumber + 1)
   interval <- interval[2:length(interval)]
   vmax <- vmaxcoef * intervalnumber
