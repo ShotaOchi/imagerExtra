@@ -1,10 +1,10 @@
 ---
-title: "Getting Started with imagerExtara"
+title: "Getting Started with imagerExtra"
 author: "Shota Ochi"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Getting Started with imagerExtara}
+  %\VignetteIndexEntry{Getting Started with imagerExtra}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
