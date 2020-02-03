@@ -1,10 +1,10 @@
 ---
-title: "Optical Character Recognition with imagerExtara"
+title: "Optical Character Recognition with imagerExtra"
 author: "Shota Ochi"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Optical Character Recognition with imagerExtara}
+  %\VignetteIndexEntry{Optical Character Recognition with imagerExtra}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

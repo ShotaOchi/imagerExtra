@@ -13,7 +13,7 @@ imagerExtra is an R package for image processing based on the R package [imager]
 imagerExtra provides advanced functions for image processing.
 
 
-See the vignette [Getting Started with imagerExtara](https://cran.r-project.org/package=imagerExtra/vignettes/gettingstarted.html) to know what functions imagerExtra provides. 
+See the vignette [Getting Started with imagerExtra](https://cran.r-project.org/package=imagerExtra/vignettes/gettingstarted.html) to know what functions imagerExtra provides. 
 
 
 See the [introduction of imager](http://dahtah.github.io/imager/) if you don't know imager.

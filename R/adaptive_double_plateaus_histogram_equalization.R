@@ -30,11 +30,11 @@ EqualizeDP <- function(im, t_down, t_up, N = 1000, range = c(0,255))
   {
     stop("N must be greater than or equal to 2.")
   }
-  
+
   dim_im <- dim(im)
   minval <- min(im)
   maxval <- max(im)
-  if (minval == maxval) 
+  if (minval == maxval)
   {
     stop("im has only one unique value. EqualizeDP can't be applied for such a image.")
   }
@@ -51,8 +51,8 @@ EqualizeDP <- function(im, t_down, t_up, N = 1000, range = c(0,255))
 }
 
 #' Adaptive Double Plateaus Histogram Equalization
-#' 
-#' computes the paramters, t_down and t_up, and then apply double plateaus histogram equalization.
+#'
+#' computes the parameters, t_down and t_up, and then apply double plateaus histogram equalization.
 #' @param im a grayscale image of class cimg
 #' @param n window size to determine local maximum
 #' @param N the number of subintervals of histogram
@@ -93,7 +93,7 @@ EqualizeADP <- function(im, n = 5, N = 1000, range = c(0,255), returnparam = FAL
   dim_im <- dim(im)
   minval <- min(im)
   maxval <- max(im)
-  if (minval == maxval) 
+  if (minval == maxval)
   {
     stop("im has only one unique value. EqualizeADP can't be applied for such a image.")
   }
