@@ -42,7 +42,7 @@ ThresholdFuzzy(
 \item{returnvalue}{if returnvalue is TRUE, returns a threshold value. if FALSE, returns a pixel set.}
 }
 \value{
-a pixsel set or a numeric
+a pixel set or a numeric
 }
 \description{
 automatic fuzzy thresholding based on particle swarm optimization

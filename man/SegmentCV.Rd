@@ -24,7 +24,7 @@ SegmentCV(
 
 \item{nu}{area penalty}
 
-\item{lambda1}{fit weight inside the cuve}
+\item{lambda1}{fit weight inside the curve}
 
 \item{lambda2}{fit weight outside the curve}
 
