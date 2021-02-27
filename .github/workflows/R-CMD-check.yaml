@@ -50,7 +50,9 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           choco install rtools
-          pacman -S  mingw-w64-{i686,x86_64}-fftw
+          pacman -S mingw-w64-i686-fftw
+          pacman -S mingw-w64-x86_64-fftw
+
 
       - name: Query dependencies
         run: |
