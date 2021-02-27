@@ -3,3 +3,4 @@ TODO
 ^\.travis\.yml$
 ^appveyor\.yml$
 LICENSE
+^\.github$
