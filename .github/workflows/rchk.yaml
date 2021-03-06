@@ -14,3 +14,5 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: r-lib/actions/run-rchk@master
+      with:
+        apt: libfftw3-dev libtiff-dev
