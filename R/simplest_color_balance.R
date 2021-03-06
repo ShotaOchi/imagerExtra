@@ -5,7 +5,7 @@
 #' @param sright right saturation percentage. sright can be specified by numeric or string. note that sright is a percentile.
 #' @param range this function assumes that the range of pixel values of of input image is [0,255] by default. you may prefer [0,1].
 #' @return a grayscale image of class cimg
-#' @references Nicolas Limare, Jose-Luis Lisani, Jean-Michel Morel, Ana Belen Petro, and Catalina Sbert, Simplest Color Balance, Image Processing On Line, 1 (2011), pp. 297-315. \url{https://doi.org/10.5201/ipol.2011.llmps-scb}
+#' @references Nicolas Limare, Jose-Luis Lisani, Jean-Michel Morel, Ana Belen Petro, and Catalina Sbert, Simplest Color Balance, Image Processing On Line, 1 (2011), pp. 297-315. \doi{10.5201/ipol.2011.llmps-scb}
 #' @author Shota Ochi
 #' @export
 #' @examples

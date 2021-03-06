@@ -29,7 +29,7 @@ plot(boats_g, main = "Original")
 BalanceSimplest(boats_g, 1, 1) \%>\% plot(., main = "Simplest Color Balance")
 }
 \references{
-Nicolas Limare, Jose-Luis Lisani, Jean-Michel Morel, Ana Belen Petro, and Catalina Sbert, Simplest Color Balance, Image Processing On Line, 1 (2011), pp. 297-315. \url{https://doi.org/10.5201/ipol.2011.llmps-scb}
+Nicolas Limare, Jose-Luis Lisani, Jean-Michel Morel, Ana Belen Petro, and Catalina Sbert, Simplest Color Balance, Image Processing On Line, 1 (2011), pp. 297-315. \doi{10.5201/ipol.2011.llmps-scb}
 }
 \author{
 Shota Ochi

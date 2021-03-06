@@ -29,7 +29,7 @@ plot(boats_g, main = "Original")
 SPE(boats_g, 0.1) \%>\% plot(main = "Screened Poisson Equation")
 }
 \references{
-Jean-Michel Morel, Ana-Belen Petro, and Catalina Sbert, Screened Poisson Equation for Image Contrast Enhancement, Image Processing On Line, 4 (2014), pp. 16-29. \url{https://doi.org/10.5201/ipol.2014.84}
+Jean-Michel Morel, Ana-Belen Petro, and Catalina Sbert, Screened Poisson Equation for Image Contrast Enhancement, Image Processing On Line, 4 (2014), pp. 16-29. \doi{10.5201/ipol.2014.84}
 }
 \author{
 Shota Ochi

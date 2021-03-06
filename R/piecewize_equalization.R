@@ -9,7 +9,7 @@
 #' @param range range of the pixel values of image. this function assumes that the range of pixel values of of an input image is [0,255] by default. you may prefer [0,1].
 #' if you change range, you should change smax. one example is this (smax = range[2] - range[1]). 
 #' @return a grayscale image of class cimg
-#' @references Jose-Luis Lisani, Ana-Belen Petro, and Catalina Sbert, Color and Contrast Enhancement by Controlled Piecewise Affine Histogram Equalization, Image Processing On Line, 2 (2012), pp. 243-265. \url{https://doi.org/10.5201/ipol.2012.lps-pae}
+#' @references Jose-Luis Lisani, Ana-Belen Petro, and Catalina Sbert, Color and Contrast Enhancement by Controlled Piecewise Affine Histogram Equalization, Image Processing On Line, 2 (2012), pp. 243-265. \doi{10.5201/ipol.2012.lps-pae}
 #' @author Shota Ochi
 #' @export
 #' @examples

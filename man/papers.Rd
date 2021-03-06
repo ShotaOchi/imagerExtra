@@ -4,7 +4,9 @@
 \name{papers}
 \alias{papers}
 \title{Photograph of a paper}
-\format{an image of class cimg}
+\format{
+an image of class cimg
+}
 \usage{
 papers
 }

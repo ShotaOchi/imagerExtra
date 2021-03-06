@@ -33,7 +33,7 @@ plot(boats_g, main = "Original")
 EqualizePiecewise(boats_g, 10) \%>\% plot(., main = "Piecewise Affine Equalization")
 }
 \references{
-Jose-Luis Lisani, Ana-Belen Petro, and Catalina Sbert, Color and Contrast Enhancement by Controlled Piecewise Affine Histogram Equalization, Image Processing On Line, 2 (2012), pp. 243-265. \url{https://doi.org/10.5201/ipol.2012.lps-pae}
+Jose-Luis Lisani, Ana-Belen Petro, and Catalina Sbert, Color and Contrast Enhancement by Controlled Piecewise Affine Histogram Equalization, Image Processing On Line, 2 (2012), pp. 243-265. \doi{10.5201/ipol.2012.lps-pae}
 }
 \author{
 Shota Ochi

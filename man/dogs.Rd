@@ -4,7 +4,9 @@
 \name{dogs}
 \alias{dogs}
 \title{Photograph of a dog from GAHAG}
-\format{an image of class cimg}
+\format{
+an image of class cimg
+}
 \source{
 \url{http://gahag.net/img/201603/03s/gahag-0062116383-1.jpg}
 }

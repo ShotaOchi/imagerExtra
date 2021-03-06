@@ -28,7 +28,7 @@ plot(boats_noisy, main = "Noisy Boats")
 DenoiseDCT(boats_g, 0.05) \%>\% plot(., main = "Denoised Boats")
 }
 \references{
-Guoshen Yu, and Guillermo Sapiro, DCT Image Denoising: a Simple and Effective Image Denoising Algorithm, Image Processing On Line, 1 (2011), pp. 292-296. \url{https://doi.org/10.5201/ipol.2011.ys-dct}
+Guoshen Yu, and Guillermo Sapiro, DCT Image Denoising: a Simple and Effective Image Denoising Algorithm, Image Processing On Line, 1 (2011), pp. 292-296. \doi{10.5201/ipol.2011.ys-dct}
 }
 \author{
 Shota Ochi
