@@ -34,6 +34,11 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v1
 
+      - name: Install system dependencies
+        if: runner.os == 'Linux'
+        run: |
+         sudo apt install valgrind
+
       - name: Query dependencies
         run: |
           install.packages('remotes')
