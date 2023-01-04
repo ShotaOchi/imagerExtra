@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // DCTdenoising
 Rcpp::NumericMatrix DCTdenoising(Rcpp::NumericMatrix ipixelsR, int width, int height, double sigma, int flag_dct16x16);
 RcppExport SEXP _imagerExtra_DCTdenoising(SEXP ipixelsRSEXP, SEXP widthSEXP, SEXP heightSEXP, SEXP sigmaSEXP, SEXP flag_dct16x16SEXP) {

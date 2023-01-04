@@ -97,7 +97,6 @@ EqualizeADP <- function(im, n = 5, N = 1000, range = c(0,255), returnparam = FAL
   {
     stop("im has only one unique value. EqualizeADP can't be applied for such a image.")
   }
-  N <- as.integer(N)
   interval <- seq(minval, maxval, length.out = N + 1)
   interval1 <- interval[1:(length(interval)-1)]
   interval2 <- interval[2:length(interval)]
