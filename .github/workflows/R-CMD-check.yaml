@@ -47,10 +47,10 @@ jobs:
       - name: Install System Requirements on Windows
         if: runner.os == 'Windows'
         run: |
-          pacman -S --noconfirm mingw-w64-i686-fftw
-          pacman -S --noconfirm mingw-w64-x86_64-fftw
-          pacman -S --noconfirm mingw-w64-i686-libtiff
-          pacman -S --noconfirm mingw-w64-x86_64-libtiff
+          pacman -Sy --noconfirm mingw-w64-i686-fftw
+          pacman -Sy --noconfirm mingw-w64-x86_64-fftw
+          pacman -Sy --noconfirm mingw-w64-i686-libtiff
+          pacman -Sy --noconfirm mingw-w64-x86_64-libtiff
 
 
       - name: Query dependencies
